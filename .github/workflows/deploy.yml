@@ -20,7 +20,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 60
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
@@ -52,7 +52,7 @@ jobs:
           restore-keys: posters-
       - name: 상영표 새로 받기
         id: refresh
-        timeout-minutes: 18  # KOBIS가 GitHub 서버에 응답을 안 주고 멈출 때가 있음. 보통 2분, 포스터를 처음 받는 날은 7분쯤 더
+        timeout-minutes: 50  # 보통 2~4분. KOBIS가 GitHub 서버에 느리게 답하는 날은 상영표 받기만 18분 걸림(11/14). 새벽에 도는 거라 오래 걸려도 됨
         if: github.event_name != 'push'
         continue-on-error: true
         working-directory: data

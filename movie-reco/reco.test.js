@@ -6,7 +6,7 @@ const R=vm.runInContext('({METHODS,NOW,PICKS,priceOf,recommend,candidates,daysOf
 const minOf=t=>Math.min(...R.daysOf(t).flatMap(d=>d.s.map(x=>R.priceOf(x,d.w))));
 const live=R.NOW.filter(m=>R.daysOf(m.t).length), cheapest=Math.min(...live.map(m=>minOf(m.t)));
 const st=(p,mbti=['I','N','F','P'])=>({mbti,picked:{'라라랜드':1,'벌새':1},price:p,text:'잔잔한 영화',method:'match',idx:{},shows:{}});
-for(let p=5000;p<=20000;p+=1000) for(const k of R.METHODS){
+for(let p=5000;p<=50000;p+=1000) for(const k of R.METHODS){
   const r=R.recommend(st(p),k), tag=k+' 예산 '+p+': '+r.mv.t+' '+r.sh.price+'원';
   if(live.some(m=>minOf(m.t)<=p)) assert(r.sh.price<=p,'예산 초과 '+tag);
   else assert.strictEqual(r.sh.price,cheapest,'예산 안 영화가 없으면 제일 싼 회차여야 함 '+tag);

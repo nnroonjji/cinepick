@@ -39,8 +39,8 @@ alone in the world,alone in the world,외톨이|혼자,,외톨이
 alter ego,alter ego,또 다른 자아|분신,,또 다른 자아
 alternate endings,alternate endings,결말,,다른 결말
 alternate history,alternate history,대체역사,,대체역사
-alternate reality,alternate reality,평행세계,,대체 현실
-alternate universe,alternate universe,평행우주|멀티버스,,평행우주
+alternate reality,alternate reality,,,대체 현실
+alternate universe,alternate universe,멀티버스,,평행우주
 amazing cinematography,amazing cinematography,,평가,
 amazing photography,amazing photography,,평가,
 american civil war,american civil war,남북전쟁,,남북전쟁
@@ -128,7 +128,7 @@ bullying,bullying,따돌림|괴롭힘|왕따,,따돌림
 business,business,사업|비즈니스,,사업
 c.s. lewis,c.s. lewis,C.S. 루이스,,C.S. 루이스
 california,california,캘리포니아,,캘리포니아
-camp,camp|campy,B급|키치,,B급
+camp,camp|campy,키치,,B급
 canada,canada,캐나다,,캐나다
 cancer,cancer,암,,암
 cannibalism,cannibalism,식인,,식인
@@ -143,11 +143,11 @@ cathartic,cathartic,카타르시스|통쾌하다,,카타르시스
 catholicism,catholicism,가톨릭|천주교,,가톨릭
 censorship,censorship,검열,,검열
 cerebral,cerebral,지적|두뇌,,지적인
-cgi,cgi,CG,,CG
+cgi,cgi,,,CG
 character study,character study,인물 탐구|내면,,인물 탐구
 chase,chase,추격|추적|쫓다,,추격
 cheerleading,cheerleading,치어리딩|치어리더,,치어리딩
-cheesy,cheesy|corny,유치하다|B급|뻔하다,,유치함
+cheesy,cheesy|corny,뻔하다,,유치함
 chess,chess,체스,,체스
 chicago,chicago,시카고,,시카고
 child abuse,child abuse,아동학대|학대,,아동학대
@@ -176,20 +176,20 @@ colourful,colourful,화려하다|알록달록하다,,화려함
 comedy,comedy,코미디|코메디,,코미디
 coming of age,coming of age|coming-of-age,성장|성장영화,,성장
 communism,communism,공산주의,,공산주의
-compassionate,compassionate,연민|따뜻하다,,연민
+compassionate,compassionate,연민,,연민
 competition,competition,경쟁|대회|시합,,경쟁
 complex,complex|complicated,복잡하다,,복잡한 이야기
-complex characters,complex characters,복잡하다|입체적,,복잡한 인물
-complicated plot,complicated plot,복잡하다,,복잡한 줄거리
+complex characters,complex characters,입체적,,복잡한 인물
+complicated plot,complicated plot,,,복잡한 줄거리
 computer animation,computer animation,3D 애니메이션|컴퓨터 애니메이션,,3D 애니메이션
 computers,computers,컴퓨터,,컴퓨터
 con artists,con artists|con men,사기꾼,,사기꾼
 confrontational,confrontational,대립|대결,,대립
-confusing,confusing,난해하다,,난해함
+confusing,confusing,,,난해함
 conspiracy,conspiracy,음모,,음모
 conspiracy theory,conspiracy theory,음모론,,음모론
 controversial,controversial,,애매,
-cooking,cooking,요리,,요리
+cooking,cooking,,,요리
 cool,cool,,평가,
 corporate america,corporate america,대기업,,대기업
 corruption,corruption,부패|비리,,부패
@@ -220,14 +220,14 @@ death penalty,death penalty,사형,,사형
 depp & burton,depp & burton,팀 버튼|조니 뎁,,팀 버튼
 desert,desert,사막,,사막
 destiny,destiny,운명,,운명
-devil,devil,악마,,악마
+devil,devil,,,악마
 dialogue,dialogue,,애매,
 dinosaurs,dinosaurs,공룡,,공룡
 directorial debut,directorial debut,데뷔작,,데뷔작
 disability,disability,장애|장애인,,장애
 disappointing,disappointing,,평가,
 disney,disney|disney animated feature,디즈니,,디즈니
-distopia,distopia,디스토피아,,디스토피아
+distopia,distopia,,,디스토피아
 disturbing,disturbing,불편하다|충격,,불편함
 divorce,divorce,이혼,,이혼
 doctors,doctors,의사,,의사
@@ -245,19 +245,19 @@ drugs,drugs|addiction|drug abuse|drug addiction,중독|마약|약물|마약 중�
 dumb but funny,dumb but funny,,애매,
 dynamic cgi action,dynamic cgi action,,평가,
 dysfunctional family,dysfunctional family,가족 갈등|불화|콩가루,,가족 갈등
-earnest,earnest,진지하다|진솔하다,,진지함
+earnest,earnest,진지하다,,진지함
 easily confused with other movie(s) (title),easily confused with other movie(s) (title),,,
 east germany,east germany,동독,,동독
-eccentricity,eccentricity,괴짜|별나다,,괴짜
+eccentricity,eccentricity,괴짜,,괴짜
 educational,educational,교육,,교육
 egypt,egypt,이집트,,이집트
 emma watson,emma watson,엠마 왓슨,,엠마 왓슨
 enigmatic,enigmatic,수수께끼,,수수께끼
 ennio morricone,ennio morricone,엔니오 모리코네,,엔니오 모리코네
-enormously long battle scene,enormously long battle scene,전투,,전투
+enormously long battle scene,enormously long battle scene,,,전투
 ensemble cast,ensemble cast,군상극|앙상블,,군상극
 entertaining,entertaining,,평가,
-entirely dialogue,entirely dialogue|dialogue driven,대화|대사,,대화로만
+entirely dialogue,entirely dialogue|dialogue driven,대사,,대화로만
 environment,environment|ecology|environmental,환경|생태,,환경
 epic,epic,대서사|서사,,대서사
 ethnic conflict,ethnic conflict,민족 분쟁|인종 갈등,,민족 분쟁
@@ -292,33 +292,33 @@ fish,fish,물고기|생선,,물고기
 flashbacks,flashbacks,,,
 food,food,음식|요리,,음식
 football,football|soccer,축구|미식축구,,축구
-forceful,forceful,강렬하다,,힘 있는
+forceful,forceful,,,힘 있는
 foreign,foreign,외국,,외국 영화
 foul language,foul language,,등급,
 fountain of youth,fountain of youth,불로장생,,불로장생
 france,france|french|paris,프랑스|파리,,프랑스
 franchise,franchise,,,
 francis ford copolla,francis ford copolla,코폴라,,코폴라
-free speech,free speech,표현의 자유|언론,,표현의 자유
+free speech,free speech,표현의 자유,,표현의 자유
 free to download,free to download,,,
 freedom,freedom,자유,,자유
 friendship,friendship|unlikely friendships,우정|친구|뜻밖의 우정,,우정
-fun movie,fun movie|fun,유쾌하다|재미있다,,유쾌함
+fun movie,fun movie|fun,재미있다,,유쾌함
 funniest movies,funniest movies,,애매,
 funny,funny|funny as hell|hilarious|hillarious|very funny,웃기다|코믹|폭소,,웃긴 영화
-futuristic,futuristic|dystopia|dystopic future|future,미래|디스토피아,,미래
+futuristic,futuristic|dystopia|dystopic future|future,디스토피아,,미래
 gambling,gambling,도박,,도박
 gangs,gangs,갱|조직,,갱단
 gangsters,gangsters|gangster|mafia|mob|organized crime,조폭|깡패|갱스터|조직범죄|조직폭력|마피아,,조폭
 gay character,gay character|gay|glbt|homosexuality|queer,게이|동성애|퀴어|성소수자|동성애자,,게이
-geeks,geeks|geek|nerds,덕후|괴짜|너드,,덕후
+geeks,geeks|geek|nerds,덕후|너드,,덕후
 genetics,genetics,유전자|유전,,유전자
 genius,genius,,평가,
 genocide,genocide,학살|대학살,,학살
 george orwell,george orwell,조지 오웰,,조지 오웰
 german,german|germany,독일,,독일
-ghosts,ghosts|haunted house,유령|귀신|흉가|유령의 집,,유령
-ghosts/afterlife,ghosts/afterlife,유령|사후세계,,유령과 사후 세계
+ghosts,ghosts|haunted house,유령|흉가|유령의 집,,유령
+ghosts/afterlife,ghosts/afterlife,,,유령과 사후 세계
 giant robots,giant robots,거대 로봇,,거대 로봇
 gilliam,gilliam,테리 길리엄,,테리 길리엄
 girlie movie,girlie movie|chick flick|good romantic comedies|romantic comedy,여성 영화|칙릿|로맨틱 코미디|로맨틱코미디|로코,,여성 영화
@@ -331,13 +331,13 @@ good dialogue,good dialogue,,평가,
 good music,good music|great music,,평가,
 good soundtrack,good soundtrack,,평가,
 good story,good story,,평가,
-good versus evil,good versus evil,선과 악|선악,,선과 악
-goofy,goofy,엉뚱하다|우스꽝스럽다,,엉뚱함
+good versus evil,good versus evil,선과 악,,선과 악
+goofy,goofy,엉뚱하다,,엉뚱함
 goth,goth,고스,,고스
 gothic,gothic,고딕,,고딕
 graphic design,graphic design,그래픽 디자인|디자인,,그래픽 디자인
 graphic novel,graphic novel,그래픽 노블,,그래픽 노블
-gratuitous violence,gratuitous violence,폭력,,폭력
+gratuitous violence,gratuitous violence,,,폭력
 great,great,,평가,
 great acting,great acting|exceptional acting|good acting,,평가,
 great dialogue,great dialogue,,평가,
@@ -346,7 +346,7 @@ great movie,great movie,,평가,
 great soundtrack,great soundtrack,,평가,
 greed,greed,탐욕|욕심,,탐욕
 grindhouse,grindhouse,그라인드하우스|B급,,그라인드하우스
-gritty,gritty,거칠다|사실적,,거친 분위기
+gritty,gritty,거칠다,,거친 분위기
 gross-out,gross-out,엽기|역겹다,,엽기
 guilt,guilt,죄책감,,죄책감
 guilty pleasure,guilty pleasure,,평가,
@@ -367,12 +367,12 @@ hawaii,hawaii,하와이,,하와이
 heist,heist|bank robbery|robbery,하이스트|강도|털다|도둑|은행 강도,,강탈
 heroin,heroin,헤로인,,헤로인
 heroine,heroine,여주인공|히로인,,여주인공
-heroine in tight suit,heroine in tight suit,여전사,,액션 여주인공
+heroine in tight suit,heroine in tight suit,,,액션 여주인공
 highly quotable,highly quotable|quotable,,애매,
 hip hop,hip hop,힙합,,힙합
 historical,historical|history|us history,역사|사극|미국 역사|시대극,,역사
 hitchcock,hitchcock,히치콕,,히치콕
-hitman,hitman|hit men,킬러|청부살인업자|청부살인,,킬러
+hitman,hitman|hit men,청부살인업자|청부살인,,킬러
 holiday,holiday|christmas,휴가|명절|연휴|크리스마스,,휴가
 hollywood,hollywood,,,
 holocaust,holocaust,홀로코스트|유대인 학살,,홀로코스트
@@ -381,13 +381,13 @@ homophobia,homophobia,동성애 혐오,,동성애 혐오
 honest,honest,솔직하다|진솔하다,,솔직함
 hong kong,hong kong,홍콩,,홍콩
 horrible,horrible|awful|bad,,평가,
-horror,horror|creepy|eerie|frightening|ominous|scary,으스스하다|기묘하다|불길하다|무섭다|공포|호러|섬뜩하다|오싹하다,,공포
+horror,horror|creepy|eerie|frightening|ominous|scary,으스스하다|불길하다|무섭다|공포|호러|섬뜩하다|오싹하다,,공포
 horses,horses,경마|승마,,말
 hospital,hospital,병원,,병원
 hostage,hostage,인질,,인질
 hotel,hotel,호텔,,호텔
 humanity,humanity,인류|인간성,,인류
-humorous,humorous|humor,유머|코믹,,유머
+humorous,humorous|humor,유머,,유머
 hunting,hunting,사냥,,사냥
 idealism,idealism,이상주의,,이상주의
 identity,identity,정체성,,정체성
@@ -404,9 +404,9 @@ indiana jones,indiana jones,인디아나 존스,,인디아나 존스
 indians,indians|native americans,인디언|원주민|아메리카 원주민,,인디언
 innocence lost,innocence lost,순수,,순수
 insanity,insanity|crazy,미치다|광기,,광기
-intellectual,intellectual|intelligent,지적,,지성
+intellectual,intellectual|intelligent,,,지성
 intelligent sci-fi,intelligent sci-fi,,,
-intense,intense,강렬하다|긴장감,,강렬함
+intense,intense,강렬하다,,강렬함
 interesting,interesting,,평가,
 internet,internet,인터넷,,인터넷
 interracial romance,interracial romance,국제 연애,,국제 연애
@@ -415,10 +415,10 @@ iran,iran,이란,,이란
 iraq,iraq|iraq war,이라크|이라크 전쟁,,이라크
 irish accent,irish accent|ireland|irish,아일랜드,,아일랜드
 ironic,ironic,아이러니|역설,,아이러니
-irreverent,irreverent,불경|풍자,,불경
+irreverent,irreverent,불경,,불경
 islam,islam,이슬람,,이슬람
 island,island,섬,,섬
-isolation,isolation,고립,,고립
+isolation,isolation,,,고립
 israel,israel,이스라엘,,이스라엘
 italy,italy|italian,이탈리아,,이탈리아
 jane austen,jane austen,제인 오스틴,,제인 오스틴
@@ -440,7 +440,7 @@ lame,lame,,평가,
 las vegas,las vegas,라스베이거스,,라스베이거스
 latin america,latin america,중남미|라틴아메리카,,중남미
 lawyer,lawyer|lawyers,변호사,,변호사
-lesbian,lesbian,레즈비언|동성애,,레즈비언
+lesbian,lesbian,레즈비언,,레즈비언
 life,life,삶|인생,,삶
 life & death,life & death,삶과 죽음|생사,,삶과 죽음
 life philosophy,life philosophy,인생 철학,,인생 철학
@@ -454,14 +454,13 @@ lone hero,lone hero,외로운 영웅|홀로,,외로운 영웅
 loneliness,loneliness,외로움|고독|외롭다,,외로움
 long,long,,애매,
 los angeles,los angeles,로스앤젤레스|LA,,로스앤젤레스
-love story,love story|love|romance|romantic,사랑|연애|로맨스|멜로|로맨틱|낭만|연인|남자친구|여자친구|남친|여친,,로맨스
 love triangles,love triangles,삼각관계,,삼각관계
 low budget,low budget,저예산,,저예산
 lynch,lynch,데이비드 린치,,데이비드 린치
 lyrical,lyrical,서정|서정적,,서정
-macabre,macabre,섬뜩하다|기괴하다,,섬뜩함
+macabre,macabre,,,섬뜩함
 mad scientist,mad scientist,매드 사이언티스트|과학자,,매드 사이언티스트
-made for tv,made for tv,TV,,TV 영화
+made for tv,made for tv,,,TV 영화
 magic realism,magic realism,마술적 리얼리즘,,마술적 리얼리즘
 male nudity,male nudity,,등급,
 man versus machine,man versus machine,인간과 기계|기계,,인간과 기계
@@ -474,7 +473,7 @@ masterpiece,masterpiece|breathtaking,,평가,
 math,math|mathematics,수학,,수학
 maze,maze,미로,,미로
 medieval,medieval,중세,,중세
-meditative,meditative,명상|사색,,명상
+meditative,meditative,명상,,명상
 melancholic,melancholic|depressing|depression|downbeat|melancholy,우울증|우울|우울하다|침울하다|쓸쓸하다|멜랑콜리,,쓸쓸함
 memory,memory,기억,,기억
 memory loss,memory loss|amnesia|short-term memory loss,기억상실|기억을 잃다|단기 기억상실,,기억상실
@@ -486,7 +485,7 @@ mexico,mexico,멕시코,,멕시코
 middle east,middle east,중동,,중동
 midlife crisis,midlife crisis,중년의 위기|중년,,중년의 위기
 military,military,군대|군인,,군대
-mindfuck,mindfuck,반전|난해하다,,예측 불가
+mindfuck,mindfuck,난해하다,,예측 불가
 mining,mining,광산,,광산
 minnesota,minnesota,미네소타,,미네소타
 mission from god,mission from god,사명|계시,,사명
@@ -496,7 +495,7 @@ money,money,돈,,돈
 monkey,monkey,원숭이,,원숭이
 monster,monster|monsters,괴물,,괴물
 monty python,monty python,몬티 파이튼,,몬티 파이튼
-moody,moody,음울하다|분위기,,음울함
+moody,moody,,,음울함
 moral ambiguity,moral ambiguity,도덕적 모호|선악,,도덕적 모호
 morality,morality,도덕|윤리,,도덕
 mother daughter relationship,mother daughter relationship,모녀|엄마와 딸,,모녀
@@ -545,7 +544,7 @@ nudity (topless),nudity (topless),,등급,
 obsession,obsession,집착,,집착
 ocean,ocean,바다|대양,,바다
 off-beat comedy,off-beat comedy,엉뚱한 코미디,,엉뚱한 코미디
-office,office,사무실|회사,,사무실
+office,office,사무실,,사무실
 oil,oil,석유,,석유
 olympics,olympics,올림픽,,올림픽
 opera,opera,오페라,,오페라
@@ -582,18 +581,18 @@ philip k. dick,philip k. dick,필립 K. 딕,,필립 K. 딕
 photographer,photographer,사진작가|사진가,,사진작가
 photography,photography,,애매,
 pigs,pigs,돼지,,돼지
-pirates,pirates,해적,,해적
+pirates,pirates,,,해적
 pixar animation,pixar animation|pixar,픽사,,픽사
 plot,plot,,애매,
 plot holes,plot holes,,평가,
 poetry,poetry,시인|시집,,시
-poignant,poignant,애틋하다|가슴 아프다,,애틋함
+poignant,poignant,애틋하다,,애틋함
 pointless,pointless,,평가,
 poker,poker,포커,,포커
 poland,poland,폴란드,,폴란드
 police,police|police corruption,경찰|경찰 부패|비리 경찰,,경찰
 police investigation,police investigation|detective|investigation,수사|형사|탐정|조사,,수사
-political corruption,political corruption,정치 부패|비리,,정치 부패
+political corruption,political corruption,정치 부패,,정치 부패
 politics,politics|political|world politics,정치|국제 정치|세계 정치,,정치
 pornography,pornography,포르노,,포르노
 post-apocalyptic,post-apocalyptic|post apocalyptic,포스트 아포칼립스|종말 이후,,포스트 아포칼립스
@@ -602,32 +601,32 @@ poverty,poverty,가난|빈곤,,가난
 powerful ending,powerful ending,,애매,
 predictable,predictable,,애매,
 pregnancy,pregnancy,임신,,임신
-prejudice,prejudice,편견|차별,,편견
+prejudice,prejudice,차별,,편견
 prequel,prequel,프리퀄,,프리퀄
 president,president,대통령,,대통령
 pretentious,pretentious,,평가,
 prison,prison,감옥|교도소,,감옥
 prison escape,prison escape,탈옥,,탈옥
-private detective,private detective,사립탐정|탐정,,사립탐정
+private detective,private detective,사립탐정,,사립탐정
 product placement,product placement,PPL|간접광고,,PPL
 prohibition,prohibition,금주법,,금주법
 propaganda,propaganda,선전|프로파간다,,선전
 prostitution,prostitution,성매매,,성매매
-psychedelic,psychedelic,사이키델릭|환각,,사이키델릭
+psychedelic,psychedelic,사이키델릭,,사이키델릭
 psychiatrist,psychiatrist,정신과 의사,,정신과 의사
 psychiatry,psychiatry,정신의학,,정신의학
 psychological,psychological|psychology,심리|심리적|심리학,,심리
-pulp,pulp,펄프|B급,,펄프
+pulp,pulp,펄프,,펄프
 punk,punk,펑크,,펑크
 puppets,puppets,인형|꼭두각시,,인형
-quirky,quirky,엉뚱하다|별나다,,독특함
+quirky,quirky,별나다,,독특함
 rabbits,rabbits,토끼,,토끼
 race,race,인종|경주,,인종
 race issues,race issues|racism,인종 문제|인종차별,,인종 문제
-racing,racing,레이싱|경주,,레이싱
+racing,racing,레이싱,,레이싱
 radio,radio,라디오,,라디오
 rags to riches,rags to riches,성공|자수성가,,성공 스토리
-rape,rape|sexual abuse,성폭력|강간|성추행,,성폭력
+rape,rape|sexual abuse,강간|성추행,,성폭력
 rats,rats,쥐,,쥐
 realistic,realistic,사실적|현실적,,사실적
 realistic action,realistic action,리얼 액션,,리얼 액션
@@ -642,11 +641,12 @@ revolution,revolution,혁명,,혁명
 ridiculous,ridiculous,,평가,
 rio de janeiro,rio de janeiro,리우데자네이루,,리우데자네이루
 road movie,road movie,로드무비|여행,,로드무비
-road trip,road trip,여행|로드트립,,로드 트립
+road trip,road trip,로드트립,,로드 트립
 roald dahl,roald dahl,로알드 달,,로알드 달
 robert downey jr,robert downey jr,로버트 다우니 주니어,,로버트 다우니 주니어
 robert ludlum,robert ludlum,로버트 러들럼,,로버트 러들럼
 robot,robot|artificial intelligence|robots,로봇|인공지능|AI,,로봇
+romance,love story|love|romance|romantic,사랑|연애|로맨스|멜로|로맨틱|낭만|연인|남자친구|여자친구|남친|여친,,로맨스
 rome,rome,로마,,로마
 runaway,runaway,가출|도망,,가출
 russian,russian|russia,러시아,,러시아
@@ -654,7 +654,7 @@ sacrifice,sacrifice,희생,,희생
 sad,sad|sad but good,슬프다|슬픔,,슬픔
 samurai,samurai,사무라이,,사무라이
 san francisco,san francisco,샌프란시스코,,샌프란시스코
-sarcasm,sarcasm,냉소|비꼬다,,비꼼
+sarcasm,sarcasm,비꼬다,,비꼼
 satirical,satirical|satire,풍자,,풍자
 saturday night live,saturday night live,SNL,,SNL
 saturn award (best special effects),saturn award (best special effects)|saturn award (best science fiction film),,,
@@ -668,8 +668,8 @@ scotland,scotland,스코틀랜드,,스코틀랜드
 screwball,screwball|screwball comedy,스크루볼 코미디,,스크루볼 코미디
 script,script,,애매,
 secrets,secrets,비밀,,비밀
-segregation,segregation,인종 분리|차별,,인종 분리
-self discovery,self discovery,자아 찾기|자아|정체성,,자아 찾기
+segregation,segregation,인종 분리,,인종 분리
+self discovery,self discovery,자아 찾기|자아,,자아 찾기
 sequel,sequel|good sequel|sequels,속편|후속편,,속편
 serial killer,serial killer,연쇄살인마|연쇄살인,,연쇄살인마
 series,series,시리즈,,시리즈
@@ -683,22 +683,22 @@ shark,shark,상어,,상어
 shopping,shopping,쇼핑,,쇼핑
 short,short,단편,,단편
 silent,silent,무성영화,,무성영화
-silly fun,silly fun|silly,유쾌하다|우스꽝스럽다|유치하다,,엉뚱한 재미
+silly fun,silly fun|silly,우스꽝스럽다|유치하다,,엉뚱한 재미
 simple,simple,,애매,
 single father,single father,홀아버지|싱글대디,,홀아버지
 sisters,sisters,자매,,자매
 skinhead,skinhead,스킨헤드,,스킨헤드
 slackers,slackers,백수|한량,,백수
-slapstick,slapstick,슬랩스틱|몸개그,,슬랩스틱
+slapstick,slapstick,몸개그,,슬랩스틱
 slasher,slasher,슬래셔|살인마,,슬래셔
 slavery,slavery,노예|노예제,,노예
-slow paced,slow paced|slow,느리다|잔잔하다,,느린 전개
+slow paced,slow paced|slow,느리다,,느린 전개
 small town,small town,작은 마을|시골|마을,,작은 마을
 snakes,snakes,뱀,,뱀
 so bad it's funny,so bad it's funny,,애매,
 so bad it's good,so bad it's good,,애매,
 social commentary,social commentary,사회 비판|사회 고발|사회 문제,,사회 비판
-solitude,solitude,고독|외로움,,고독
+solitude,solitude,,,고독
 sophia coppola,sophia coppola,소피아 코폴라,,소피아 코폴라
 south africa,south africa,남아프리카공화국|남아공,,남아프리카공화국
 south america,south america,남미,,남미
@@ -711,11 +711,11 @@ special effects,special effects|effects,특수효과|CG,,특수효과
 spelling bee,spelling bee,철자 대회,,철자 대회
 spiders,spiders,거미,,거미
 spielberg,spielberg,스필버그,,스필버그
-splatter,splatter|gore|goretastic|gory|gruesome,고어|잔혹하다|피범벅|잔혹|끔찍하다|스플래터,,고어
+splatter,splatter|gore|goretastic|gory|gruesome,고어|피범벅|끔찍하다|스플래터,,고어
 spock,spock,스팍,,스팍
 sports,sports,스포츠,,스포츠
 spying,spying|espionage|secret service|spies|spy,비밀요원|경호|첩보|염탐|스파이|첩보원,,비밀요원
-stage magic,stage magic,마술|마술사,,마술
+stage magic,stage magic,마술사,,마술
 stand-up comedy,stand-up comedy,스탠드업 코미디,,스탠드업 코미디
 star trek,star trek,스타트렉,,스타트렉
 star wars,star wars,스타워즈,,스타워즈
@@ -760,7 +760,7 @@ television,television,텔레비전|TV|방송,,텔레비전
 terminal illness,terminal illness,시한부|불치병,,시한부
 terrorism,terrorism,테러,,테러
 texas,texas,텍사스,,텍사스
-thought-provoking,thought-provoking,성찰|생각할 거리,,생각할 거리
+thought-provoking,thought-provoking,생각할 거리,,생각할 거리
 time,time,,,
 time loop,time loop,타임루프,,타임루프
 time travel,time travel,시간여행|타임슬립|시간 여행,,시간여행
@@ -774,16 +774,16 @@ tragedy,tragedy,비극,,비극
 train,train|trains,기차|열차,,기차
 transformation,transformation,변신,,변신
 transgender,transgender,트랜스젠더,,트랜스젠더
-travel,travel,여행|여정,,여행
+travel,travel,여정,,여행
 treasure hunt,treasure hunt|treasure,보물찾기|보물,,보물찾기
-tricky,tricky,교묘하다|반전,,교묘함
+tricky,tricky,교묘하다,,교묘함
 trilogy,trilogy,3부작|삼부작,,3부작
 truman capote,truman capote,트루먼 커포티,,트루먼 커포티
 twists & turns,twists & turns|plot twist|twist|twist ending,반전|반전 결말|우여곡절,,반전
 undercover cop,undercover cop,잠입 수사|위장 경찰,,잠입 수사
 underdog,underdog,약자|언더독,,약자
 underrated,underrated,,평가,
-understated,understated,담담하다|절제,,담담함
+understated,understated,절제,,담담함
 underwater,underwater,수중|물속,,수중
 unfunny,unfunny,,애매,
 unintentionally funny,unintentionally funny,,애매,
@@ -815,14 +815,14 @@ waste of time,waste of time,,평가,
 watch the credits,watch the credits,쿠키 영상,,쿠키 영상
 weapons,weapons,무기,,무기
 wedding,wedding,결혼식,,결혼식
-weed,weed|marijuana,대마초|마리화나,,대마초
+weed,weed|marijuana,마리화나,,대마초
 weird,weird|bizarre|strange,기묘하다|이상하다|괴상하다|기괴하다|기이하다,,기묘함
 werewolves,werewolves|werewolf,늑대인간,,늑대인간
 western,western|spaghetti western,서부극|웨스턴|마카로니 웨스턴|스파게티 웨스턴,,서부극
-whimsical,whimsical,기발하다|엉뚱하다,,기발함
+whimsical,whimsical,기발하다,,기발함
 wilderness,wilderness,황야|야생,,황야
 wine,wine,와인,,와인
-wistful,wistful,아련하다|그리움,,아련함
+wistful,wistful,아련하다,,아련함
 witch,witch|witches,마녀,,마녀
 witty,witty,재치|위트,,재치
 wizards,wizards,,,
@@ -831,5 +831,5 @@ working class,working class,노동자|서민|노동계급,,노동자
 workplace,workplace,직장|회사,,직장
 writers,writers|writer's life,작가,,작가
 writing,writing,글쓰기|집필,,글쓰기
-wuxia,wuxia,무협,,무협
+wuxia,wuxia,,,무협
 zombie,zombie|zombies,좀비,,좀비

@@ -31,7 +31,7 @@ SRC_RANK = {'유형': -1, 'KOBIS': 0, 'KMDb장르': 1, 'KMDb유형': 1, 'TMDB장
 RANK_NAME = {-1: '유형', 0: '영진위 인정', 1: '장르', 2: '키워드', 3: '흔한 장르', 4: '줄거리'}
 TYPE_SEPARATE = {'애니메이션': 'animation', '다큐멘터리': 'documentary'}   # 채은 결정: KMDb 유형은 5개와 별개로 붙임 (극영화는 태그 없음, (실황)공연물은 맞는 genome 태그 없음)
 # 채은 결정: KMDb 장르 중 번역표에 없던 것. 줄거리에서는 흔한 말이라(사회, 인물) 번역표에 넣지 않고 장르에만 씀. 붙일 태그는 Claude가 고름
-GENRE_ONLY = {'어드벤처': 'adventure', '뮤직': 'music', '인물': 'biographical', '멜로드라마': 'love story', '사회': 'social commentary', '사회물(경향)': 'social commentary'}   # KMDb 유형 → 장르 근거로 쓸 말
+GENRE_ONLY = {'어드벤처': 'adventure', '뮤직': 'music', '인물': 'biographical', '멜로드라마': 'romance', '사회': 'social commentary', '사회물(경향)': 'social commentary'}   # KMDb 유형 → 장르 근거로 쓸 말
 
 kiwi = Kiwi()
 OPT = Match.ALL | Match.JOIN_AFFIX
@@ -109,6 +109,9 @@ for _, r in tk.iterrows():
             raw_words.setdefault(w, set()).add(r['묶음 대표'])
     for e in [x for x in r['영어'].split('|') if x]:
         en_dict.setdefault(en_key(e), set()).add((r['묶음 대표'], e))
+dup = {' '.join(s): sorted({m for m, _ in v}) for s, v in ko_dict.items() if len({m for m, _ in v}) > 1}
+dup.update({w: sorted(v) for w, v in raw_words.items() if len(v) > 1})
+assert not dup, f'한 말이 태그 두 개 이상에 있음 (dedupe_ko.py를 돌릴 것): {dup}'   # 11/14: 한 말은 태그 하나에만
 max_len = max(len(s) for s in ko_dict)
 
 def match_ko(text, source):

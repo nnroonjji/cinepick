@@ -63,12 +63,9 @@
 좀비딸,horror,,줄거리,1,1,1,줄거리:무섭다
 좀비딸,passionate,,줄거리,1,1,1,줄거리:열정
 좀비딸,atmospheric,,줄거리,1,1,1,줄거리:분위기
-좀비딸,fun movie,,줄거리,1,1,1,줄거리:유쾌하다
-좀비딸,moody,,줄거리,1,1,1,줄거리:분위기
-좀비딸,silly fun,,줄거리,1,1,1,줄거리:유쾌하다
 좀비딸,virus,,줄거리,1,1,1,줄거리:바이러스
 라라랜드,music,Y,장르,3,5,0,KMDb키워드:음악가 / KMDb키워드:뮤지컬 / KMDb장르:뮤지컬 / KMDb장르:뮤직 / TMDB키워드:musical
-라라랜드,love story,Y,장르,3,4,1,줄거리:사랑 / KMDb장르:멜로 / KMDb장르:로맨스 / TMDB장르:Romance
+라라랜드,romance,Y,장르,3,4,1,줄거리:사랑 / KMDb장르:멜로 / KMDb장르:로맨스 / TMDB장르:Romance
 라라랜드,comedy,Y,장르,2,2,0,KMDb장르:코메디 / TMDB장르:Comedy
 라라랜드,jazz,Y,키워드,3,3,1,줄거리:재즈 / KMDb키워드:재즈 / TMDB키워드:jazz
 라라랜드,dreams,Y,키워드,2,2,1,줄거리:꿈 / KMDb키워드:꿈
@@ -83,15 +80,15 @@
 인터스텔라,sci fi,Y,장르,3,3,1,줄거리:미래 / KMDb장르:SF / TMDB장르:Science Fiction
 인터스텔라,adventure,Y,장르,1,1,0,TMDB장르:Adventure
 인터스텔라,space,Y,키워드,3,8,2,줄거리:NASA / 줄거리:우주 / KMDb키워드:우주 / KMDb키워드:우주탐사 / TMDB키워드:nasa / TMDB키워드:space travel / TMDB키워드:space / TMDB키워드:astronaut
-인터스텔라,futuristic,Y,키워드,2,2,1,줄거리:미래 / TMDB키워드:dystopia
 인터스텔라,father daughter relationship,Y,키워드,1,1,0,TMDB키워드:father daughter relationship
-인터스텔라,time travel,,키워드,1,1,0,TMDB키워드:time travel
+인터스텔라,time travel,Y,키워드,1,1,0,TMDB키워드:time travel
+인터스텔라,futuristic,,키워드,1,1,0,TMDB키워드:dystopia
 인터스텔라,single father,,키워드,1,1,0,TMDB키워드:single father
 인터스텔라,drama,,흔한 장르,1,1,0,TMDB장르:Drama
 인터스텔라,humanity,,줄거리,1,1,2,줄거리:인류
 인터스텔라,family,,줄거리,1,1,1,줄거리:가족
-인터스텔라,love story,,줄거리,1,1,1,줄거리:사랑
-어바웃 타임,love story,Y,장르,4,7,5,줄거리:사랑 / 줄거리:여자친구 / KMDb키워드:로맨스 / KMDb키워드:연애 / KMDb장르:멜로 / KMDb장르:멜로드라마 / TMDB장르:Romance
+인터스텔라,romance,,줄거리,1,1,1,줄거리:사랑
+어바웃 타임,romance,Y,장르,4,7,5,줄거리:사랑 / 줄거리:여자친구 / KMDb키워드:로맨스 / KMDb키워드:연애 / KMDb장르:멜로 / KMDb장르:멜로드라마 / TMDB장르:Romance
 어바웃 타임,comedy,Y,장르,2,2,0,KMDb키워드:코미디 / KMDb장르:코메디
 어바웃 타임,fantasy,Y,장르,2,2,0,KMDb장르:판타지 / TMDB장르:Fantasy
 어바웃 타임,family,Y,키워드,3,3,1,줄거리:아버지 / KMDb키워드:가족 / TMDB키워드:family
@@ -101,7 +98,7 @@
 어바웃 타임,sci fi,,키워드,1,1,0,KMDb키워드:SF
 어바웃 타임,compassionate,,키워드,1,1,0,TMDB키워드:compassionate
 어바웃 타임,family bonds,,키워드,1,1,0,KMDb키워드:가족애
-어바웃 타임,girlie movie,,키워드,1,1,0,KMDb키워드:로맨틱코미디
+어바웃 타임,girlie movie,,키워드,1,1,0,KMDb키워드:로맨틱 코미디
 어바웃 타임,intimate,,키워드,1,1,0,TMDB키워드:intimate
 어바웃 타임,reflective,,키워드,1,1,0,TMDB키워드:reflective
 어바웃 타임,time loop,,키워드,1,1,0,KMDb키워드:타임루프
@@ -114,9 +111,9 @@
 더 퍼스트 슬램덩크,comedy,Y,장르,1,1,0,TMDB장르:Comedy
 더 퍼스트 슬램덩크,sports,Y,장르,1,1,0,KMDb장르:스포츠
 더 퍼스트 슬램덩크,teen movie,Y,키워드,1,2,0,TMDB키워드:high school / TMDB키워드:teenager
-더 퍼스트 슬램덩크,love story,Y,키워드,1,1,0,TMDB키워드:romance
+더 퍼스트 슬램덩크,romance,Y,키워드,1,1,0,TMDB키워드:romance
 더 퍼스트 슬램덩크,feel-good,Y,키워드,1,1,0,TMDB키워드:inspiring
-더 퍼스트 슬램덩크,based on a comic,,키워드,1,1,0,KMDb키워드:만화 원작
+더 퍼스트 슬램덩크,based on a comic,,키워드,1,1,0,KMDb키워드:만화원작
 더 퍼스트 슬램덩크,basketball,,키워드,1,1,0,TMDB키워드:basketball
 더 퍼스트 슬램덩크,competition,,키워드,1,1,0,TMDB키워드:competition
 더 퍼스트 슬램덩크,drama,,흔한 장르,1,1,0,TMDB장르:Drama
@@ -127,11 +124,10 @@
 스즈메의 문단속,adventure,Y,장르,3,3,0,KMDb장르:어드벤처 / TMDB키워드:adventure / TMDB장르:Adventure
 스즈메의 문단속,fantasy,Y,장르,3,3,0,KMDb장르:판타지 / TMDB키워드:magic / TMDB장르:Fantasy
 스즈메의 문단속,action,Y,장르,1,1,0,KMDb장르:액션
-스즈메의 문단속,travel,Y,키워드,2,2,2,줄거리:여행 / TMDB키워드:travel
 스즈메의 문단속,catastrophe,Y,키워드,1,1,0,TMDB키워드:natural disaster
+스즈메의 문단속,travel,Y,키워드,1,1,0,TMDB키워드:travel
 스즈메의 문단속,drama,,흔한 장르,1,1,0,TMDB장르:Drama
 스즈메의 문단속,road movie,,줄거리,1,1,2,줄거리:여행
-스즈메의 문단속,road trip,,줄거리,1,1,2,줄거리:여행
 스즈메의 문단속,small town,,줄거리,1,1,1,줄거리:작은 마을
 스즈메의 문단속,chase,,줄거리,1,1,1,줄거리:쫓다
 벌새,art house,Y,영진위 인정,1,1,0,KOBIS:예술영화 인정
@@ -144,7 +140,7 @@
 벌새,berlin,,키워드,1,1,0,KMDb키워드:베를린
 벌새,relationships,,키워드,1,1,0,TMDB키워드:relationship
 벌새,drama,,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
-벌새,love story,,줄거리,1,2,4,줄거리:연애 / 줄거리:사랑
+벌새,romance,,줄거리,1,2,4,줄거리:연애 / 줄거리:사랑
 벌새,children,,줄거리,1,1,3,줄거리:아이
 벌새,friendship,,줄거리,1,1,2,줄거리:친구
 벌새,school,,줄거리,1,1,2,줄거리:학교
@@ -160,7 +156,7 @@
 퍼펙트 데이즈,solitude,Y,키워드,1,1,0,TMDB키워드:solitude
 퍼펙트 데이즈,drama,Y,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
 퍼펙트 데이즈,drinking,,줄거리,1,1,1,줄거리:술
-헤어질 결심,love story,Y,장르,3,4,0,KMDb장르:멜로 / KMDb장르:로맨스 / TMDB키워드:love / TMDB장르:Romance
+헤어질 결심,romance,Y,장르,3,4,0,KMDb장르:멜로 / KMDb장르:로맨스 / TMDB키워드:love / TMDB장르:Romance
 헤어질 결심,mystery,Y,장르,3,3,0,KMDb장르:미스터리 / TMDB키워드:murder mystery / TMDB장르:Mystery
 헤어질 결심,suspense,Y,장르,1,1,0,TMDB장르:Thriller
 헤어질 결심,police investigation,Y,키워드,3,6,3,줄거리:형사 / 줄거리:수사 / KMDb키워드:형사 / KMDb키워드:수사 / TMDB키워드:detective / TMDB키워드:investigation
@@ -171,7 +167,6 @@
 헤어질 결심,brutality,,키워드,1,1,0,KMDb키워드:폭력
 헤어질 결심,child abuse,,키워드,1,1,0,KMDb키워드:학대
 헤어질 결심,disability,,키워드,1,1,0,KMDb키워드:장애
-헤어질 결심,gratuitous violence,,키워드,1,1,0,KMDb키워드:폭력
 헤어질 결심,murder,,키워드,1,1,0,KMDb키워드:살인
 헤어질 결심,drama,,흔한 장르,1,1,0,KMDb장르:드라마
 헤어질 결심,paranoia,,줄거리,1,1,2,줄거리:의심
@@ -188,8 +183,8 @@
 엑시트,birds,,줄거리,1,1,1,줄거리:새
 엑시트,college,,줄거리,1,1,1,줄거리:대학교
 엑시트,explosions,,줄거리,1,1,1,줄거리:폭발
-대도시의 사랑법,love story,Y,장르,3,4,1,줄거리:사랑 / KMDb장르:멜로 / KMDb장르:로맨스 / TMDB장르:Romance
-대도시의 사랑법,based on a book,Y,키워드,1,3,0,KMDb키워드:베스트셀러원작 / KMDb키워드:소설원작 / KMDb키워드:원작
+대도시의 사랑법,romance,Y,장르,3,4,1,줄거리:사랑 / KMDb장르:멜로 / KMDb장르:로맨스 / TMDB장르:Romance
+대도시의 사랑법,based on a book,Y,키워드,1,3,0,KMDb키워드:베스트셀러원작 / KMDb키워드:소설 원작 / KMDb키워드:원작
 대도시의 사랑법,friendship,Y,키워드,1,1,0,TMDB키워드:friendship
 대도시의 사랑법,homophobia,Y,키워드,1,1,0,TMDB키워드:homophobia
 대도시의 사랑법,drama,Y,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
@@ -206,15 +201,15 @@
 리틀 포레스트,friendship,Y,키워드,2,2,1,줄거리:친구 / TMDB키워드:friendship
 리틀 포레스트,feel-good,Y,키워드,1,1,0,KMDb키워드:힐링
 리틀 포레스트,small town,Y,키워드,1,1,0,KMDb키워드:시골
-리틀 포레스트,based on a comic,Y,키워드,1,1,0,KMDb키워드:만화 원작
+리틀 포레스트,based on a comic,Y,키워드,1,1,0,KMDb키워드:만화원작
 리틀 포레스트,japan,Y,키워드,1,1,0,KMDb키워드:일본
-리틀 포레스트,cooking,,키워드,1,1,0,TMDB키워드:cooking
 리틀 포레스트,food,,키워드,1,1,0,TMDB키워드:food
 리틀 포레스트,mother daughter relationship,,키워드,1,1,0,TMDB키워드:mother daughter relationship
+리틀 포레스트,cooking,,키워드,1,1,0,TMDB키워드:cooking
 리틀 포레스트,nature,,키워드,1,1,0,TMDB키워드:nature
 리틀 포레스트,remake,,키워드,1,1,0,KMDb키워드:리메이크
 리틀 포레스트,drama,,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
-리틀 포레스트,love story,,줄거리,1,1,1,줄거리:연애
+리틀 포레스트,romance,,줄거리,1,1,1,줄거리:연애
 리틀 포레스트,life,,줄거리,1,1,1,줄거리:삶
 탑건: 매버릭,action,Y,장르,2,2,0,KMDb장르:액션 / TMDB장르:Action
 탑건: 매버릭,sequel,Y,키워드,1,1,0,TMDB키워드:sequel
@@ -252,7 +247,7 @@
 에브리씽 에브리웨어 올 앳 원스,police investigation,,줄거리,1,1,1,줄거리:조사
 에브리씽 에브리웨어 올 앳 원스,immigrants,,줄거리,1,1,1,줄거리:이민
 에브리씽 에브리웨어 올 앳 원스,marriage,,줄거리,1,1,1,줄거리:남편
-패스트 라이브즈,love story,Y,장르,2,3,0,KMDb장르:멜로 / KMDb장르:로맨스 / TMDB장르:Romance
+패스트 라이브즈,romance,Y,장르,2,3,0,KMDb장르:멜로 / KMDb장르:로맨스 / TMDB장르:Romance
 패스트 라이브즈,new york,Y,키워드,2,2,2,줄거리:뉴욕 / TMDB키워드:new york city
 패스트 라이브즈,memory,Y,키워드,2,2,1,줄거리:기억 / TMDB키워드:memories
 패스트 라이브즈,friendship,Y,키워드,1,1,0,TMDB키워드:friendship
@@ -267,7 +262,7 @@
 패스트 라이브즈,writers,,줄거리,1,1,1,줄거리:작가
 위키드,fantasy,Y,장르,4,6,3,줄거리:마법 / 줄거리:마법사 / KMDb장르:판타지 / TMDB키워드:fantasy world / TMDB키워드:fantasy / TMDB장르:Fantasy
 위키드,music,Y,장르,2,2,0,KMDb장르:뮤지컬 / TMDB키워드:musical
-위키드,love story,Y,장르,1,1,0,TMDB장르:Romance
+위키드,romance,Y,장르,1,1,0,TMDB장르:Romance
 위키드,dancing,Y,키워드,1,1,0,TMDB키워드:dancing
 위키드,bullying,Y,키워드,1,1,0,TMDB키워드:bullying
 위키드,college,,키워드,1,1,0,TMDB키워드:college
@@ -291,9 +286,7 @@
 듄: 파트 2,family,,줄거리,1,1,1,줄거리:어머니
 듄: 파트 2,brutality,,줄거리,1,1,1,줄거리:잔혹하다
 듄: 파트 2,assassination,,줄거리,1,1,1,줄거리:암살자
-듄: 파트 2,enormously long battle scene,,줄거리,1,1,1,줄거리:전투
 듄: 파트 2,fight scenes,,줄거리,1,1,1,줄거리:전투
-듄: 파트 2,splatter,,줄거리,1,1,1,줄거리:잔혹하다
 서브스턴스,art house,Y,영진위 인정,1,1,0,KOBIS:예술영화 인정
 서브스턴스,horror,Y,장르,2,2,0,KMDb장르:공포 / TMDB장르:Horror
 서브스턴스,suspense,Y,장르,1,1,0,KMDb장르:스릴러
@@ -319,9 +312,7 @@
 인사이드 아웃 2,drama,,흔한 장르,1,1,0,KMDb장르:드라마
 인사이드 아웃 2,feel-good,,줄거리,1,1,1,줄거리:유쾌하다
 인사이드 아웃 2,disney,,줄거리,1,1,1,줄거리:디즈니
-인사이드 아웃 2,fun movie,,줄거리,1,1,1,줄거리:유쾌하다
 인사이드 아웃 2,imagination,,줄거리,1,1,1,줄거리:상상
-인사이드 아웃 2,silly fun,,줄거리,1,1,1,줄거리:유쾌하다
 인사이드 아웃 2,happy ending,,줄거리,1,1,1,줄거리:행복
 인사이드 아웃 2,pixar animation,,줄거리,1,1,1,줄거리:픽사
 인사이드 아웃 2,sad,,줄거리,1,1,1,줄거리:슬픔
@@ -349,21 +340,21 @@
 귀멸의 칼날: 무한성편,supernatural,Y,키워드,1,2,0,TMDB키워드:supernatural / TMDB키워드:demon
 귀멸의 칼날: 무한성편,friendship,Y,키워드,1,1,0,TMDB키워드:friendship
 귀멸의 칼날: 무한성편,sequel,Y,키워드,1,1,0,TMDB키워드:sequel
-귀멸의 칼날: 무한성편,based on a comic,,키워드,1,1,0,KMDb키워드:만화 원작
+귀멸의 칼날: 무한성편,based on a comic,,키워드,1,1,0,KMDb키워드:만화원작
 귀멸의 칼날: 무한성편,trilogy,,키워드,1,1,0,TMDB키워드:trilogy
 남매의 여름밤,art house,Y,영진위 인정,1,1,0,KOBIS:예술영화 인정
 남매의 여름밤,independent film,Y,영진위 인정,1,1,0,KOBIS:독립영화 인정
 남매의 여름밤,family,Y,장르,2,2,0,KMDb장르:가족 / TMDB키워드:family
 남매의 여름밤,childhood,Y,키워드,2,2,1,줄거리:유년 / KMDb키워드:유년기
 남매의 여름밤,teen movie,Y,키워드,1,1,0,KMDb키워드:청소년
-남매의 여름밤,family drama,Y,키워드,1,1,0,KMDb키워드:가족 드라마
+남매의 여름밤,family drama,Y,키워드,1,1,0,KMDb키워드:가족드라마
 남매의 여름밤,drama,Y,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
-남매의 여름밤,love story,,줄거리,1,1,1,줄거리:사랑
+남매의 여름밤,romance,,줄거리,1,1,1,줄거리:사랑
 남매의 여름밤,life,,줄거리,1,1,1,줄거리:삶
 남매의 여름밤,over the top,,줄거리,1,1,1,줄거리:과장
 소공녀,art house,Y,영진위 인정,1,1,0,KOBIS:예술영화 인정
 소공녀,independent film,Y,영진위 인정,1,1,0,KOBIS:독립영화 인정
-소공녀,love story,Y,장르,3,4,3,줄거리:사랑 / 줄거리:남자친구 / KMDb장르:멜로드라마 / TMDB장르:Romance
+소공녀,romance,Y,장르,3,4,3,줄거리:사랑 / 줄거리:남자친구 / KMDb장르:멜로드라마 / TMDB장르:Romance
 소공녀,homeless,Y,키워드,2,2,0,KMDb키워드:홈리스 / TMDB키워드:homeless
 소공녀,drama,Y,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
 소공녀,sweet,,줄거리,1,1,1,줄거리:사랑스럽다
@@ -385,7 +376,5 @@
 괴물,monster,,줄거리,1,1,2,줄거리:괴물
 괴물,teacher,,줄거리,1,1,1,줄거리:선생님
 괴물,atmospheric,,줄거리,1,1,1,줄거리:분위기
-괴물,cooking,,줄거리,1,1,1,줄거리:요리
 괴물,courage,,줄거리,1,1,1,줄거리:용기
 괴물,food,,줄거리,1,1,1,줄거리:요리
-괴물,moody,,줄거리,1,1,1,줄거리:분위기

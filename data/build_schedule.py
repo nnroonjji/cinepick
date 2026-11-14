@@ -49,10 +49,12 @@ TMDB_IMG = 'https://image.tmdb.org/t/p/w780/'
 # 없으면 주소를 바로 씀: TMDB 표(w780) → KMDb(상영작/kmdb_now.csv 포스터 열, 가로 418px) → KOBIS 썸네일(가로 352px)
 # POSTER_FB: 포스터가 안 열릴 때 앱이 대신 쓸 주소 (파일이면 위의 주소, 주소면 KOBIS 썸네일)
 APP = Path(__file__).resolve().parents[1] / 'movie-reco'
-kmdb = {}
+kmdb, plots = {}, {}
 kp = Path(__file__).with_name('상영작') / 'kmdb_now.csv'
 if kp.exists():
-    kmdb = {r['제목']: r.get('포스터') or '' for r in csv.DictReader(open(kp, encoding='utf-8-sig'))}
+    rows = list(csv.DictReader(open(kp, encoding='utf-8-sig')))
+    kmdb = {r['제목']: r.get('포스터') or '' for r in rows}
+    plots = {r['제목']: ' '.join((r.get('줄거리') or '').split()) for r in rows}  # 추천 화면에서 포스터를 누르면 보여 줄 줄거리 (KMDb)
 info = {}
 POSTER_FB = {}
 for mcd, x in d['movies'].items():
@@ -66,7 +68,7 @@ for mcd, x in d['movies'].items():
                          'min': int(run.split('분')[0]) if run else None,
                          'rating': next((p for p in parts if '관람' in p), ''),
                          'tmdb': tm[mcd][0] if mcd in tm else None,
-                         'poster': poster}
+                         'poster': poster, 'plot': plots.get(movies[mcd], '')}
     fb = remote if poster == local else kobis
     if fb and fb != poster:
         POSTER_FB[poster] = fb

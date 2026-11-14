@@ -1,5 +1,6 @@
 # 매일 새벽 KOBIS 상영표를 새로 받아 태그와 schedule.js를 다시 만들고 GitHub Pages에 올림
-# 코드를 push해도, Actions 탭에서 Run workflow를 눌러도 같은 일을 함
+# Actions 탭에서 Run workflow를 눌러도 같은 일을 함. 코드를 push하면 상영표는 새로 받지 않고 지금 사이트의 것을 그대로 쓰고 코드만 바꿔 올림
+# (상영표나 태그 만드는 스크립트를 고쳤으면 push 뒤에 Run workflow를 한 번 눌러야 반영됨)
 # 필요한 것: 저장소 Settings → Secrets → Actions에 KMDB_KEY (KMDb API 키), SUPABASE_URL, SUPABASE_KEY (계정 저장. 표와 함수는 data/supabase.sql)
 name: refresh-and-deploy
 on:
@@ -7,6 +8,7 @@ on:
     branches: [main]
   schedule:
     - cron: '0 20 * * *'  # 매일 05:00 한국 시간
+    - cron: '0 22 * * *'  # 07:00에 한 번 더 (05:00에 KOBIS가 멈췄을 때 대비)
   workflow_dispatch:
 permissions:
   contents: read
@@ -18,6 +20,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
@@ -33,14 +36,18 @@ jobs:
         run: |
           curl -fsS -X POST "${SUPABASE_URL%/}/rest/v1/rpc/cp_exists" -H "apikey: $SUPABASE_KEY" -H "Content-Type: application/json" -d '{"p_nick":"keepalive"}'
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - if: github.event_name != 'push'
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
           cache: pip
           cache-dependency-path: .github/workflows/deploy.yml
-      - run: pip install pandas kiwipiepy lemminflect
+      - if: github.event_name != 'push'
+        run: pip install pandas kiwipiepy lemminflect
       - name: 상영표 새로 받기
         id: refresh
+        timeout-minutes: 10  # KOBIS가 GitHub 서버에 응답을 안 주고 멈출 때가 있음. 보통 2분
+        if: github.event_name != 'push'
         continue-on-error: true
         working-directory: data
         run: |
@@ -51,6 +58,14 @@ jobs:
           python build_schedule.py "$RAW"
           python build_reco_tags.py "$RAW"
           (cd ../movie-reco && node reco.test.js)
+      - name: 코드만 올릴 때는 지금 사이트의 상영표와 태그를 그대로 씀
+        if: github.event_name == 'push'
+        run: |
+          SITE="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/data"
+          if curl -fsS "$SITE/schedule.js" -o /tmp/schedule.js && curl -fsS "$SITE/tags.js" -o /tmp/tags.js; then
+            cp /tmp/schedule.js /tmp/tags.js movie-reco/data/
+            (cd movie-reco && node reco.test.js) || git checkout -- movie-reco/data
+          fi
       # 새로 받기가 실패하면: 정해진 시각 실행은 어제 올린 사이트를 그대로 두고, push는 저장소에 있는 상영표로 올림
       - if: steps.refresh.outcome == 'failure'
         run: git checkout -- .

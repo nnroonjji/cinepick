@@ -548,7 +548,7 @@ a.outline{color:inherit;text-decoration:none}
 .panel .row span:last-child{font-weight:700}
 .panel .hint{margin:0;font-size:11px;color:var(--mute)}
 .panel .cta.static{margin-top:6px}
-.panel .plot{margin:0;font-size:13px;line-height:1.65;max-height:46vh;overflow-y:auto}
+.panel .plot{margin:0;font-size:13px;line-height:1.65;max-height:46vh;overflow-y:auto;white-space:pre-line} /* 시놉시스 줄바꿈 그대로 */
 /* 나들이 시트: 지도 칩과 같은 칩, 2칸 카드 */
 .og-cats{margin:0 -20px;padding:0 20px;gap:6px}
 .og-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;align-content:start;min-height:248px}

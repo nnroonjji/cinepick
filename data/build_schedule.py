@@ -54,7 +54,7 @@ kp = Path(__file__).with_name('상영작') / '현재상영작' / 'kmdb_now.csv'
 if kp.exists():
     rows = list(csv.DictReader(open(kp, encoding='utf-8-sig')))
     kmdb = {r['제목']: r.get('포스터') or '' for r in rows}
-    plots = {r['제목']: ' '.join((r.get('줄거리') or '').split()) for r in rows}  # 추천 화면에서 포스터를 누르면 보여 줄 줄거리 (KMDb)
+    plots = {r['제목']: ' '.join((r.get('줄거리') or '').split()) for r in rows}  # KOBIS 시놉시스가 없는 영화에만 쓰는 KMDb 줄거리
 info = {}
 POSTER_FB = {}
 for mcd, x in d['movies'].items():
@@ -68,7 +68,7 @@ for mcd, x in d['movies'].items():
                          'min': int(run.split('분')[0]) if run else None,
                          'rating': next((p for p in parts if '관람' in p), ''),
                          'tmdb': tm[mcd][0] if mcd in tm else None,
-                         'poster': poster, 'plot': plots.get(movies[mcd], '')}
+                         'poster': poster, 'plot': html.unescape(x.get('syn') or '').strip() or plots.get(movies[mcd], '')}  # 포스터를 누르면 보여 줄 글: KOBIS 시놉시스, 없으면 KMDb 줄거리 (11/14)
     fb = remote if poster == local else kobis
     if fb and fb != poster:
         POSTER_FB[poster] = fb

@@ -39,7 +39,8 @@ def parse_movie(page):
     return {'title': text(grab(r'<strong class="tit">(.*?)</strong>')),
             'summary': dd('요약정보'), 'promo': '', 'open': dd('개봉일'),
             'art': ok('예술'), 'indie': ok('독립'),
-            'syn': text(grab(r'시놉시스</strong>\s*<p class="desc_info">(.*?)</p>')),
+            # 시놉시스는 <br>로 나눈 줄바꿈을 살림 (앱에서 포스터를 누르면 보여 줌). 빈 줄은 하나까지만
+            'syn': re.sub(r'\n{3,}', '\n\n', '\n'.join(text(l) for l in re.split(r'<br\s*/?>', grab(r'시놉시스</strong>\s*<p class="desc_info">(.*?)</p>')))).strip(),
             'img': grab(r'src="(/common/mast/movie/[^"]*thumb_x192/[^"]*)"')}
 
 

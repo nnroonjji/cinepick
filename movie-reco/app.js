@@ -306,7 +306,7 @@
     };
   }
   { const art=$('recoImg').parentNode, open=()=>{if(!atEnd) openSheet('plot',recommend(state).mv.t);}; // 포스터를 누르면 줄거리 시트. 끌어서 넘길 때의 누름은 아래 스와이프가 막음
-    art.tabIndex=0; art.setAttribute('role','button'); art.setAttribute('aria-label','포스터를 누르면 줄거리'); art.style.cursor='pointer';
+    art.tabIndex=0; art.setAttribute('role','button'); art.setAttribute('aria-label','포스터를 누르면 시놉시스'); art.style.cursor='pointer';
     art.addEventListener('click',open); art.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault(); open();}}); }
   $('recoAgain').addEventListener('click',()=>flip(0));
   $('recoNext').addEventListener('click',()=>flip(1));
@@ -566,8 +566,8 @@
     let html='';
     if(kind==='mypage') html='<h2>마이페이지</h2><div class="mp-row"><span class="av"><svg width="36" height="36" aria-hidden="true"><use href="#popcorn"/></svg></span><div><b>'+state.user+'</b><p class="hint">MBTI '+(state.mbti.join('')||'미설정')+' · 예산 ~'+fmt(state.price)+'</p></div></div><p class="hint">해당되는 할인 조건을 체크하면 회차 가격을 그 조건으로 다시 계산해요. 극장에서 신분 확인이 필요해요</p><div class="discs">'+DISCOUNTS.map(d=>'<button type="button" class="disc" data-d="'+d+'" aria-pressed="'+!!state.disc[d]+'">'+d+'</button>').join('')+'</div><button class="cta static" data-close>적용</button>';
     if(kind==='outing') html='<h2>나들이 <small style="font-size:11px;color:var(--mute)">마포구 영화 문화공간</small></h2><div class="rail og-cats">'+OG_CATS.map(([k,t],i)=>'<button type="button" class="cat" data-og="'+k+'" aria-pressed="'+!i+'">'+t+'</button>').join('')+'</div><div class="og-grid"></div>';
-    if(kind==='plot'){const i=SCREENINGS[arg]||{}, esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); // 추천 화면에서 포스터를 누르면 줄거리 (KMDb, data/build_schedule.py가 넣음)
-      html='<h2>'+esc(arg)+'</h2><p class="hint">'+esc([i.genre,i.min&&i.min+'분',i.rating].filter(Boolean).join(' · '))+'</p><p class="plot">'+(i.plot?esc(i.plot):'줄거리 정보가 아직 없어요')+'</p>';}
+    if(kind==='plot'){const i=SCREENINGS[arg]||{}, esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); // 추천 화면에서 포스터를 누르면 시놉시스 (KOBIS, 없으면 KMDb 줄거리. data/build_schedule.py가 넣음)
+      html='<h2>'+esc(arg)+'</h2><p class="hint">'+esc([i.genre,i.min&&i.min+'분',i.rating].filter(Boolean).join(' · '))+'</p><p class="plot">'+(i.plot?esc(i.plot):'시놉시스가 아직 없어요')+'</p>';}
     if(kind==='budget') html='<h2>예산 바꾸기</h2><div class="price-card"><div class="row"><span>최대</span><b id="sheetBudgetOut">'+fmt(state.price)+'</b></div><input type="range" id="sheetBudget" min="5000" max="20000" step="1000" value="'+state.price+'" aria-label="최대 예산"><div class="row"><span>5,000원</span><span>20,000원</span></div></div><button class="cta static" data-close>적용</button>';
     overlay.innerHTML='<div class="sheet"><div class="panel">'+X+html+'</div></div>';
     overlay.querySelectorAll('.disc').forEach(b=>b.addEventListener('click',()=>{const d=b.dataset.d; if(state.disc[d]) delete state.disc[d]; else state.disc[d]=1; useDisc(state.disc); b.setAttribute('aria-pressed',!!state.disc[d]); if(current==='home') renderHome(); if(state.user!=='게스트') saveUser(state.user,{disc:state.disc});}));

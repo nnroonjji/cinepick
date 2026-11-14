@@ -55,8 +55,7 @@ jobs:
           mkdir _site
           cp -r movie-reco/index.html movie-reco/style.css movie-reco/app.js movie-reco/reco.js movie-reco/mascot.png movie-reco/data movie-reco/posters _site/
           if [ -n "$SUPABASE_URL" ] && [ -n "$SUPABASE_KEY" ]; then
-            printf "const SUPABASE_URL='%s',SUPABASE_KEY='%s';
-" "$SUPABASE_URL" "$SUPABASE_KEY" > _site/data/config.js
+            echo "const SUPABASE_URL='$SUPABASE_URL',SUPABASE_KEY='$SUPABASE_KEY';" > _site/data/config.js
           else
             echo "::warning::SUPABASE_URL, SUPABASE_KEY secret이 없어 계정이 브라우저에만 저장됨"
           fi

@@ -27,6 +27,7 @@ const tx=t=>({...st(20000),text:t,method:'text'});
 assert(R.candidates(tx('웃긴 영화 보고 싶어'),'text')[0].tags.includes('comedy'),'웃긴 → 코미디 상영작이 1위');
 assert(R.recommend(tx('웃긴 영화 보고 싶어'),'text').why.includes('코미디'),'이유 문장에 읽은 태그');
 assert(R.recommend(tx('asdf'),'text').why.includes('못 찾아'),'태그를 못 읽으면 그렇다고 말함');
+assert(R.recommend(st(cheapest-1000),'match').why.includes('예산에 맞는 영화가 없어요'),'예산 안 영화가 없으면 이유 문장에서 알림');
 // 추천 화면은 1~3위를 넘겨 봄: 순위(idx)마다 다른 영화
 for(const k of R.METHODS) assert.strictEqual(new Set([0,1,2].map(i=>R.recommend({...st(20000),idx:{[k]:i}},k).mv.t)).size,3,k+' 1~3위가 서로 다른 영화');
 console.log('ok');

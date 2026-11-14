@@ -36,7 +36,10 @@
     if(!ORDER.includes(id)) id='main';
     const prev=$('v-'+current),next=$('v-'+id),anim=booted&&prev!==next;
     const dir=how||SURVEY.includes(current)&&SURVEY.includes(id)?how||'fade':(id==='reco'&&push)?'pop':push?'fwd':'back'; // 설문끼리는 페이드(마스코트만 이동), 추천 결과는 팝
-    if(push&&id!==current) stack.push(current);
+    if(push&&id!==current){
+      if(!how&&stack[stack.length-1]===id) return goBack(); // 바로 전 화면으로 가는 길(예약 ↔ 다른 회차 보기, 추천 → 홈)은 뒤로 가기로 처리. 안 그러면 오간 만큼 뒤로를 눌러야 함
+      stack.push(current); try{history.pushState({d:depth+1},''); depth++;}catch(e){} // 브라우저 뒤로(안드로이드 뒤로 버튼)가 앱의 뒤로가 되게 화면마다 히스토리 한 칸
+    }
     current=id; booted=true; document.documentElement.dataset.screen=id;
     clearTimeout(animT);
     document.querySelectorAll('.view').forEach(v=>v.className=v.className.replace(/\s*(enter|leave)-(fwd|back|fade|pop)/g,''));
@@ -47,6 +50,7 @@
       animT=setTimeout(()=>{prev.hidden=true; prev.classList.remove('leave-'+dir); next.classList.remove('enter-'+dir);},dir==='pop'?370:240); } // style.css 전환 시간(.35s, .22s)보다 조금 뒤에 정리
     jump.querySelectorAll('button').forEach(b=>b.setAttribute('aria-current',b.dataset.go===id));
     closeOverlay();
+    if(id==='home'||id==='main') stack.length=0; // 홈과 첫 화면은 뒤로 갈 곳이 없는 시작점
     if(id==='home'||SURVEY.includes(id)){state.method='match'; state.idx={};} // 추천 순위도 1위부터 다시. 줄글 추천은 홈에서 적어 보낼 때만(searchForm). 그 밖의 길로 추천 화면에 오면 맞춤 추천
     if(id==='login'){loginForm.reset();pinStep=false;syncLogin();}
     if(id==='pref') syncPref(); // 고른 편수에 맞춰 버튼 잠금
@@ -56,11 +60,22 @@
     if(id==='home'){warmPosters(); renderHome();}
     if(id==='budget') renderBudget();
     if(id==='booking'){renderBooking(); logClick('detail');}
-    if(id==='showtimes') renderShowtimes();
+    if(id==='showtimes'){stDate=null; renderShowtimes();} // 날짜는 들어올 때마다 고른 회차의 날짜부터(전에 본 영화에서 고른 날짜가 남지 않게)
     if(id==='map'&&!$('mapHint').hidden) setTimeout(()=>{const h=$('mapHint'); h.style.opacity=0; setTimeout(()=>h.hidden=true,400);},3000); // 안내는 3초만
     // 주소 뒤 #화면 이름은 목업(발표용 바로가기)에서만 붙임. 실제 앱은 주소를 그대로 두고, 붙어 온 #은 지움 (2026-11-14)
-    if(isMock){if(location.hash!=='#'+id) history.replaceState(null,'','#'+id);} else if(location.hash) history.replaceState(null,'',location.pathname+location.search);
+    if(isMock){if(location.hash!=='#'+id) history.replaceState(history.state,'','#'+id);} else if(location.hash) history.replaceState(history.state,'',location.pathname+location.search);
   }
+  // ── 뒤로 가기: 앞으로 갈 때마다 히스토리를 한 칸 쌓고(show), 뒤로는 화면 안 ← 버튼이든 브라우저 뒤로든 popstate 한 곳에서 처리 ──
+  // depth: 지금까지 쌓은 히스토리 칸 수(새로고침해도 history.state에 남음). 홈에서는 stack을 비우므로 depth가 stack보다 클 수 있음
+  let depth=0; try{depth=history.state?.d||0}catch(e){}
+  const appBack=()=>show(stack.pop()||'main',false);
+  const goBack=()=>depth?history.back():appBack();
+  window.addEventListener('popstate',e=>{
+    const nd=e.state?.d||0, fwd=nd>=depth; depth=nd; if(fwd) return; // 브라우저 앞으로 가기는 따라가지 않음
+    if(stack.length) return appBack();
+    if(nd){toast('한 번 더 누르면 나가요'); history.go(-nd);} // 홈, 첫 화면: 남은 칸을 한 번에 걷어 냄. 다음 뒤로에 사이트를 나감
+    if(isMock) history.replaceState(history.state,'','#'+current); // 목업: 돌아간 칸의 #화면 이름 때문에 화면이 바뀌지 않게
+  });
   // 두 화면 모두 .mascot이 있으면 복제본을 이전 위치→새 위치로 이동. 측정은 next에 enter 클래스를 붙이기 전(제자리)에 해야 함
   let flyT;
   function flyMascot(prev,next){
@@ -83,7 +98,7 @@
   }
   document.addEventListener('click',e=>{
     const go=e.target.closest('[data-go]'); if(go){e.preventDefault(); show(go.dataset.go,true); return;}
-    if(e.target.closest('[data-back]')){show(stack.pop()||'main',false); return;}
+    if(e.target.closest('[data-back]')){goBack(); return;}
     const sh=e.target.closest('[data-sheet]'); if(sh){openSheet(sh.dataset.sheet); return;}
     const ou=e.target.closest('[data-outing]'); if(ou){openSheet('outing',+ou.dataset.outing); return;} // 홈 나들이 카드
     if(e.target.closest('[data-drawer]')){openDrawer(); return;}
@@ -98,7 +113,8 @@
   const rpc=(fn,args)=>fetch(SB+'/rest/v1/rpc/'+fn,{method:'POST',headers:{apikey:SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify(args)}).then(r=>{if(!r.ok) throw new Error(fn+' '+r.status); return r.json();});
   const known={}; // 닉네임 → 서버에 있는지 (물어본 것만)
   const seedUsers={'김치찌':{pin:'1234',mbti:['I','N','F','P'],picked:{'라라랜드':1,'벌새':1},price:10000},'popcorn_lover':{pin:'0000'}};
-  function loadUsers(){if(SB) return {}; try{return Object.assign({},seedUsers,JSON.parse(localStorage.getItem('cinepick_users')||'{}'))}catch(e){return Object.assign({},seedUsers)}}
+  function loadUsers(){if(SB) return {}; let s={}; try{s=JSON.parse(localStorage.getItem('cinepick_users')||'{}')||{}}catch(e){}
+    const u=Object.assign({},seedUsers,s); for(const n in seedUsers) if(s[n]) u[n]=Object.assign({},seedUsers[n],s[n]); return u;} // 예시 계정은 저장된 값과 합침(저장에는 PIN이 없어서 통째로 덮으면 다시 로그인이 안 됨)
   let lastSave='';
   function saveUser(nick,data){
     if(SB){const j=nick+JSON.stringify(data); if(j===lastSave) return; lastSave=j; // 같은 내용은 다시 안 보냄
@@ -152,7 +168,7 @@
   // 로그인 성공 뒤 상태 채우고 화면 이동. back: 새로고침해서 로그인이 이어질 때(알림 없이 홈으로)
   function enter(n,p,u,back){
     state.user=n; state.pin=p; lastSave=''; keepLogin(n,p); useDisc(u.disc||{}); state.text=''; state.method='match'; // 줄글은 홈 화면에서 그때그때 받음
-    if(u.mbti&&u.picked){state.mbti=u.mbti.slice(); state.picked=Object.assign({},u.picked); state.price=u.price||state.price; syncMbti(); renderPref(); price.value=state.price; priceUpdate(); if(!back) toast(n+' 님, 저장된 취향으로 추천'); show(back?'home':'reco',true);}
+    if(u.mbti&&u.picked){state.mbti=u.mbti.slice(); state.picked=Object.assign({},u.picked); state.price=u.price||state.price; syncMbti(); renderPref(); price.value=state.price; priceUpdate(); if(!back) toast(n+' 님, 저장된 취향으로 추천'); show(back?'home':'reco',true); if(!back){stack.length=0; stack.push('home');}} // 로그인이 끝났으니 추천 화면의 뒤로는 로그인 화면이 아니라 홈
     else{state.mbti=['','','','']; state.picked={}; syncMbti(); renderPref(); if(!back) toast(n+' 님, 설문부터 시작'); show('mbti',true);}
   }
   // ── 로그인 유지: 닉네임과 PIN을 이 브라우저에 두고, 다시 열면 그걸로 로그인. 로그아웃하면 지움 ──
@@ -209,6 +225,7 @@
   const queue=shuffle(PICKS.map((m,i)=>i).slice(12));
   const syncPref=()=>{const n=Object.keys(state.picked).length; $('prefCount').textContent=n; $('prefNext').disabled=n<2;}; // 2편 이상 골라야 추천으로. 건너뛰기 없음
   function renderPref(){
+    PICKS.forEach((m,i)=>{if(state.picked[m.t]&&!shown.includes(i)){shown.push(i); queue.splice(queue.indexOf(i),1); if(!queue.length) $('prefMore')?.remove();}}); // 저장된 취향에 처음 12편 밖의 영화가 있으면 그 칸도 보여 줌(안 보이면 해제할 수 없음)
     $('prefGrid').innerHTML=shown.map(i=>{const m=PICKS[i],on=!!state.picked[m.t];
       return '<button type="button" class="pm" data-i="'+i+'" aria-pressed="'+on+'"><span class="pm-img"><img src="posters/'+m.f+'.jpg" onerror="this.onerror=null;this.src=\''+TMDB+m.p+'\'" alt="">'+CHECK+'</span><span class="pm-t">'+m.t+'</span></button>'}).join('');
     syncPref();
@@ -237,8 +254,9 @@
 
   // ── 추천 포스터 미리 받기. 예산 화면에 들어오면 추천 포스터를 fetch로 받아 blob 주소로 들고 있다가 추천 화면에서 그걸 바로 씀. 아티팩트 호스트의 캐시 헤더와 무관하게 즉시 뜨고, 다른 추천도 바로 바뀜. fetch가 안 되는 file://면 원래 주소 그대로 ──
   const ready={}; // 포스터 주소 → blob 주소. ''는 받는 중이거나 실패
-  const warm=u=>{if(u in ready) return; ready[u]=''; fetch(u).then(r=>r.ok?r.blob():Promise.reject()).then(b=>{ready[u]=URL.createObjectURL(b);},()=>{});};
-  const posterSrc=u=>ready[u]||u;
+  const NOPOSTER='mascot.png'; // 포스터 주소가 없는 상영작(KOBIS, TMDB, KMDb 어디에도 없음)에 대신 넣는 그림. 모양은 style.css img[src="mascot.png"]
+  const warm=u=>{if(!u||u in ready) return; ready[u]=''; fetch(u).then(r=>r.ok?r.blob():Promise.reject()).then(b=>{ready[u]=URL.createObjectURL(b);},()=>{});};
+  const posterSrc=u=>ready[u]||u||NOPOSTER;
   function warmPosters(skip){methodsOf(state).forEach(k=>{for(let i=0;i<RECO_N;i++){const u=recommend({...state,idx:{...state.idx,[k]:i},shows:{}},k).mv.img; if(u!==skip) warm(u);}});} // shows를 비운 사본으로 계산해 고른 회차는 안 건드림
   const RECO_N=3, recoLen=()=>Math.max(1,Math.min(RECO_N,candidates(state,state.method).length)); // 추천 화면은 순위 1~3위를 넘겨 봄 (2026-11-14). 예산 안 영화가 3편이 안 되면 있는 만큼. 지금 몇 위인지는 state.idx
   let atEnd=false; // 추천 마지막 장(홈으로 가기)을 보고 있는지
@@ -311,7 +329,8 @@
   $('recoAgain').addEventListener('click',()=>flip(0));
   $('recoNext').addEventListener('click',()=>flip(1));
   $('recoPrev').addEventListener('click',()=>flip(-1));
-  document.addEventListener('keydown',e=>{if(current==='reco'&&(e.key==='ArrowRight'||e.key==='ArrowLeft')&&!e.target.closest('input,textarea')){e.preventDefault(); flip(e.key==='ArrowRight'?1:-1);}});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.innerHTML){closeOverlay(); return;}
+    if(current==='reco'&&!overlay.innerHTML&&(e.key==='ArrowRight'||e.key==='ArrowLeft')&&!e.target.closest('input,textarea')){e.preventDefault(); flip(e.key==='ArrowRight'?1:-1);}});
   { // 스와이프: 표를 손가락 따라 끌다가 70px 넘게 밀면 넘김. 끈 뒤 손을 떼면 조각 누름(예약)은 무시
     const card=$('recoCard'); let sx=0,sy=0,dx=0,on=false,moved=false;
     card.addEventListener('pointerdown',e=>{if(swapping||e.button||e.target.closest('.rt-end button')) return; on=true; moved=false; sx=e.clientX; sy=e.clientY; dx=0;});
@@ -398,7 +417,7 @@
   const bdRange=$('bdRange'); let bdList=[];
   // 영화마다 버튼 하나를 한 번만 만들어 재사용. 슬라이더를 움직일 때마다 innerHTML로 다시 만들면 포스터 99장을 매번 새로 받아 깜빡이고 느림. 싼 순 앞 12장(첫 화면 분량)은 부팅 때 바로 받고 나머지는 보일 때 받음
   const bdNode={};
-  const bdBtn=(t,eager)=>bdNode[t]||(bdNode[t]=Object.assign(document.createElement('button'),{type:'button',className:'bm',innerHTML:'<span class="bm-img"><img src="'+SCREENINGS[t].poster+'" alt=""'+(eager?'':' loading="lazy"')+'><span class="bm-p"></span></span><span class="bm-t">'+t+'</span>'}));
+  const bdBtn=(t,eager)=>bdNode[t]||(bdNode[t]=Object.assign(document.createElement('button'),{type:'button',className:'bm',innerHTML:'<span class="bm-img"><img src="'+(SCREENINGS[t].poster||NOPOSTER)+'" alt=""'+(eager?'':' loading="lazy"')+'><span class="bm-p"></span></span><span class="bm-t">'+t+'</span>'}));
   byPrice().forEach(([t],i)=>bdBtn(t,i<12).dataset.t=t);
   function renderBudget(){
     bdRange.value=state.price; $('bdOut').textContent=fmt(state.price);
@@ -409,6 +428,8 @@
     else $('bdGrid').replaceChildren(...bdList.map(([t,p])=>{const b=bdBtn(t); b.setAttribute('aria-label',t+', '+fmt(p)+'부터'); b.querySelector('.bm-p').textContent=fmt(p)+'~'; return b;}));
   }
   bdRange.addEventListener('input',()=>{price.value=bdRange.value; priceUpdate(); renderBudget();}); // 설문 예산 슬라이더와 같은 예산을 공유
+  const savePrice=()=>{if(state.user!=='게스트') saveUser(state.user,{price:state.price});}; // 예산을 바꾸면 바로 계정에 저장. 슬라이더를 놓을 때(change) 한 번만
+  bdRange.addEventListener('change',savePrice);
   $('bdQ').addEventListener('input',renderBudget);
   $('bdGrid').addEventListener('click',e=>{const b=e.target.closest('.bm'); if(!b) return; const t=b.dataset.t; state.pick={mv:{t,img:SCREENINGS[t].poster},sh:null}; show('showtimes',true);});
 
@@ -549,7 +570,8 @@
     $('dates').innerHTML='<span class="month">'+(+stDate.slice(0,2))+'월</span>'+DAYS.map(day=>{const n=fits(day).length;
       return '<button type="button" class="date'+(day.w==='토'?' sat':day.w==='일'?' sun':'')+(n?'':' none')+'" aria-pressed="'+(day.d===stDate)+'" data-date="'+day.d+'" aria-label="'+(+day.d.slice(0,2))+'월 '+(+day.d.slice(3))+'일 '+day.w+'요일, 예산 안 '+n+'회"><span class="dow">'+day.w+'</span><span class="num">'+(+day.d.slice(3))+'</span><span class="dot"></span></button>';}).join('');
     const day=DAYS.find(x=>x.d===stDate)||DAYS[0], fit=fits(day);
-    let html=Object.entries(Object.groupBy(fit,s=>s[1])).map(([t,ss])=>'<div class="th">'+PIN+'<b>'+t+'</b><span>'+(THEATERS[t]?.area||'')+'</span></div>'+ss.map(s=>{
+    const byTh={}; fit.forEach(s=>(byTh[s[1]]=byTh[s[1]]||[]).push(s)); // 극장별로 묶음. Object.groupBy는 iOS 17.4 전 사파리에 없음
+    let html=Object.entries(byTh).map(([t,ss])=>'<div class="th">'+PIN+'<b>'+t+'</b><span>'+(THEATERS[t]?.area||'')+'</span></div>'+ss.map(s=>{
       const on=sh.date===day.d&&sh.time===s[0]&&sh.theater===s[1]&&sh.hall===s[2], dc=discountOf(s,day.w);
       return '<button type="button" class="show" aria-pressed="'+on+'" data-time="'+s[0]+'" data-th="'+s[1]+'" data-hall="'+s[2]+'"><span class="tm">'+s[0]+'</span><span class="inf"><span class="hall">'+s[2]+' · '+(s[5]||'2D')+((s[6]||'').startsWith('조조')?'<span class="early">조조</span>':'')+(dc.by?'<span class="early">'+DISC_LABEL[dc.by]+'</span>':'')+'</span><span class="seats">'+(s[4]!=null?'잔여 '+s[4]+'석':(s[6]||'').replace(/^조조(, )?/,'').replace(/(, )?요금 미확인/,''))+'</span></span><span class="pr">'+(dc.by?'<s>'+fmt(s[3])+'</s>':'')+fmt(dc.price)+'</span></button>';}).join('')).join('');
     if(!fit.length) html+='<div class="empty"><svg class="mascot" width="64" height="64" aria-hidden="true"><use href="#popcorn"/></svg>'+(day.s.length?'<b>이 날은 예산 안에 맞는 회차가 없어요</b><span>다른 날짜를 고르거나 <button type="button" class="inline-link" data-sheet="budget">예산을 바꿔</button> 보세요</span>':'<b>이 날은 상영표가 없어요</b><span>다른 날짜를 골라 보세요</span>')+'</div>';
@@ -569,8 +591,8 @@
   const X='<button type="button" class="x" data-close aria-label="닫기"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>'; // 시트, 드로어 오른쪽 위 닫기
   overlay.addEventListener('click',e=>{if(e.target.classList.contains('drawer')||e.target.classList.contains('sheet')||e.target.closest('[data-close]')) closeOverlay();});
   function openDrawer(){
-    overlay.innerHTML='<div class="drawer"><div class="panel">'+X+'<h2>메뉴</h2><button data-go="mbti">설문 다시 하기</button><button data-logout>로그아웃</button></div></div>';
-    overlay.querySelector('[data-logout]').addEventListener('click',()=>{state.user='게스트'; keepLogin(); useDisc({}); toast('로그아웃'); show('main',false);});
+    overlay.innerHTML='<div class="drawer"><div class="panel">'+X+'<h2>메뉴</h2><button data-go="mbti">설문 다시 하기</button>'+(state.user==='게스트'?'<button data-go="login">로그인</button>':'<button data-logout>로그아웃</button>')+'</div></div>';
+    overlay.querySelector('[data-logout]')?.addEventListener('click',()=>{state.user='게스트'; state.pin=''; keepLogin(); useDisc({}); state.mbti=['','','','']; state.picked={}; state.text=''; syncMbti(); renderPref(); toast('로그아웃'); show('main',false);}); // 다음 사람에게 앞사람 설문이 보이지 않게 비움
   }
   function openSheet(kind,arg){
     let html='';
@@ -590,6 +612,7 @@
       og.addEventListener('click',e=>{const c=e.target.closest('[data-og-i]'); if(c) return one(+c.dataset.ogI); if(e.target.closest('[data-og-back]')) draw();});}
     const bg=overlay.querySelector('#sheetBudget'); // 예산 시트: 현재 화면은 그대로 두고 목록만 갱신
     if(bg) bg.addEventListener('input',()=>{price.value=bg.value; priceUpdate(); overlay.querySelector('#sheetBudgetOut').textContent=fmt(state.price); if(current==='showtimes') renderShowtimes();});
+    if(bg) bg.addEventListener('change',savePrice);
   }
   let toastT;
   function toast(msg){let t=document.querySelector('.toast'); if(!t){t=document.createElement('div'); t.className='toast'; $('app').appendChild(t);} t.textContent=msg; clearTimeout(toastT); toastT=setTimeout(()=>t.remove(),1500);}
@@ -615,7 +638,7 @@
 })();
 
 // ── 포스터 대체: 포스터 주소가 안 열리면 POSTER_FB(KOBIS 썸네일) 주소로 ──
-function posterFallback(i){const f=POSTER_FB[i.getAttribute('src')]; if(f&&i.src!==f) i.src=f;}
+function posterFallback(i){const s=i.getAttribute('src'), f=POSTER_FB[s]||'mascot.png'; if(s&&s!=='mascot.png'&&i.src!==f) i.src=f;} // 대체 주소도 없거나 안 열리면 마스코트
 document.addEventListener('error',e=>{if(e.target.tagName==='IMG') posterFallback(e.target);},true);
 document.querySelectorAll('img').forEach(i=>{if(i.complete&&!i.naturalWidth) posterFallback(i);});
 

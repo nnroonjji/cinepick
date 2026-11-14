@@ -86,11 +86,8 @@ function candidates(state,k){ // 방법별 추천 순위. 지금 이후 회차�
   return rankMatch(state,NOW.filter(ok));
 }
 const anyLeft=()=>{const l=NOW.filter(m=>daysOf(m.t).length).sort((a,b)=>minPrice(a.t)-minPrice(b.t)); return l.length?l:MOVIES;}; // 마지막 대비: 예산 안 영화가 하나도 없으면(5,000원) 제일 싼 상영작부터
-const basePick=(state,k)=>{const l=candidates(state,k); return l.length?l[(state.idx[k]||0)%l.length]:anyLeft()[0];};
 function recommend(state,k=state.method){ // → {mv, sh, why}
-  const others=methodsOf(state).filter(x=>x!==k).map(x=>basePick(state,x).t); // 다른 방법이 고른 영화는 피함
-  const list=candidates(state,k).filter(m=>!others.includes(m.t));
-  const pool=list.length?list:candidates(state,k).length?candidates(state,k):anyLeft();
+  const list=candidates(state,k), pool=list.length?list:anyLeft(); // 방법마다 따로 순위를 냄. 맞춤 추천과 줄글 추천이 같은 영화를 골라도 그대로 둠 (11/15)
   const mv=pool[(state.idx[k]||0)%pool.length];
   let sh=state.shows[k];
   if(!sh||sh.movie!==mv.t||sh.price>state.price) sh=state.shows[k]=defaultShow(mv.t,state.price);
@@ -98,6 +95,7 @@ function recommend(state,k=state.method){ // → {mv, sh, why}
 }
 const methodsOf=state=>METHODS.filter(k=>k!=='text'||state.text); // 홈에서 줄글을 안 적었으면 그 추천은 없음
 function whyOf(state,k,mv){ // 추천 이유 문장. 겹친 태그 최대 3개
+  if(!candidates(state,k).length) return '예산에 맞는 영화가 없어요. 가장 싼 영화를 대신 골랐어요'; // 예산 안 회차가 하나도 없을 때(anyLeft)
   if(k==='text'){const q='‘'+state.text.slice(0,24)+(state.text.length>24?'…':'')+'’', hit=mv.tags?matched(mv,textTags(state.text)).slice(0,3).map(x=>TAGS[x]).join(', '):'';
     return hit?q+'에서 '+hit+' 태그를 읽어 골랐어요':q+'에서 아는 태그를 못 찾아 가까운 회차부터 골랐어요';}
   const hit=mv.tags?matched(mv,tagCount(state)).slice(0,3).map(x=>TAGS[x]).join(', '):'';

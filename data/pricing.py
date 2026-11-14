@@ -56,8 +56,8 @@ def price(cd, d: date, tm: str, first_of_day: bool, hall: str = '', fmt: str = '
         else:
             table, kind = ((10000, 12000, 14000), (11000, 15000, 15000)), ''
         return pick(*table)[slot], ', '.join(x for x in (when, kind) if x)
-    if cd == '001297':  # 요금 못 찾음. 멀티플렉스와 같게 둠
-        return (15000 if fri_sun else 14000), '요금 미확인'
+    if cd == '001297':  # 베스트슬립 시네마 앳 라이즈: 요일, 시간 구분 없이 2만 5천원 (채은 확인 11/15)
+        return 25000, ''
     if cd == '001146':  # 상상마당: 정가 1만원, 매주 수요일 6천원
         return (6000, '수요일 할인') if wd == 2 else (10000, '')
     if cd == '001193':  # 인디스페이스: 1만원, 오전 11시 전 6천원

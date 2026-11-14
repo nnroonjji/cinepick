@@ -55,7 +55,7 @@
     if(id==='reco'){if(prev.id!=='v-booking') atEnd=false; renderReco(); if(anim&&!atEnd) setTimeout(ticketConfetti,dir==='pop'?160:60);}
     if(id==='home'){warmPosters(); renderHome();}
     if(id==='budget') renderBudget();
-    if(id==='booking') renderBooking();
+    if(id==='booking'){renderBooking(); logClick('detail');}
     if(id==='showtimes') renderShowtimes();
     if(id==='map'&&!$('mapHint').hidden) setTimeout(()=>{const h=$('mapHint'); h.style.opacity=0; setTimeout(()=>h.hidden=true,400);},3000); // 안내는 3초만
     // 주소 뒤 #화면 이름은 목업(발표용 바로가기)에서만 붙임. 실제 앱은 주소를 그대로 두고, 붙어 온 #은 지움 (2026-11-14)
@@ -381,6 +381,16 @@
   }
   // ── 지금 보는 영화·회차: 예산 화면에서 고른 영화가 있으면 그것, 없으면 추천 결과 ──
   function cur(){const p=state.pick; if(!p) return recommend(state); if(!p.sh||p.sh.price>state.price) p.sh=defaultShow(p.mv.t,state.price); return p;}
+  // ── 기록: Supabase clicks 표에 한 줄씩 (data/supabase.sql cp_click). Supabase가 없거나 실패해도 화면에는 영향 없음 ──
+  // action: synopsis(추천 화면에서 포스터를 눌러 시놉시스를 봄), detail(지도와 예약 화면까지 감), book(예약 바로가기를 누름)
+  // SID: 로그인 안 한 사람도 같은 브라우저면 같은 사람으로 세려고 브라우저에 두는 임의 번호
+  const SID=(()=>{try{let s=localStorage.getItem('cinepick_sid'); if(!s){s=Math.random().toString(36).slice(2)+Date.now().toString(36); localStorage.setItem('cinepick_sid',s);} return s;}catch(e){return '';}})();
+  function logClick(action){
+    if(!SB) return; const {mv,sh}=cur(), k=state.pick?'budget':state.method; // budget: 예산으로 고르기 화면에서 고른 영화
+    rpc('cp_click',{p:{action,session_id:SID,nickname:state.user==='게스트'?null:state.user,method:k,rank:state.pick?null:(state.idx[k]||0)+1,
+      movie_code:SCREENINGS[mv.t]?.code||null,movie_title:mv.t,theater:sh.theater,show_date:sh.date,show_time:sh.time,price:sh.price,budget:state.price}}).catch(()=>{});
+  }
+  $('bkGo').addEventListener('click',()=>logClick('book'));
 
   // ── Budget: 예산 안 회차가 있는 상영작 전부, 싼 순. 누르면 그 영화 회차 보기 ──
   const byPrice=()=>Object.keys(SHOWS).map(t=>[t,minPrice(t)]).sort((a,b)=>a[1]-b[1]||a[0].localeCompare(b[0],'ko'));
@@ -566,7 +576,7 @@
     let html='';
     if(kind==='mypage') html='<h2>마이페이지</h2><div class="mp-row"><span class="av"><svg width="36" height="36" aria-hidden="true"><use href="#popcorn"/></svg></span><div><b>'+state.user+'</b><p class="hint">MBTI '+(state.mbti.join('')||'미설정')+' · 예산 ~'+fmt(state.price)+'</p></div></div><p class="hint">해당되는 할인 조건을 체크하면 회차 가격을 그 조건으로 다시 계산해요. 극장에서 신분 확인이 필요해요</p><div class="discs">'+DISCOUNTS.map(d=>'<button type="button" class="disc" data-d="'+d+'" aria-pressed="'+!!state.disc[d]+'">'+d+'</button>').join('')+'</div><button class="cta static" data-close>적용</button>';
     if(kind==='outing') html='<h2>나들이 <small style="font-size:11px;color:var(--mute)">마포구 영화 문화공간</small></h2><div class="rail og-cats">'+OG_CATS.map(([k,t],i)=>'<button type="button" class="cat" data-og="'+k+'" aria-pressed="'+!i+'">'+t+'</button>').join('')+'</div><div class="og-grid"></div>';
-    if(kind==='plot'){const i=SCREENINGS[arg]||{}, esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); // 추천 화면에서 포스터를 누르면 시놉시스 (KOBIS, 없으면 KMDb 줄거리. data/build_schedule.py가 넣음)
+    if(kind==='plot'){logClick('synopsis'); const i=SCREENINGS[arg]||{}, esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); // 추천 화면에서 포스터를 누르면 시놉시스 (KOBIS, 없으면 KMDb 줄거리. data/build_schedule.py가 넣음)
       html='<h2>'+esc(arg)+'</h2><p class="hint">'+esc([i.genre,i.min&&i.min+'분',i.rating].filter(Boolean).join(' · '))+'</p><p class="plot">'+(i.plot?esc(i.plot):'시놉시스가 아직 없어요')+'</p>';}
     if(kind==='budget') html='<h2>예산 바꾸기</h2><div class="price-card"><div class="row"><span>최대</span><b id="sheetBudgetOut">'+fmt(state.price)+'</b></div><input type="range" id="sheetBudget" min="5000" max="20000" step="1000" value="'+state.price+'" aria-label="최대 예산"><div class="row"><span>5,000원</span><span>20,000원</span></div></div><button class="cta static" data-close>적용</button>';
     overlay.innerHTML='<div class="sheet"><div class="panel">'+X+html+'</div></div>';

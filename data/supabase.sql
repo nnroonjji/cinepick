@@ -49,3 +49,40 @@ end $$;
 
 revoke all on function public.cp_exists(text), public.cp_signup(text, text), public.cp_login(text, text), public.cp_save(text, text, jsonb) from public;
 grant execute on function public.cp_exists(text), public.cp_signup(text, text), public.cp_login(text, text), public.cp_save(text, text, jsonb) to anon, authenticated;
+
+-- ── 기록: 추천받은 영화를 어디까지 봤는지 (앱의 logClick) ──
+-- 한 줄이 행동 한 번. action: synopsis(포스터를 눌러 시놉시스를 봄), detail(지도와 예약 화면까지 감), book(예약 바로가기를 누름)
+-- 보는 곳: Table Editor의 clicks(한 줄씩), clicks_summary(방식별 횟수와 사람 수)
+create table if not exists public.clicks (
+  id          bigint generated always as identity primary key,
+  created_at  timestamptz not null default now(),
+  action      text not null,          -- synopsis, detail, book
+  session_id  text,                   -- 브라우저마다 임의 번호 (로그인 안 한 사람도 같은 사람으로 셈)
+  nickname    text,                   -- 로그인한 닉네임, 게스트면 비움
+  method      text,                   -- match(MBTI와 좋아하는 영화), text(줄글), budget(예산으로 고르기)
+  rank        int,                    -- 몇 번째 추천이었는지 (1부터). budget은 비움
+  movie_code  text,
+  movie_title text,
+  theater     text,
+  show_date   text,                   -- 상영표 표기 그대로 (11.20)
+  show_time   text,                   -- 19:30
+  price       int,                    -- 그 회차 가격 (할인 반영)
+  budget      int                     -- 그때 설정한 예산
+);
+alter table public.clicks enable row level security;
+
+-- 기록 넣기만 함. 브라우저는 표를 읽지 못함
+create or replace function public.cp_click(p jsonb) returns void
+language sql security definer set search_path = '' as $$
+  insert into public.clicks (action, session_id, nickname, method, rank, movie_code, movie_title, theater, show_date, show_time, price, budget)
+  values (left(p->>'action', 20), left(p->>'session_id', 40), left(p->>'nickname', 12), left(p->>'method', 20), (p->>'rank')::int,
+          left(p->>'movie_code', 20), left(p->>'movie_title', 100), left(p->>'theater', 40), left(p->>'show_date', 10), left(p->>'show_time', 10),
+          (p->>'price')::int, (p->>'budget')::int);
+$$;
+revoke all on function public.cp_click(jsonb) from public;
+grant execute on function public.cp_click(jsonb) to anon, authenticated;
+
+-- 행동과 방식별로 몇 번, 몇 명인지
+create or replace view public.clicks_summary with (security_invoker = true) as
+  select action, method, count(*) as clicks, count(distinct session_id) as people, max(created_at) as last_at
+  from public.clicks group by action, method order by action, method;

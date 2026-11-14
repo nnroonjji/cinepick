@@ -7,6 +7,10 @@
 /data/*
 !/data/*.py
 !/data/tmdb_posters.json
+!/data/supabase.sql
 !/data/상영작/
 /data/상영작/_to_delete/
 __pycache__/
+# 키와 주소가 든 파일은 올리지 않음 (배포 때 GitHub secret으로 만듦)
+.env*
+/movie-reco/data/config.js

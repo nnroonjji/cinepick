@@ -90,43 +90,65 @@
   });
   window.addEventListener('hashchange',()=>show(location.hash.slice(1)||'main',true));
 
-  // ── 계정: 닉네임 + PIN (브라우저 저장소에 흉내) ──
+  // ── 계정: 닉네임 + PIN ──
+  // data/config.js에 SUPABASE_URL, SUPABASE_KEY가 있으면 Supabase에 저장(표와 함수: data/supabase.sql. PIN은 서버에서 해시로 확인하고 브라우저는 표를 직접 못 읽음)
+  // config.js가 없으면(파일을 더블클릭해서 열 때, 아티팩트) 전처럼 이 브라우저 저장소에만 흉내
+  const SB=typeof SUPABASE_URL==='string'&&SUPABASE_URL&&typeof SUPABASE_KEY==='string'&&SUPABASE_KEY?SUPABASE_URL.replace(/\/$/,''):'';
+  const rpc=(fn,args)=>fetch(SB+'/rest/v1/rpc/'+fn,{method:'POST',headers:{apikey:SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify(args)}).then(r=>{if(!r.ok) throw new Error(fn+' '+r.status); return r.json();});
+  const known={}; // 닉네임 → 서버에 있는지 (물어본 것만)
   const seedUsers={'김치찌':{pin:'1234',mbti:['I','N','F','P'],picked:{'라라랜드':1,'벌새':1},price:10000},'popcorn_lover':{pin:'0000'}};
-  function loadUsers(){try{return Object.assign({},seedUsers,JSON.parse(localStorage.getItem('cinepick_users')||'{}'))}catch(e){return Object.assign({},seedUsers)}}
-  function saveUser(nick,data){try{const u=JSON.parse(localStorage.getItem('cinepick_users')||'{}'); u[nick]=Object.assign(u[nick]||{},data); localStorage.setItem('cinepick_users',JSON.stringify(u))}catch(e){}}
+  function loadUsers(){if(SB) return {}; try{return Object.assign({},seedUsers,JSON.parse(localStorage.getItem('cinepick_users')||'{}'))}catch(e){return Object.assign({},seedUsers)}}
+  let lastSave='';
+  function saveUser(nick,data){
+    if(SB){const j=nick+JSON.stringify(data); if(j===lastSave) return; lastSave=j; // 같은 내용은 다시 안 보냄
+      rpc('cp_save',{p_nick:nick,p_pin:state.pin,p_data:data}).then(ok=>{if(!ok) throw 0;}).catch(()=>{lastSave=''; toast('저장하지 못했어요');}); return;}
+    try{const u=JSON.parse(localStorage.getItem('cinepick_users')||'{}'); u[nick]=Object.assign(u[nick]||{},data); localStorage.setItem('cinepick_users',JSON.stringify(u))}catch(e){}
+  }
   function useDisc(d){state.disc=d; setDisc(d); METHODS.forEach(k=>state.shows[k]=null); if(state.pick) state.pick.sh=null;} // 할인 조건이 바뀌면 회차 가격이 달라지니 고른 회차는 다시 고름
   const nickOk=n=>/^[가-힣a-zA-Z0-9_]{2,12}$/.test(n), pinOk=p=>/^\d{4}$/.test(p);
   const loginForm=$('loginForm'),nick=$('nick'),nickMsg=$('nickMsg'),pin=$('pin'),pin2=$('pin2'),pinField=$('pinField'),pin2Field=$('pin2Field'),loginCta=$('loginCta'),loginCtaLabel=$('loginCtaLabel'),loginErr=$('loginErr');
   let pinStep=false; // 두 단계: 닉네임 → 다음 → PIN 칸(가입이면 PIN 확인까지). 닉네임을 고치면 다시 1단계 (2026-10-30, 폰에서 칸이 버튼에 가려지는 문제)
   function showErr(msg){loginErr.textContent=msg; loginErr.hidden=!msg;}
-  function nickState(){const n=nick.value.trim(); return !n?'':!nickOk(n)?'bad':loadUsers()[n]?'login':'signup';}
+  function nickState(){const n=nick.value.trim(); return !n?'':!nickOk(n)?'bad':SB&&!(n in known)?'wait':(SB?known[n]:loadUsers()[n])?'login':'signup';} // wait: 서버에 있는 닉네임인지 아직 모름
+  let askT=0;
+  const ask=n=>rpc('cp_exists',{p_nick:n}).then(x=>{known[n]=!!x;});
   function syncLogin(){
     const s=nickState(), open=pinStep&&(s==='login'||s==='signup');
     nickMsg.className='fmsg'+(s==='bad'?' bad':s==='signup'?' ok':'');
-    nickMsg.textContent={'':'',bad:'2~12자, 한글·영문·숫자·_만',login:'반가워요! 다음을 누르고 PIN을 입력해요',signup:'새 닉네임이에요. 다음을 누르고 PIN을 정하면 가입돼요'}[s];
+    nickMsg.textContent={'':'',wait:'',bad:'2~12자, 한글·영문·숫자·_만',login:'반가워요! 다음을 누르고 PIN을 입력해요',signup:'새 닉네임이에요. 다음을 누르고 PIN을 정하면 가입돼요'}[s];
     const reveal=open&&pinField.hidden; pinField.hidden=!open; pin2Field.hidden=!(open&&s==='signup');
     if(reveal){[pinField,pin2Field].forEach(f=>{f.classList.remove('pop-in'); void f.offsetWidth; f.classList.add('pop-in');}); loginCta.scrollIntoView({block:'nearest',behavior:'smooth'});} // PIN 칸이 열리면 내려오는 애니메이션 + 맨 아래 버튼까지 보이게 스크롤(버튼이 칸 아래 한 줄로 있음)
     loginCtaLabel.textContent=!open?'다음':s==='login'?'로그인':'가입하기';
-    loginCta.disabled=!(s==='login'||s==='signup');
+    loginCta.disabled=!(s==='login'||s==='signup'||s==='wait');
     showErr('');
   }
-  nick.addEventListener('input',()=>{pinStep=false; syncLogin();});
+  nick.addEventListener('input',()=>{pinStep=false; syncLogin();
+    clearTimeout(askT); const n=nick.value.trim(); if(nickState()==='wait') askT=setTimeout(()=>ask(n).then(()=>{if(nick.value.trim()===n) syncLogin();}).catch(()=>{}),350); // 입력이 멈추면 서버에 있는 닉네임인지 물어봄
+  });
+  const offline=()=>showErr('서버에 연결하지 못했어요. 잠시 뒤 다시 해줘');
   [pin,pin2].forEach(el=>el.addEventListener('input',()=>{el.value=el.value.replace(/\D/g,''); showErr('');}));
-  loginForm.addEventListener('submit',e=>{
-    e.preventDefault(); syncLogin();
-    const s=nickState(),n=nick.value.trim(),u=loadUsers()[n];
+  loginForm.addEventListener('submit',async e=>{
+    e.preventDefault(); const n=nick.value.trim();
+    if(nickState()==='wait'){try{await ask(n)}catch(_){return offline()}}
+    syncLogin();
+    const s=nickState(); let u=loadUsers()[n];
     if(s!=='login'&&s!=='signup') return showErr('닉네임을 확인해줘');
     if(!pinStep){pinStep=true; syncLogin(); pin.focus({preventScroll:true}); return;} // 1단계 다음: PIN 칸 열고 커서 이동. preventScroll: focus의 스크롤이 syncLogin의 버튼까지 보이는 스크롤을 끊지 않게
     if(!pinOk(pin.value)) return showErr('PIN은 숫자 4자리');
     if(s==='login'){
-      if(u.pin!==pin.value) return showErr('PIN이 달라요');
-      state.user=n; useDisc(u.disc||{}); state.text=''; state.method='match'; // 줄글은 홈 화면에서 그때그때 받음
+      if(SB){try{u=await rpc('cp_login',{p_nick:n,p_pin:pin.value})}catch(_){return offline()} if(!u) return showErr('PIN이 달라요');}
+      else if(u.pin!==pin.value) return showErr('PIN이 달라요');
+      state.user=n; state.pin=pin.value; lastSave=''; useDisc(u.disc||{}); state.text=''; state.method='match'; // 줄글은 홈 화면에서 그때그때 받음
       if(u.mbti&&u.picked){state.mbti=u.mbti.slice(); state.picked=Object.assign({},u.picked); state.price=u.price||state.price; syncMbti(); renderPref(); price.value=state.price; priceUpdate(); toast(n+' 님, 저장된 취향으로 추천'); show('reco',true);}
       else{state.mbti=['','','','']; state.picked={}; syncMbti(); renderPref(); toast(n+' 님, 설문부터 시작'); show('mbti',true);}
       return;
     }
     if(pin.value!==pin2.value) return showErr('PIN 확인이 달라요');
-    saveUser(n,{pin:pin.value}); state.user=n; state.mbti=['','','','']; state.picked={}; state.text=''; useDisc({}); syncMbti(); renderPref();
+    if(SB){let ok; try{ok=await rpc('cp_signup',{p_nick:n,p_pin:pin.value})}catch(_){return offline()}
+      if(!ok){known[n]=true; syncLogin(); return showErr('방금 다른 사람이 가입한 닉네임이에요. PIN을 알면 로그인해줘');}
+      known[n]=true;}
+    else saveUser(n,{pin:pin.value});
+    state.user=n; state.pin=pin.value; lastSave=''; state.mbti=['','','','']; state.picked={}; state.text=''; useDisc({}); syncMbti(); renderPref();
     toast(n+' 님 가입 완료'); show('survey',true);
   });
 

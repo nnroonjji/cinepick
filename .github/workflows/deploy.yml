@@ -1,6 +1,6 @@
 # 매일 새벽 KOBIS 상영표를 새로 받아 태그와 schedule.js를 다시 만들고 GitHub Pages에 올림
 # 코드를 push해도, Actions 탭에서 Run workflow를 눌러도 같은 일을 함
-# 필요한 것: 저장소 Settings → Secrets → Actions에 KMDB_KEY (KMDb API 키)
+# 필요한 것: 저장소 Settings → Secrets → Actions에 KMDB_KEY (KMDb API 키), SUPABASE_URL, SUPABASE_KEY (계정 저장. 표와 함수는 data/supabase.sql)
 name: refresh-and-deploy
 on:
   push:
@@ -23,6 +23,8 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     env:
       KMDB_KEY: ${{ secrets.KMDB_KEY }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}  # publishable(anon) 키만. secret(service_role) 키는 절대 넣지 않음
       PYTHONUTF8: 1
     steps:
       - uses: actions/checkout@v4
@@ -52,6 +54,12 @@ jobs:
         run: |
           mkdir _site
           cp -r movie-reco/index.html movie-reco/style.css movie-reco/app.js movie-reco/reco.js movie-reco/mascot.png movie-reco/data movie-reco/posters _site/
+          if [ -n "$SUPABASE_URL" ] && [ -n "$SUPABASE_KEY" ]; then
+            printf "const SUPABASE_URL='%s',SUPABASE_KEY='%s';
+" "$SUPABASE_URL" "$SUPABASE_KEY" > _site/data/config.js
+          else
+            echo "::warning::SUPABASE_URL, SUPABASE_KEY secret이 없어 계정이 브라우저에만 저장됨"
+          fi
           sed -i 's/<html lang="ko">/<html lang="ko" data-theme-lock="prev">/' _site/index.html  # 테마 고르는 줄 없이 테마 고정
       - if: steps.refresh.outcome == 'success' || github.event_name != 'schedule'
         uses: actions/upload-pages-artifact@v3

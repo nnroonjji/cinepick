@@ -2,8 +2,8 @@
 사용: data 폴더에서 python build_reco_tags.py raw/kobis_raw_20261101.json [raw/kobis_raw_20261030.json ...]
   raw JSON은 제목 → 영화코드 대응에만 씀. 여러 개 주면 앞의 것이 우선
 - TAGS: 태그 → 화면 이름 (상영작/genome_tag_ko.csv 화면 이름 열). 앱의 추천 이유 문장에 씀
-- NOW_TAGS: 영화코드 → 상영작 선택 태그 (상영작/now_tags.csv 선택 Y. 최대 5개 + 유형, 영진위 인정). 없는 영화(공연 등)는 추천 후보에서 빠짐
-- data.js PICKS: 제목별 tags를 상영작/picks_tags.csv 선택 Y로 바꿈. picks_tags에 없는 영화(세계의 주인)는 지움
+- NOW_TAGS: 영화코드 → 상영작 선택 태그 (상영작/현재상영작/now_tags.csv 선택 Y. 최대 5개 + 유형, 영진위 인정). 없는 영화(공연 등)는 추천 후보에서 빠짐
+- data.js PICKS: 제목별 tags를 상영작/30편/picks_tags.csv 선택 Y로 바꿈. picks_tags에 없는 영화(세계의 주인)는 지움
 상영작을 새로 받으면: kmdb_fetch.py(채은 PC) → tag_movies.py now → 이 스크립트 → movie-reco 반영
 """
 import csv, html, json, re, sys
@@ -26,8 +26,8 @@ def selected(name):
             out.setdefault(r['제목'], []).append(r['태그'])
     return out
 
-now = selected('now_tags.csv')
-picks = selected('picks_tags.csv')
+now = selected('현재상영작/now_tags.csv')
+picks = selected('30편/picks_tags.csv')
 disp = {r['묶음 대표']: (r['화면 이름'] or '').strip() for r in csv.DictReader(open(S / 'genome_tag_ko.csv', encoding='utf-8-sig'))}
 used = sorted({t for v in list(now.values()) + list(picks.values()) for t in v})
 miss = [t for t in used if not disp.get(t)]
@@ -36,7 +36,7 @@ nocode = [t for t in now if t not in code]
 assert not nocode, f'영화코드 못 찾은 상영작: {nocode}'
 
 J = lambda o: json.dumps(o, ensure_ascii=False, separators=(',', ':'))
-tags_js = ('// 자동 생성 파일. 손으로 고치지 말 것. 생성: 데시스/data/build_reco_tags.py (입력: data/상영작/now_tags.csv, picks_tags.csv, genome_tag_ko.csv)\n'
+tags_js = ('// 자동 생성 파일. 손으로 고치지 말 것. 생성: 데시스/data/build_reco_tags.py (입력: data/상영작의 현재상영작/now_tags.csv, 30편/picks_tags.csv, genome_tag_ko.csv)\n'
            '// TAGS 태그 → 화면 이름, NOW_TAGS 영화코드 → 상영작 선택 태그(최대 5개 + 유형, 영진위 인정). 태그 이름은 genome 묶음 대표 (docs/추천로직_정리.md)\n'
            f'const TAGS={J({t: disp[t] for t in used})};\n'
            f'const NOW_TAGS={J({code[t]: v for t, v in now.items()})};\n')

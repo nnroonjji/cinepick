@@ -46,11 +46,11 @@ for dd, tm, cd, mcd, scrn, fl, rf in sorted(shows):
 tm = json.load(open(Path(__file__).with_name('tmdb_posters.json'), encoding='utf-8'))  # 영화코드 → [TMDB id, 포스터 파일] (손으로 확인한 표)
 TMDB_IMG = 'https://image.tmdb.org/t/p/w780/'
 # 상영작 포스터: 배포할 때 poster_fetch.py가 만든 파일(posters/now/영화코드.jpg, 가로 800px. 저장소에는 없음)이 있으면 그 파일,
-# 없으면 주소를 바로 씀: TMDB 표(w780) → KMDb(상영작/kmdb_now.csv 포스터 열, 가로 418px) → KOBIS 썸네일(가로 352px)
+# 없으면 주소를 바로 씀: TMDB 표(w780) → KMDb(상영작/현재상영작/kmdb_now.csv 포스터 열, 가로 418px) → KOBIS 썸네일(가로 352px)
 # POSTER_FB: 포스터가 안 열릴 때 앱이 대신 쓸 주소 (파일이면 위의 주소, 주소면 KOBIS 썸네일)
 APP = Path(__file__).resolve().parents[1] / 'movie-reco'
 kmdb, plots = {}, {}
-kp = Path(__file__).with_name('상영작') / 'kmdb_now.csv'
+kp = Path(__file__).with_name('상영작') / '현재상영작' / 'kmdb_now.csv'
 if kp.exists():
     rows = list(csv.DictReader(open(kp, encoding='utf-8-sig')))
     kmdb = {r['제목']: r.get('포스터') or '' for r in rows}

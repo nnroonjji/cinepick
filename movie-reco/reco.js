@@ -64,7 +64,7 @@ function rankMatch(state,pool,cnt=tagCount(state),pt=pickedTags(state),dir=seren
 }
 // ── 줄글 추천: 적은 글에서 태그 찾기 (Gemini 없이, 11/4) ──
 // ponytail: 태그 이름(띄어쓰기, 대소문자 무시)과 아래 표의 말을 글에서 부분 문자열로 찾음. 형태소 분석 없음. 한 글자 태그(춤, 꿈, 섬, 삶, 뱀)는 낱말 그대로나 토씨 붙은 꼴만. Gemini Edge Function이 들어오면 textTags만 바꿈
-const TEXT_WORDS={comedy:['웃긴','웃음','유쾌','코믹','웃을','웃고'],horror:['무서','호러','소름'],'love story':['사랑','연애','로맨틱','설레','달달','멜로'],suspense:['긴장','쫄깃','스릴','서스펜스'],
+const TEXT_WORDS={comedy:['웃긴','웃음','유쾌','코믹','웃을','웃고'],horror:['무서','호러','소름'],romance:['사랑','연애','로맨틱','설레','달달','멜로'],suspense:['긴장','쫄깃','스릴','서스펜스'],
   action:['신나','화끈','통쾌'],drama:['감동','눈물','울컥','울고','잔잔','먹먹'],family:['부모','엄마','아빠'],animation:['애니','만화'],'based on a comic':['웹툰'],mystery:['추리','반전','미스테리'],
   crime:['형사','범인'],'sci fi':['에스에프','공상과학'],fantasy:['마법'],music:['노래','뮤지컬','뮤직'],documentary:['다큐'],war:['전투'],friendship:['친구'],'coming of age':['청춘','사춘기'],
   death:['상실','이별'],dreams:['꿈꾸'],'feel-good':['힐링','따뜻','포근','편안','기분좋'],'art house':['예술'],'independent film':['독립'],'based on true story':['실제'],'based on a book':['소설'],
@@ -104,8 +104,4 @@ function whyOf(state,k,mv){ // 추천 이유 문장. 겹친 태그 최대 3개
   if(serenDir(state)>0) return '고른 영화와 비슷하면서 새로운 영화예요'+(hit?'. '+hit+' 태그가 겹쳐요':''); // 의외성 쪽으로 고른 영화는 이 문장으로 시작 (채은 결정 11/3)
   const g=(SCREENINGS[mv.t]?.genre||'').split(',')[0].trim();
   return hit?'고른 영화들과 '+hit+' 태그가 겹치는 영화예요':'고른 영화들과 분위기가 닮은 '+(g||'영화')+'예요';
-}
-function showAt(t,theater,price){ // 그 극장에서 예산 안 가장 빠른 회차
-  for(const day of daysOf(t)){const s=day.s.find(x=>x[1]===theater&&priceOf(x,day.w)<=price); if(s) return mk(day,s,t);}
-  return null;
 }

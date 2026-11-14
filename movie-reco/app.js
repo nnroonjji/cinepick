@@ -47,7 +47,7 @@
       animT=setTimeout(()=>{prev.hidden=true; prev.classList.remove('leave-'+dir); next.classList.remove('enter-'+dir);},dir==='pop'?370:240); } // style.css 전환 시간(.35s, .22s)보다 조금 뒤에 정리
     jump.querySelectorAll('button').forEach(b=>b.setAttribute('aria-current',b.dataset.go===id));
     closeOverlay();
-    if(id==='home'||SURVEY.includes(id)) state.method='match'; // 줄글 추천은 홈에서 적어 보낼 때만(searchForm). 그 밖의 길로 추천 화면에 오면 맞춤 추천
+    if(id==='home'||SURVEY.includes(id)){state.method='match'; state.idx={};} // 추천 순위도 1위부터 다시. 줄글 추천은 홈에서 적어 보낼 때만(searchForm). 그 밖의 길로 추천 화면에 오면 맞춤 추천
     if(id==='login'){loginForm.reset();pinStep=false;syncLogin();}
     if(id==='pref') syncPref(); // 고른 편수에 맞춰 버튼 잠금
     if(id==='price') warmPosters(); // 고른 영화와 지금 예산 기준 추천 포스터를 미리 받아 둠. 슬라이더를 놓으면 다시 받음(아래 change)
@@ -58,7 +58,8 @@
     if(id==='booking') renderBooking();
     if(id==='showtimes') renderShowtimes();
     if(id==='map'&&!$('mapHint').hidden) setTimeout(()=>{const h=$('mapHint'); h.style.opacity=0; setTimeout(()=>h.hidden=true,400);},3000); // 안내는 3초만
-    if(location.hash!=='#'+id) history.replaceState(null,'','#'+id);
+    // 주소 뒤 #화면 이름은 목업(발표용 바로가기)에서만 붙임. 실제 앱은 주소를 그대로 두고, 붙어 온 #은 지움 (2026-11-14)
+    if(isMock){if(location.hash!=='#'+id) history.replaceState(null,'','#'+id);} else if(location.hash) history.replaceState(null,'',location.pathname+location.search);
   }
   // 두 화면 모두 .mascot이 있으면 복제본을 이전 위치→새 위치로 이동. 측정은 next에 enter 클래스를 붙이기 전(제자리)에 해야 함
   let flyT;
@@ -238,15 +239,16 @@
   const ready={}; // 포스터 주소 → blob 주소. ''는 받는 중이거나 실패
   const warm=u=>{if(u in ready) return; ready[u]=''; fetch(u).then(r=>r.ok?r.blob():Promise.reject()).then(b=>{ready[u]=URL.createObjectURL(b);},()=>{});};
   const posterSrc=u=>ready[u]||u;
-  function warmPosters(skip){methodsOf(state).forEach(k=>{const u=recommend({...state,shows:{}},k).mv.img; if(u!==skip) warm(u);});} // shows를 비운 사본으로 계산해 고른 회차는 안 건드림
+  function warmPosters(skip){methodsOf(state).forEach(k=>{for(let i=0;i<RECO_N;i++){const u=recommend({...state,idx:{...state.idx,[k]:i},shows:{}},k).mv.img; if(u!==skip) warm(u);}});} // shows를 비운 사본으로 계산해 고른 회차는 안 건드림
+  const RECO_N=3, recoLen=()=>Math.max(1,Math.min(RECO_N,candidates(state,state.method).length)); // 추천 화면은 순위 1~3위를 넘겨 봄 (2026-11-14). 예산 안 영화가 3편이 안 되면 있는 만큼. 지금 몇 위인지는 state.idx
   let atEnd=false; // 추천 마지막 장(홈으로 가기)을 보고 있는지
   const METHOD_TAG={match:'맞춤 추천',text:'한 줄 취향'}; // 표 조각의 추천 종류 글자
   function renderReco(){
     tearReset(); // 찢긴 표는 다시 들어오면 붙여 둠
-    const order=[state.method], k=state.method; // 추천 화면은 들어온 길의 추천 하나만(맞춤 추천 또는 홈 줄글 추천) + 마지막 장
+    const k=state.method, len=recoLen(); // 추천 화면은 들어온 길의 추천(맞춤 추천 또는 홈 줄글 추천) 1~3위 + 마지막 장
     // 추천 표 뒤에 마지막 장(홈으로 가기)이 하나 더 붙음. 넘기기는 처음과 마지막에서 멈춤(2026-11-01)
-    const at=atEnd?order.length:order.indexOf(k), n=order.length+1;
-    $('recoStep').textContent=atEnd?'마지막 장':'추천 '+(at+1)+' / '+order.length;
+    const at=atEnd?len:Math.min(state.idx[k]||0,len-1), n=len+1;
+    $('recoStep').textContent=atEnd?'마지막 장':'추천 '+(at+1)+' / '+len;
     $('recoDots').innerHTML=Array.from({length:n},(_,i)=>'<i'+(i===at?' class="on"':'')+'></i>').join('');
     $('recoPrev').style.visibility=at===0?'hidden':''; $('recoNext').style.visibility=at===n-1?'hidden':'';
     $('recoCard').classList.toggle('is-end',atEnd); $('recoEndCard').hidden=!atEnd;
@@ -289,12 +291,12 @@
   let swapping=false;
   // 다른 추천: 화살표, 좌우 스와이프, 키보드 ←→. 다음은 표가 왼쪽으로 넘어가고, 이전은 오른쪽으로
   function flip(d,from){ // d=1 다음, -1 이전. from: 스와이프로 끌던 위치(px)
-    const order=[state.method], card=$('recoCard'); if(swapping||document.querySelector('.rt-torn')) return;
-    const at=atEnd?order.length:order.indexOf(state.method), to=d===0?0:at+d; // d=0: 첫 추천으로(마지막 장의 다시 보기)
-    if(to<0||to>order.length||to===at){ // 처음, 마지막에서는 제자리로
+    const len=recoLen(), card=$('recoCard'); if(swapping||document.querySelector('.rt-torn')) return;
+    const at=atEnd?len:Math.min(state.idx[state.method]||0,len-1), to=d===0?0:at+d; // d=0: 첫 추천으로(마지막 장의 다시 보기)
+    if(to<0||to>len||to===at){ // 처음, 마지막에서는 제자리로
       if(card.style.transform) card.animate([{transform:card.style.transform},{transform:'none'}],{duration:220,easing:'cubic-bezier(.2,.9,.3,1.2)'}); card.style.transform=''; return;}
     if(d===0) d=-1;
-    const go=()=>{atEnd=to===order.length; if(!atEnd) state.method=order[to]; renderReco();};
+    const go=()=>{atEnd=to===len; if(!atEnd) state.idx[state.method]=to; renderReco();};
     if(calm()||!card.animate){card.style.transform=''; go(); return;}
     swapping=true; const f=from||0;
     card.animate([{transform:'translateX('+f+'px) rotate('+f/30+'deg)'},{transform:'translate('+(-d*115)+'%,-10px) rotate('+(-d*12)+'deg)',opacity:.2}],{duration:f?200:260,easing:'cubic-bezier(.5,0,.8,.4)'}).onfinish=()=>{
@@ -303,6 +305,9 @@
       if(!atEnd) ticketConfetti();
     };
   }
+  { const art=$('recoImg').parentNode, open=()=>{if(!atEnd) openSheet('plot',recommend(state).mv.t);}; // 포스터를 누르면 줄거리 시트. 끌어서 넘길 때의 누름은 아래 스와이프가 막음
+    art.tabIndex=0; art.setAttribute('role','button'); art.setAttribute('aria-label','포스터를 누르면 줄거리'); art.style.cursor='pointer';
+    art.addEventListener('click',open); art.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault(); open();}}); }
   $('recoAgain').addEventListener('click',()=>flip(0));
   $('recoNext').addEventListener('click',()=>flip(1));
   $('recoPrev').addEventListener('click',()=>flip(-1));
@@ -410,10 +415,9 @@
   $('homeOuts').innerHTML=OUTINGS.map((o,i)=>'<button type="button" class="out" data-outing="'+i+'">'+ogIc(o)+'<b>'+o.n+'</b><small>'+OG_NAME[o.c]+' · '+o.area+'</small></button>').join('');
   function ogDetail(o){
     return '<div class="og-detail"><button type="button" class="og-back" data-og-back>← 목록</button>'
-      +'<div class="og-head">'+ogIc(o)+'<div><b>'+o.n+'</b><small>'+OG_NAME[o.c]+' · '+o.area+'</small></div></div>'
+      +'<div class="og-head">'+ogIc(o)+'<div><b>'+o.n+'</b><small>'+OG_NAME[o.c]+' · '+o.area+'</small></div><a class="outline og-go" href="'+o.url+'" target="_blank" rel="noopener">네이버 지도 ↗</a></div>' // 이름 옆 네이버 지도 버튼만 (지도에서 보기, 지도에서 모아 보기는 2026-11-14에 뺌)
       +'<p class="og-desc">'+o.d+'</p>'
-      +'<dl class="og-info"><dt>영업</dt><dd>'+o.h+'</dd><dt>주소</dt><dd>'+o.a+'</dd><dt>가는 길</dt><dd>'+o.near+'</dd></dl>'
-      +'<div class="og-btns"><a class="outline" href="'+o.url+'" target="_blank" rel="noopener">네이버 지도</a><button type="button" class="outline" data-og-map="'+o.pin+'">지도에서 보기</button></div></div>';
+      +'<dl class="og-info"><dt>영업</dt><dd>'+o.h+'</dd><dt>주소</dt><dd>'+o.a+'</dd><dt>가는 길</dt><dd>'+o.near+'</dd></dl>'+'</div>';
   }
   // ── Map: 지도 크게. 실제 좌표로 그린 SVG 약도(끌어서 이동). 핀이나 아래 카드를 누르면 시트에 위치 정보 ──
   const CAT_NAME={multi:'멀티플렉스',indie:'독립영화관',culture:'문화공간'};
@@ -561,7 +565,9 @@
   function openSheet(kind,arg){
     let html='';
     if(kind==='mypage') html='<h2>마이페이지</h2><div class="mp-row"><span class="av"><svg width="36" height="36" aria-hidden="true"><use href="#popcorn"/></svg></span><div><b>'+state.user+'</b><p class="hint">MBTI '+(state.mbti.join('')||'미설정')+' · 예산 ~'+fmt(state.price)+'</p></div></div><p class="hint">해당되는 할인 조건을 체크하면 회차 가격을 그 조건으로 다시 계산해요. 극장에서 신분 확인이 필요해요</p><div class="discs">'+DISCOUNTS.map(d=>'<button type="button" class="disc" data-d="'+d+'" aria-pressed="'+!!state.disc[d]+'">'+d+'</button>').join('')+'</div><button class="cta static" data-close>적용</button>';
-    if(kind==='outing') html='<h2>나들이 <small style="font-size:11px;color:var(--mute)">마포구 영화 문화공간</small></h2><div class="rail og-cats">'+OG_CATS.map(([k,t],i)=>'<button type="button" class="cat" data-og="'+k+'" aria-pressed="'+!i+'">'+t+'</button>').join('')+'</div><div class="og-grid"></div><button class="cta static" data-go="map" data-close><span>지도에서 모아 보기</span><span class="arr">→</span></button>';
+    if(kind==='outing') html='<h2>나들이 <small style="font-size:11px;color:var(--mute)">마포구 영화 문화공간</small></h2><div class="rail og-cats">'+OG_CATS.map(([k,t],i)=>'<button type="button" class="cat" data-og="'+k+'" aria-pressed="'+!i+'">'+t+'</button>').join('')+'</div><div class="og-grid"></div>';
+    if(kind==='plot'){const i=SCREENINGS[arg]||{}, esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); // 추천 화면에서 포스터를 누르면 줄거리 (KMDb, data/build_schedule.py가 넣음)
+      html='<h2>'+esc(arg)+'</h2><p class="hint">'+esc([i.genre,i.min&&i.min+'분',i.rating].filter(Boolean).join(' · '))+'</p><p class="plot">'+(i.plot?esc(i.plot):'줄거리 정보가 아직 없어요')+'</p>';}
     if(kind==='budget') html='<h2>예산 바꾸기</h2><div class="price-card"><div class="row"><span>최대</span><b id="sheetBudgetOut">'+fmt(state.price)+'</b></div><input type="range" id="sheetBudget" min="5000" max="20000" step="1000" value="'+state.price+'" aria-label="최대 예산"><div class="row"><span>5,000원</span><span>20,000원</span></div></div><button class="cta static" data-close>적용</button>';
     overlay.innerHTML='<div class="sheet"><div class="panel">'+X+html+'</div></div>';
     overlay.querySelectorAll('.disc').forEach(b=>b.addEventListener('click',()=>{const d=b.dataset.d; if(state.disc[d]) delete state.disc[d]; else state.disc[d]=1; useDisc(state.disc); b.setAttribute('aria-pressed',!!state.disc[d]); if(current==='home') renderHome(); if(state.user!=='게스트') saveUser(state.user,{disc:state.disc});}));
@@ -571,8 +577,7 @@
       const one=i=>{og.classList.add('one'); og.innerHTML=ogDetail(OUTINGS[i]);};
       if(arg!=null) one(arg); else draw();
       overlay.querySelector('.og-cats').addEventListener('click',e=>{const b=e.target.closest('[data-og]'); if(!b) return; overlay.querySelectorAll('[data-og]').forEach(x=>x.setAttribute('aria-pressed',x===b)); k=b.dataset.og; draw();});
-      og.addEventListener('click',e=>{const c=e.target.closest('[data-og-i]'); if(c) return one(+c.dataset.ogI); if(e.target.closest('[data-og-back]')) return draw();
-        const m=e.target.closest('[data-og-map]'); if(m){const p=PLACES.find(x=>x.n===m.dataset.ogMap); closeOverlay(); show('map',true); if(p) pickPlace(p.g);}});}
+      og.addEventListener('click',e=>{const c=e.target.closest('[data-og-i]'); if(c) return one(+c.dataset.ogI); if(e.target.closest('[data-og-back]')) draw();});}
     const bg=overlay.querySelector('#sheetBudget'); // 예산 시트: 현재 화면은 그대로 두고 목록만 갱신
     if(bg) bg.addEventListener('input',()=>{price.value=bg.value; priceUpdate(); overlay.querySelector('#sheetBudgetOut').textContent=fmt(state.price); if(current==='showtimes') renderShowtimes();});
   }

@@ -1,0 +1,391 @@
+﻿제목,태그,선택,우선순위,근거 종류 수,근거 수,줄거리 횟수,근거
+기생충,comedy,Y,장르,1,1,0,TMDB장르:Comedy
+기생충,suspense,Y,장르,1,1,0,TMDB장르:Thriller
+기생충,family,Y,키워드,3,3,3,줄거리:가족 / KMDb키워드:가족 / TMDB키워드:family
+기생충,slackers,Y,키워드,2,2,1,줄거리:백수 / KMDb키워드:백수
+기생충,teacher,Y,키워드,1,1,0,KMDb키워드:선생님
+기생충,dark humor,,키워드,1,1,0,TMDB키워드:dark comedy
+기생충,working class,,키워드,1,1,0,TMDB키워드:working class
+기생충,con artists,,키워드,1,1,0,TMDB키워드:con artist
+기생충,golden palm,,키워드,1,1,0,KMDb키워드:황금종려상
+기생충,indians,,키워드,1,1,0,KMDb키워드:인디언
+기생충,social commentary,,키워드,1,1,0,TMDB키워드:social commentary
+기생충,drama,,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
+기생충,friendship,,줄거리,1,1,1,줄거리:친구
+서울의 봄,war,Y,장르,2,2,1,줄거리:전쟁 / TMDB장르:War
+서울의 봄,action,Y,장르,1,1,0,TMDB장르:Action
+서울의 봄,suspense,Y,장르,1,1,0,TMDB장르:Thriller
+서울의 봄,historical,,장르,1,1,0,TMDB장르:History
+서울의 봄,crime,,장르,1,1,0,TMDB장르:Crime
+서울의 봄,based on true story,Y,키워드,2,3,0,KMDb키워드:실제사건 / KMDb키워드:실화바탕 / TMDB키워드:based on true story
+서울의 봄,rebellion,Y,키워드,2,2,2,줄거리:반란 / KMDb키워드:반란
+서울의 봄,biographical,,키워드,1,1,0,KMDb키워드:실존인물
+서울의 봄,1970s,,키워드,1,1,0,TMDB키워드:1970s
+서울의 봄,politics,,키워드,1,1,0,TMDB키워드:politics
+서울의 봄,drama,,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
+서울의 봄,destiny,,줄거리,1,1,1,줄거리:운명
+서울의 봄,confrontational,,줄거리,1,1,1,줄거리:대립
+서울의 봄,fighting the system,,줄거리,1,1,1,줄거리:맞서다
+파묘,horror,Y,장르,3,3,1,줄거리:불길하다 / KMDb장르:공포 / TMDB장르:Horror
+파묘,suspense,Y,장르,2,2,0,TMDB키워드:tense / TMDB장르:Thriller
+파묘,mystery,Y,장르,2,2,0,KMDb장르:미스터리 / TMDB장르:Mystery
+파묘,ghosts,Y,키워드,1,1,0,TMDB키워드:ghost
+파묘,weird,Y,줄거리,1,1,2,줄거리:기이하다
+파묘,los angeles,,줄거리,1,1,1,줄거리:LA
+파묘,money,,줄거리,1,1,1,줄거리:돈
+범죄도시2,crime,Y,장르,3,3,2,줄거리:범죄 / KMDb장르:범죄 / TMDB장르:Crime
+범죄도시2,action,Y,장르,2,2,0,KMDb장르:액션 / TMDB장르:Action
+범죄도시2,suspense,Y,장르,1,1,0,TMDB장르:Thriller
+범죄도시2,vietnam war,Y,키워드,3,3,2,줄거리:베트남 / KMDb키워드:베트남 / TMDB키워드:vietnam
+범죄도시2,police investigation,Y,키워드,3,3,1,줄거리:형사 / KMDb키워드:형사 / TMDB키워드:detective
+범죄도시2,sequel,,키워드,2,2,0,KMDb키워드:속편 / TMDB키워드:sequel
+범죄도시2,family,,키워드,1,1,0,KMDb키워드:아들
+범죄도시2,money,,키워드,1,1,0,KMDb키워드:돈
+범죄도시2,police,,키워드,1,1,0,TMDB키워드:police
+범죄도시2,gangsters,,키워드,1,1,0,TMDB키워드:gangster
+범죄도시2,hostage,,키워드,1,1,0,KMDb키워드:인질
+범죄도시2,intense,,키워드,1,1,0,TMDB키워드:intense
+범죄도시2,kidnapping,,키워드,1,1,0,KMDb키워드:납치
+범죄도시2,series,,키워드,1,1,0,KMDb키워드:시리즈
+범죄도시2,chase,,줄거리,1,1,1,줄거리:쫓다
+범죄도시2,monster,,줄거리,1,1,1,줄거리:괴물
+범죄도시2,cathartic,,줄거리,1,1,1,줄거리:통쾌하다
+범죄도시2,india,,줄거리,1,1,1,줄거리:인도
+좀비딸,comedy,Y,장르,2,2,0,KMDb장르:코메디 / TMDB장르:Comedy
+좀비딸,zombie,Y,키워드,2,2,5,줄거리:좀비 / TMDB키워드:zombie
+좀비딸,family,Y,키워드,2,2,1,줄거리:어머니 / TMDB키워드:family
+좀비딸,father daughter relationship,Y,키워드,1,1,0,TMDB키워드:father daughter relationship
+좀비딸,drama,Y,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
+좀비딸,dancing,,줄거리,1,2,2,줄거리:댄스 / 줄거리:춤
+좀비딸,adolescence,,줄거리,1,1,2,줄거리:사춘기
+좀비딸,feel-good,,줄거리,1,1,1,줄거리:유쾌하다
+좀비딸,small town,,줄거리,1,1,1,줄거리:마을
+좀비딸,horror,,줄거리,1,1,1,줄거리:무섭다
+좀비딸,passionate,,줄거리,1,1,1,줄거리:열정
+좀비딸,atmospheric,,줄거리,1,1,1,줄거리:분위기
+좀비딸,fun movie,,줄거리,1,1,1,줄거리:유쾌하다
+좀비딸,moody,,줄거리,1,1,1,줄거리:분위기
+좀비딸,silly fun,,줄거리,1,1,1,줄거리:유쾌하다
+좀비딸,virus,,줄거리,1,1,1,줄거리:바이러스
+라라랜드,music,Y,장르,3,5,0,KMDb키워드:음악가 / KMDb키워드:뮤지컬 / KMDb장르:뮤지컬 / KMDb장르:뮤직 / TMDB키워드:musical
+라라랜드,love story,Y,장르,3,4,1,줄거리:사랑 / KMDb장르:멜로 / KMDb장르:로맨스 / TMDB장르:Romance
+라라랜드,comedy,Y,장르,2,2,0,KMDb장르:코메디 / TMDB장르:Comedy
+라라랜드,jazz,Y,키워드,3,3,1,줄거리:재즈 / KMDb키워드:재즈 / TMDB키워드:jazz
+라라랜드,dreams,Y,키워드,2,2,1,줄거리:꿈 / KMDb키워드:꿈
+라라랜드,dancing,,키워드,1,2,0,TMDB키워드:dancing / TMDB키워드:dance
+라라랜드,los angeles,,키워드,1,2,0,KMDb키워드:로스앤젤레스 / KMDb키워드:LA
+라라랜드,complex,,키워드,1,1,0,TMDB키워드:complex
+라라랜드,hollywood,,키워드,1,1,0,TMDB키워드:hollywood
+라라랜드,drama,,흔한 장르,1,1,0,TMDB장르:Drama
+라라랜드,life,,줄거리,1,1,1,줄거리:인생
+라라랜드,passionate,,줄거리,1,1,1,줄거리:열정
+라라랜드,explosions,,줄거리,1,1,1,줄거리:폭발
+인터스텔라,sci fi,Y,장르,3,3,1,줄거리:미래 / KMDb장르:SF / TMDB장르:Science Fiction
+인터스텔라,adventure,Y,장르,1,1,0,TMDB장르:Adventure
+인터스텔라,space,Y,키워드,3,8,2,줄거리:NASA / 줄거리:우주 / KMDb키워드:우주 / KMDb키워드:우주탐사 / TMDB키워드:nasa / TMDB키워드:space travel / TMDB키워드:space / TMDB키워드:astronaut
+인터스텔라,futuristic,Y,키워드,2,2,1,줄거리:미래 / TMDB키워드:dystopia
+인터스텔라,father daughter relationship,Y,키워드,1,1,0,TMDB키워드:father daughter relationship
+인터스텔라,time travel,,키워드,1,1,0,TMDB키워드:time travel
+인터스텔라,single father,,키워드,1,1,0,TMDB키워드:single father
+인터스텔라,drama,,흔한 장르,1,1,0,TMDB장르:Drama
+인터스텔라,humanity,,줄거리,1,1,2,줄거리:인류
+인터스텔라,family,,줄거리,1,1,1,줄거리:가족
+인터스텔라,love story,,줄거리,1,1,1,줄거리:사랑
+어바웃 타임,love story,Y,장르,4,7,5,줄거리:사랑 / 줄거리:여자친구 / KMDb키워드:로맨스 / KMDb키워드:연애 / KMDb장르:멜로 / KMDb장르:멜로드라마 / TMDB장르:Romance
+어바웃 타임,comedy,Y,장르,2,2,0,KMDb키워드:코미디 / KMDb장르:코메디
+어바웃 타임,fantasy,Y,장르,2,2,0,KMDb장르:판타지 / TMDB장르:Fantasy
+어바웃 타임,family,Y,키워드,3,3,1,줄거리:아버지 / KMDb키워드:가족 / TMDB키워드:family
+어바웃 타임,london,Y,키워드,2,2,1,줄거리:런던 / KMDb키워드:런던
+어바웃 타임,time travel,,키워드,2,2,0,KMDb키워드:시간여행 / TMDB키워드:time travel
+어바웃 타임,destiny,,키워드,1,1,0,KMDb키워드:운명
+어바웃 타임,sci fi,,키워드,1,1,0,KMDb키워드:SF
+어바웃 타임,compassionate,,키워드,1,1,0,TMDB키워드:compassionate
+어바웃 타임,family bonds,,키워드,1,1,0,KMDb키워드:가족애
+어바웃 타임,girlie movie,,키워드,1,1,0,KMDb키워드:로맨틱코미디
+어바웃 타임,intimate,,키워드,1,1,0,TMDB키워드:intimate
+어바웃 타임,reflective,,키워드,1,1,0,TMDB키워드:reflective
+어바웃 타임,time loop,,키워드,1,1,0,KMDb키워드:타임루프
+어바웃 타임,whimsical,,키워드,1,1,0,TMDB키워드:whimsical
+어바웃 타임,drama,,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
+어바웃 타임,dreams,,줄거리,1,1,2,줄거리:꿈
+어바웃 타임,sweet,,줄거리,1,1,1,줄거리:사랑스럽다
+어바웃 타임,secrets,,줄거리,1,1,1,줄거리:비밀
+더 퍼스트 슬램덩크,animation,Y,유형,3,3,0,유형:애니메이션 / TMDB키워드:anime / TMDB장르:Animation
+더 퍼스트 슬램덩크,comedy,Y,장르,1,1,0,TMDB장르:Comedy
+더 퍼스트 슬램덩크,sports,Y,장르,1,1,0,KMDb장르:스포츠
+더 퍼스트 슬램덩크,teen movie,Y,키워드,1,2,0,TMDB키워드:high school / TMDB키워드:teenager
+더 퍼스트 슬램덩크,love story,Y,키워드,1,1,0,TMDB키워드:romance
+더 퍼스트 슬램덩크,feel-good,Y,키워드,1,1,0,TMDB키워드:inspiring
+더 퍼스트 슬램덩크,based on a comic,,키워드,1,1,0,KMDb키워드:만화 원작
+더 퍼스트 슬램덩크,basketball,,키워드,1,1,0,TMDB키워드:basketball
+더 퍼스트 슬램덩크,competition,,키워드,1,1,0,TMDB키워드:competition
+더 퍼스트 슬램덩크,drama,,흔한 장르,1,1,0,TMDB장르:Drama
+더 퍼스트 슬램덩크,dreams,,줄거리,1,1,1,줄거리:꿈
+더 퍼스트 슬램덩크,passionate,,줄거리,1,1,1,줄거리:열정
+스즈메의 문단속,animation,Y,유형,3,3,0,유형:애니메이션 / TMDB키워드:anime / TMDB장르:Animation
+스즈메의 문단속,art house,Y,영진위 인정,1,1,0,KOBIS:예술영화 인정
+스즈메의 문단속,adventure,Y,장르,3,3,0,KMDb장르:어드벤처 / TMDB키워드:adventure / TMDB장르:Adventure
+스즈메의 문단속,fantasy,Y,장르,3,3,0,KMDb장르:판타지 / TMDB키워드:magic / TMDB장르:Fantasy
+스즈메의 문단속,action,Y,장르,1,1,0,KMDb장르:액션
+스즈메의 문단속,travel,Y,키워드,2,2,2,줄거리:여행 / TMDB키워드:travel
+스즈메의 문단속,catastrophe,Y,키워드,1,1,0,TMDB키워드:natural disaster
+스즈메의 문단속,drama,,흔한 장르,1,1,0,TMDB장르:Drama
+스즈메의 문단속,road movie,,줄거리,1,1,2,줄거리:여행
+스즈메의 문단속,road trip,,줄거리,1,1,2,줄거리:여행
+스즈메의 문단속,small town,,줄거리,1,1,1,줄거리:작은 마을
+스즈메의 문단속,chase,,줄거리,1,1,1,줄거리:쫓다
+벌새,art house,Y,영진위 인정,1,1,0,KOBIS:예술영화 인정
+벌새,independent film,Y,영진위 인정,1,1,0,KOBIS:독립영화 인정
+벌새,family,Y,장르,2,2,1,줄거리:가족 / KMDb장르:가족
+벌새,teacher,Y,키워드,2,2,2,줄거리:선생님 / KMDb키워드:선생님
+벌새,memory,Y,키워드,2,2,1,줄거리:기억 / KMDb키워드:기억
+벌새,coming of age,Y,키워드,2,2,0,KMDb키워드:성장영화 / TMDB키워드:coming of age
+벌새,teen movie,Y,키워드,1,2,0,KMDb키워드:청춘 / KMDb키워드:청소년
+벌새,berlin,,키워드,1,1,0,KMDb키워드:베를린
+벌새,relationships,,키워드,1,1,0,TMDB키워드:relationship
+벌새,drama,,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
+벌새,love story,,줄거리,1,2,4,줄거리:연애 / 줄거리:사랑
+벌새,children,,줄거리,1,1,3,줄거리:아이
+벌새,friendship,,줄거리,1,1,2,줄거리:친구
+벌새,school,,줄거리,1,1,2,줄거리:학교
+벌새,birds,,줄거리,1,1,2,줄거리:새
+벌새,life,,줄거리,1,1,1,줄거리:삶
+벌새,childhood,,줄거리,1,1,1,줄거리:어린 시절
+벌새,brutality,,줄거리,1,1,1,줄거리:폭력적
+벌새,island,,줄거리,1,1,1,줄거리:섬
+퍼펙트 데이즈,art house,Y,영진위 인정,1,1,0,KOBIS:예술영화 인정
+퍼펙트 데이즈,japan,Y,키워드,2,2,1,줄거리:도쿄 / KMDb키워드:도쿄
+퍼펙트 데이즈,working class,Y,키워드,1,1,0,TMDB키워드:working class
+퍼펙트 데이즈,character study,Y,키워드,1,1,0,TMDB키워드:character study
+퍼펙트 데이즈,solitude,Y,키워드,1,1,0,TMDB키워드:solitude
+퍼펙트 데이즈,drama,Y,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
+퍼펙트 데이즈,drinking,,줄거리,1,1,1,줄거리:술
+헤어질 결심,love story,Y,장르,3,4,0,KMDb장르:멜로 / KMDb장르:로맨스 / TMDB키워드:love / TMDB장르:Romance
+헤어질 결심,mystery,Y,장르,3,3,0,KMDb장르:미스터리 / TMDB키워드:murder mystery / TMDB장르:Mystery
+헤어질 결심,suspense,Y,장르,1,1,0,TMDB장르:Thriller
+헤어질 결심,police investigation,Y,키워드,3,6,3,줄거리:형사 / 줄거리:수사 / KMDb키워드:형사 / KMDb키워드:수사 / TMDB키워드:detective / TMDB키워드:investigation
+헤어질 결심,death,Y,키워드,2,3,2,줄거리:죽다 / 줄거리:죽음 / KMDb키워드:죽음
+헤어질 결심,marriage,,키워드,2,3,2,줄거리:아내 / 줄거리:남편 / KMDb키워드:남편
+헤어질 결심,police,,키워드,2,2,1,줄거리:경찰 / TMDB키워드:police
+헤어질 결심,mountain climbing,,키워드,2,2,0,KMDb키워드:암벽등반 / TMDB키워드:mountain climbing
+헤어질 결심,brutality,,키워드,1,1,0,KMDb키워드:폭력
+헤어질 결심,child abuse,,키워드,1,1,0,KMDb키워드:학대
+헤어질 결심,disability,,키워드,1,1,0,KMDb키워드:장애
+헤어질 결심,gratuitous violence,,키워드,1,1,0,KMDb키워드:폭력
+헤어질 결심,murder,,키워드,1,1,0,KMDb키워드:살인
+헤어질 결심,drama,,흔한 장르,1,1,0,KMDb장르:드라마
+헤어질 결심,paranoia,,줄거리,1,1,2,줄거리:의심
+엑시트,action,Y,장르,2,2,0,KMDb장르:액션 / TMDB장르:Action
+엑시트,comedy,Y,장르,2,2,0,KMDb장르:코메디 / TMDB장르:Comedy
+엑시트,catastrophe,Y,키워드,3,3,1,줄거리:재난 / KMDb키워드:재난 / TMDB키워드:disaster
+엑시트,mountain climbing,Y,키워드,2,2,2,줄거리:산악 / KMDb키워드:산악
+엑시트,slackers,Y,키워드,2,2,1,줄거리:백수 / KMDb키워드:백수
+엑시트,survival,,키워드,1,1,0,TMDB키워드:survival
+엑시트,terrorism,,키워드,1,1,0,KMDb키워드:테러
+엑시트,weapons,,키워드,1,1,0,KMDb키워드:무기
+엑시트,family,,줄거리,1,2,2,줄거리:가족 / 줄거리:어머니
+엑시트,dragons,,줄거리,1,1,2,줄거리:용
+엑시트,birds,,줄거리,1,1,1,줄거리:새
+엑시트,college,,줄거리,1,1,1,줄거리:대학교
+엑시트,explosions,,줄거리,1,1,1,줄거리:폭발
+대도시의 사랑법,love story,Y,장르,3,4,1,줄거리:사랑 / KMDb장르:멜로 / KMDb장르:로맨스 / TMDB장르:Romance
+대도시의 사랑법,based on a book,Y,키워드,1,3,0,KMDb키워드:베스트셀러원작 / KMDb키워드:소설원작 / KMDb키워드:원작
+대도시의 사랑법,friendship,Y,키워드,1,1,0,TMDB키워드:friendship
+대도시의 사랑법,homophobia,Y,키워드,1,1,0,TMDB키워드:homophobia
+대도시의 사랑법,drama,Y,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
+대도시의 사랑법,life,,줄거리,1,1,1,줄거리:인생
+대도시의 사랑법,secrets,,줄거리,1,1,1,줄거리:비밀
+대도시의 사랑법,stylized,,줄거리,1,1,1,줄거리:스타일
+왕과 사는 남자,historical,Y,장르,3,3,1,줄거리:역사 / KMDb장르:사극 / TMDB장르:History
+왕과 사는 남자,based on true story,Y,키워드,1,1,0,TMDB키워드:based on true story
+왕과 사는 남자,drama,Y,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
+왕과 사는 남자,small town,Y,줄거리,1,1,2,줄거리:마을
+왕과 사는 남자,life,,줄거리,1,1,1,줄거리:삶
+왕과 사는 남자,dreams,,줄거리,1,1,1,줄거리:꿈
+왕과 사는 남자,surveillance,,줄거리,1,1,1,줄거리:감시
+리틀 포레스트,friendship,Y,키워드,2,2,1,줄거리:친구 / TMDB키워드:friendship
+리틀 포레스트,feel-good,Y,키워드,1,1,0,KMDb키워드:힐링
+리틀 포레스트,small town,Y,키워드,1,1,0,KMDb키워드:시골
+리틀 포레스트,based on a comic,Y,키워드,1,1,0,KMDb키워드:만화 원작
+리틀 포레스트,japan,Y,키워드,1,1,0,KMDb키워드:일본
+리틀 포레스트,cooking,,키워드,1,1,0,TMDB키워드:cooking
+리틀 포레스트,food,,키워드,1,1,0,TMDB키워드:food
+리틀 포레스트,mother daughter relationship,,키워드,1,1,0,TMDB키워드:mother daughter relationship
+리틀 포레스트,nature,,키워드,1,1,0,TMDB키워드:nature
+리틀 포레스트,remake,,키워드,1,1,0,KMDb키워드:리메이크
+리틀 포레스트,drama,,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
+리틀 포레스트,love story,,줄거리,1,1,1,줄거리:연애
+리틀 포레스트,life,,줄거리,1,1,1,줄거리:삶
+탑건: 매버릭,action,Y,장르,2,2,0,KMDb장르:액션 / TMDB장르:Action
+탑건: 매버릭,sequel,Y,키워드,1,1,0,TMDB키워드:sequel
+탑건: 매버릭,war,Y,키워드,1,1,0,TMDB키워드:war
+탑건: 매버릭,military,Y,키워드,1,1,0,TMDB키워드:military
+탑건: 매버릭,drama,Y,흔한 장르,1,1,0,TMDB장르:Drama
+탑건: 매버릭,aviation,,줄거리,1,1,2,줄거리:비행
+탑건: 매버릭,school,,줄거리,1,1,1,줄거리:학교
+탑건: 매버릭,manipulation,,줄거리,1,1,1,줄거리:조종
+오펜하이머,war,Y,장르,2,2,0,TMDB키워드:world war ii / TMDB장르:War
+오펜하이머,suspense,Y,장르,1,1,0,KMDb장르:스릴러
+오펜하이머,historical,Y,장르,1,1,0,TMDB장르:History
+오펜하이머,based on true story,Y,키워드,1,1,0,TMDB키워드:based on true story
+오펜하이머,biographical,Y,키워드,1,1,0,TMDB키워드:biography
+오펜하이머,anti-semitism,,키워드,1,1,0,TMDB키워드:antisemitism
+오펜하이머,communism,,키워드,1,1,0,TMDB키워드:communism
+오펜하이머,guilt,,키워드,1,1,0,TMDB키워드:guilt
+오펜하이머,drama,,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
+오펜하이머,death,,줄거리,1,1,1,줄거리:죽음
+오펜하이머,mad scientist,,줄거리,1,1,1,줄거리:과학자
+오펜하이머,nuclear war,,줄거리,1,1,1,줄거리:핵
+에브리씽 에브리웨어 올 앳 원스,art house,Y,영진위 인정,1,1,0,KOBIS:예술영화 인정
+에브리씽 에브리웨어 올 앳 원스,action,Y,장르,2,2,0,KMDb장르:액션 / TMDB장르:Action
+에브리씽 에브리웨어 올 앳 원스,adventure,Y,장르,2,2,0,KMDb장르:어드벤처 / TMDB장르:Adventure
+에브리씽 에브리웨어 올 앳 원스,sci fi,Y,장르,2,2,0,KMDb장르:SF / TMDB장르:Science Fiction
+에브리씽 에브리웨어 올 앳 원스,comedy,,장르,1,1,0,KMDb장르:코메디
+에브리씽 에브리웨어 올 앳 원스,fantasy,,장르,1,1,0,KMDb장르:판타지
+에브리씽 에브리웨어 올 앳 원스,family,Y,키워드,2,2,1,줄거리:가족 / TMDB키워드:family
+에브리씽 에브리웨어 올 앳 원스,divorce,Y,키워드,2,2,1,줄거리:이혼 / TMDB키워드:divorce
+에브리씽 에브리웨어 올 앳 원스,martial arts,,키워드,1,2,0,TMDB키워드:martial arts / TMDB키워드:kung fu
+에브리씽 에브리웨어 올 앳 원스,mother daughter relationship,,키워드,1,1,0,TMDB키워드:mother daughter relationship
+에브리씽 에브리웨어 올 앳 원스,existentialism,,키워드,1,1,0,TMDB키워드:philosophy
+에브리씽 에브리웨어 올 앳 원스,surreal,,키워드,1,1,0,TMDB키워드:surrealism
+에브리씽 에브리웨어 올 앳 원스,destiny,,줄거리,1,1,1,줄거리:운명
+에브리씽 에브리웨어 올 앳 원스,police investigation,,줄거리,1,1,1,줄거리:조사
+에브리씽 에브리웨어 올 앳 원스,immigrants,,줄거리,1,1,1,줄거리:이민
+에브리씽 에브리웨어 올 앳 원스,marriage,,줄거리,1,1,1,줄거리:남편
+패스트 라이브즈,love story,Y,장르,2,3,0,KMDb장르:멜로 / KMDb장르:로맨스 / TMDB장르:Romance
+패스트 라이브즈,new york,Y,키워드,2,2,2,줄거리:뉴욕 / TMDB키워드:new york city
+패스트 라이브즈,memory,Y,키워드,2,2,1,줄거리:기억 / TMDB키워드:memories
+패스트 라이브즈,friendship,Y,키워드,1,1,0,TMDB키워드:friendship
+패스트 라이브즈,independent film,Y,키워드,1,1,0,TMDB키워드:independent film
+패스트 라이브즈,immigrants,,키워드,1,1,0,TMDB키워드:immigrant
+패스트 라이브즈,nostalgic,,키워드,1,1,0,TMDB키워드:nostalgia
+패스트 라이브즈,drama,,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
+패스트 라이브즈,life,,줄거리,1,1,1,줄거리:인생
+패스트 라이브즈,dreams,,줄거리,1,1,1,줄거리:꿈
+패스트 라이브즈,childhood,,줄거리,1,1,1,줄거리:어린 시절
+패스트 라이브즈,courage,,줄거리,1,1,1,줄거리:용기
+패스트 라이브즈,writers,,줄거리,1,1,1,줄거리:작가
+위키드,fantasy,Y,장르,4,6,3,줄거리:마법 / 줄거리:마법사 / KMDb장르:판타지 / TMDB키워드:fantasy world / TMDB키워드:fantasy / TMDB장르:Fantasy
+위키드,music,Y,장르,2,2,0,KMDb장르:뮤지컬 / TMDB키워드:musical
+위키드,love story,Y,장르,1,1,0,TMDB장르:Romance
+위키드,dancing,Y,키워드,1,1,0,TMDB키워드:dancing
+위키드,bullying,Y,키워드,1,1,0,TMDB키워드:bullying
+위키드,college,,키워드,1,1,0,TMDB키워드:college
+위키드,fairy tale,,키워드,1,1,0,TMDB키워드:fairy tale
+위키드,lyrical,,키워드,1,1,0,TMDB키워드:lyrical
+위키드,prequel,,키워드,1,1,0,TMDB키워드:prequel
+위키드,witch,,키워드,1,1,0,TMDB키워드:witch
+위키드,wizards,,키워드,1,1,0,TMDB키워드:wizard
+위키드,drama,,흔한 장르,1,1,0,TMDB장르:Drama
+위키드,destiny,,줄거리,1,1,2,줄거리:운명
+위키드,friendship,,줄거리,1,1,1,줄거리:우정
+위키드,adventure,,줄거리,1,1,1,줄거리:모험
+듄: 파트 2,adventure,Y,장르,2,2,0,KMDb장르:어드벤처 / TMDB장르:Adventure
+듄: 파트 2,sci fi,Y,장르,2,2,0,KMDb장르:SF / TMDB장르:Science Fiction
+듄: 파트 2,action,Y,장르,1,1,0,KMDb장르:액션
+듄: 파트 2,destiny,Y,키워드,2,2,1,줄거리:운명 / TMDB키워드:destiny
+듄: 파트 2,desert,Y,키워드,2,2,1,줄거리:사막 / TMDB키워드:desert
+듄: 파트 2,sequel,,키워드,1,1,0,TMDB키워드:sequel
+듄: 파트 2,space,,키워드,1,1,0,TMDB키워드:space opera
+듄: 파트 2,vengeance,,키워드,1,1,0,TMDB키워드:vengeance
+듄: 파트 2,family,,줄거리,1,1,1,줄거리:어머니
+듄: 파트 2,brutality,,줄거리,1,1,1,줄거리:잔혹하다
+듄: 파트 2,assassination,,줄거리,1,1,1,줄거리:암살자
+듄: 파트 2,enormously long battle scene,,줄거리,1,1,1,줄거리:전투
+듄: 파트 2,fight scenes,,줄거리,1,1,1,줄거리:전투
+듄: 파트 2,splatter,,줄거리,1,1,1,줄거리:잔혹하다
+서브스턴스,art house,Y,영진위 인정,1,1,0,KOBIS:예술영화 인정
+서브스턴스,horror,Y,장르,2,2,0,KMDb장르:공포 / TMDB장르:Horror
+서브스턴스,suspense,Y,장르,1,1,0,KMDb장르:스릴러
+서브스턴스,sci fi,Y,장르,1,1,0,TMDB장르:Science Fiction
+서브스턴스,dark humor,Y,키워드,1,1,0,TMDB키워드:dark comedy
+서브스턴스,absurd,Y,키워드,1,1,0,TMDB키워드:absurd
+서브스턴스,aging,,키워드,1,1,0,TMDB키워드:aging
+서브스턴스,biting,,키워드,1,1,0,TMDB키워드:biting
+서브스턴스,drugs,,키워드,1,1,0,TMDB키워드:drug
+서브스턴스,identity,,키워드,1,1,0,TMDB키워드:identity
+서브스턴스,ironic,,키워드,1,1,0,TMDB키워드:ironic
+서브스턴스,satirical,,키워드,1,1,0,TMDB키워드:satire
+서브스턴스,drama,,흔한 장르,1,1,0,KMDb장르:드라마
+서브스턴스,life,,줄거리,1,1,1,줄거리:인생
+인사이드 아웃 2,animation,Y,유형,2,2,0,유형:애니메이션 / TMDB장르:Animation
+인사이드 아웃 2,adventure,Y,장르,3,3,1,줄거리:모험 / KMDb장르:어드벤처 / TMDB장르:Adventure
+인사이드 아웃 2,family,Y,장르,2,2,0,KMDb장르:가족 / TMDB장르:Family
+인사이드 아웃 2,comedy,Y,장르,2,2,0,KMDb장르:코메디 / TMDB장르:Comedy
+인사이드 아웃 2,fantasy,,장르,1,1,0,KMDb장르:판타지
+인사이드 아웃 2,sequel,Y,키워드,1,1,0,TMDB키워드:sequel
+인사이드 아웃 2,witty,Y,키워드,1,1,0,TMDB키워드:witty
+인사이드 아웃 2,computer animation,,키워드,1,1,0,TMDB키워드:computer animation
+인사이드 아웃 2,drama,,흔한 장르,1,1,0,KMDb장르:드라마
+인사이드 아웃 2,feel-good,,줄거리,1,1,1,줄거리:유쾌하다
+인사이드 아웃 2,disney,,줄거리,1,1,1,줄거리:디즈니
+인사이드 아웃 2,fun movie,,줄거리,1,1,1,줄거리:유쾌하다
+인사이드 아웃 2,imagination,,줄거리,1,1,1,줄거리:상상
+인사이드 아웃 2,silly fun,,줄거리,1,1,1,줄거리:유쾌하다
+인사이드 아웃 2,happy ending,,줄거리,1,1,1,줄거리:행복
+인사이드 아웃 2,pixar animation,,줄거리,1,1,1,줄거리:픽사
+인사이드 아웃 2,sad,,줄거리,1,1,1,줄거리:슬픔
+주토피아 2,animation,Y,유형,2,2,0,유형:애니메이션 / TMDB장르:Animation
+주토피아 2,comedy,Y,장르,2,2,0,KMDb장르:코메디 / TMDB장르:Comedy
+주토피아 2,adventure,Y,장르,2,2,0,KMDb장르:어드벤처 / TMDB장르:Adventure
+주토피아 2,family,Y,장르,1,1,0,TMDB장르:Family
+주토피아 2,action,,장르,1,1,0,KMDb장르:액션
+주토피아 2,mystery,,장르,1,1,0,TMDB장르:Mystery
+주토피아 2,snakes,Y,키워드,2,2,1,줄거리:뱀 / TMDB키워드:snake
+주토피아 2,animals,Y,키워드,1,2,0,TMDB키워드:animals / TMDB키워드:talking animal
+주토피아 2,sequel,,키워드,1,1,0,TMDB키워드:sequel
+주토피아 2,complex,,키워드,1,1,0,TMDB키워드:complex
+주토피아 2,buddy movie,,줄거리,1,1,2,줄거리:콤비
+주토피아 2,chase,,줄거리,1,1,1,줄거리:추적
+주토피아 2,sweet,,줄거리,1,1,1,줄거리:사랑스럽다
+주토피아 2,disney,,줄거리,1,1,1,줄거리:디즈니
+주토피아 2,imagination,,줄거리,1,1,1,줄거리:상상
+주토피아 2,colourful,,줄거리,1,1,1,줄거리:화려하다
+주토피아 2,hallucinatory,,줄거리,1,1,1,줄거리:환상
+주토피아 2,undercover cop,,줄거리,1,1,1,줄거리:잠입 수사
+귀멸의 칼날: 무한성편,animation,Y,유형,3,3,0,유형:애니메이션 / TMDB키워드:anime / TMDB장르:Animation
+귀멸의 칼날: 무한성편,action,Y,장르,2,2,0,KMDb장르:액션 / TMDB장르:Action
+귀멸의 칼날: 무한성편,fantasy,Y,장르,1,1,0,TMDB장르:Fantasy
+귀멸의 칼날: 무한성편,supernatural,Y,키워드,1,2,0,TMDB키워드:supernatural / TMDB키워드:demon
+귀멸의 칼날: 무한성편,friendship,Y,키워드,1,1,0,TMDB키워드:friendship
+귀멸의 칼날: 무한성편,sequel,Y,키워드,1,1,0,TMDB키워드:sequel
+귀멸의 칼날: 무한성편,based on a comic,,키워드,1,1,0,KMDb키워드:만화 원작
+귀멸의 칼날: 무한성편,trilogy,,키워드,1,1,0,TMDB키워드:trilogy
+남매의 여름밤,art house,Y,영진위 인정,1,1,0,KOBIS:예술영화 인정
+남매의 여름밤,independent film,Y,영진위 인정,1,1,0,KOBIS:독립영화 인정
+남매의 여름밤,family,Y,장르,2,2,0,KMDb장르:가족 / TMDB키워드:family
+남매의 여름밤,childhood,Y,키워드,2,2,1,줄거리:유년 / KMDb키워드:유년기
+남매의 여름밤,teen movie,Y,키워드,1,1,0,KMDb키워드:청소년
+남매의 여름밤,family drama,Y,키워드,1,1,0,KMDb키워드:가족 드라마
+남매의 여름밤,drama,Y,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
+남매의 여름밤,love story,,줄거리,1,1,1,줄거리:사랑
+남매의 여름밤,life,,줄거리,1,1,1,줄거리:삶
+남매의 여름밤,over the top,,줄거리,1,1,1,줄거리:과장
+소공녀,art house,Y,영진위 인정,1,1,0,KOBIS:예술영화 인정
+소공녀,independent film,Y,영진위 인정,1,1,0,KOBIS:독립영화 인정
+소공녀,love story,Y,장르,3,4,3,줄거리:사랑 / 줄거리:남자친구 / KMDb장르:멜로드라마 / TMDB장르:Romance
+소공녀,homeless,Y,키워드,2,2,0,KMDb키워드:홈리스 / TMDB키워드:homeless
+소공녀,drama,Y,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
+소공녀,sweet,,줄거리,1,1,1,줄거리:사랑스럽다
+괴물,art house,Y,영진위 인정,1,1,0,KOBIS:예술영화 인정
+괴물,suspense,Y,장르,2,2,0,KMDb장르:스릴러 / TMDB장르:Thriller
+괴물,mystery,Y,장르,2,2,0,KMDb장르:미스터리 / TMDB장르:Mystery
+괴물,drama,Y,키워드,3,3,0,KMDb장르:드라마 / TMDB키워드:dramatic / TMDB장르:Drama
+괴물,friendship,Y,키워드,2,2,1,줄거리:친구 / TMDB키워드:friendship
+괴물,school,Y,키워드,2,2,1,줄거리:학교 / TMDB키워드:school
+괴물,bullying,,키워드,2,2,1,줄거리:따돌림 / TMDB키워드:bullying
+괴물,childhood,,키워드,1,1,0,TMDB키워드:childhood
+괴물,complex,,키워드,1,1,0,TMDB키워드:complex
+괴물,japan,,키워드,1,1,0,TMDB키워드:japan
+괴물,children,,키워드,1,1,0,TMDB키워드:kids
+괴물,coming of age,,키워드,1,1,0,TMDB키워드:coming of age
+괴물,witty,,키워드,1,1,0,TMDB키워드:witty
+괴물,mother-son relationship,,키워드,1,1,0,TMDB키워드:mother son relationship
+괴물,family,,줄거리,1,1,3,줄거리:아들
+괴물,monster,,줄거리,1,1,2,줄거리:괴물
+괴물,teacher,,줄거리,1,1,1,줄거리:선생님
+괴물,atmospheric,,줄거리,1,1,1,줄거리:분위기
+괴물,cooking,,줄거리,1,1,1,줄거리:요리
+괴물,courage,,줄거리,1,1,1,줄거리:용기
+괴물,food,,줄거리,1,1,1,줄거리:요리
+괴물,moody,,줄거리,1,1,1,줄거리:분위기

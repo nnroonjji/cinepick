@@ -1,0 +1,456 @@
+좋아하는 영화 후보 30편 태그 붙이기 결과 (영화당 최대 5개, 장르(최대 3개) → 키워드 → 흔한 장르 → 줄거리(2번 이상) 순, 3개가 안 되면 1번 나온 줄거리 태그로 채움)
+흔한 장르 (장르로 붙는 영화 10.0편 초과, 키워드 다음 순위로 내림): drama 23편
+후보 태그 수: 최소 6, 중앙값 13, 최대 22 / 선택된 태그 수: 7개 3편, 6개 8편, 5개 18편, 4개 1편
+선택된 태그 163개의 우선순위: 키워드 76, 장르 62, 영진위 인정 11, 흔한 장르 7, 유형 5, 줄거리 2 / 서로 다른 태그 70개
+선택된 태그 중 많은 영화에 붙은 것 (붙은 영화 수): action 8, art house 8, love story 8, family 8, drama 8, comedy 8, suspense 8, adventure 6, animation 5, friendship 5, sci fi 4, independent film 4, fantasy 4, mystery 3, based on true story 3, sequel 3, war 3, teen movie 3, police investigation 2, feel-good 2, father daughter relationship 2, catastrophe 2, horror 2, historical 2, memory 2, small town 2, teacher 2, music 2, japan 2, slackers 2
+줄거리에서 많이 걸린 한국어 (걸린 영화 수): 사랑 7, 꿈 5, 가족 5, 인생 4, 친구 4, 운명 4, 삶 4, 사랑스럽다 3, 열정 3, 학교 3, 어머니 3, 비밀 2, 디즈니 2, 상상 2, 쫓다 2, 죽음 2, 유쾌하다 2, 용기 2, 연애 2, 어린 시절 2, 마을 2, 기억 2, 분위기 2, 모험 2, 남편 2, 형사 2, 폭발 2, 선생님 2, 새 2, 백수 2
+
+[기생충] 후보 13개 중 5개 선택
+  * comedy [장르] (1종류 1개): TMDB장르:Comedy
+  * suspense [장르] (1종류 1개): TMDB장르:Thriller
+  * family [키워드] (3종류 3개, 줄거리 3번): 줄거리:가족, KMDb키워드:가족, TMDB키워드:family
+  * slackers [키워드] (2종류 2개, 줄거리 1번): 줄거리:백수, KMDb키워드:백수
+  * teacher [키워드] (1종류 1개): KMDb키워드:선생님
+    dark humor [키워드] (1종류 1개): TMDB키워드:dark comedy
+    working class [키워드] (1종류 1개): TMDB키워드:working class
+    con artists [키워드] (1종류 1개): TMDB키워드:con artist
+    golden palm [키워드] (1종류 1개): KMDb키워드:황금종려상
+    indians [키워드] (1종류 1개): KMDb키워드:인디언
+    social commentary [키워드] (1종류 1개): TMDB키워드:social commentary
+    drama [흔한 장르] (2종류 2개): KMDb장르:드라마, TMDB장르:Drama
+    friendship [줄거리] (1종류 1개, 줄거리 1번): 줄거리:친구
+
+[서울의 봄] 후보 14개 중 5개 선택
+  * war [장르] (2종류 2개, 줄거리 1번): 줄거리:전쟁, TMDB장르:War
+  * action [장르] (1종류 1개): TMDB장르:Action
+  * suspense [장르] (1종류 1개): TMDB장르:Thriller
+    historical [장르] (1종류 1개): TMDB장르:History
+    crime [장르] (1종류 1개): TMDB장르:Crime
+  * based on true story [키워드] (2종류 3개): KMDb키워드:실제사건, KMDb키워드:실화바탕, TMDB키워드:based on true story
+  * rebellion [키워드] (2종류 2개, 줄거리 2번): 줄거리:반란, KMDb키워드:반란
+    biographical [키워드] (1종류 1개): KMDb키워드:실존인물
+    1970s [키워드] (1종류 1개): TMDB키워드:1970s
+    politics [키워드] (1종류 1개): TMDB키워드:politics
+    drama [흔한 장르] (2종류 2개): KMDb장르:드라마, TMDB장르:Drama
+    destiny [줄거리] (1종류 1개, 줄거리 1번): 줄거리:운명
+    confrontational [줄거리] (1종류 1개, 줄거리 1번): 줄거리:대립
+    fighting the system [줄거리] (1종류 1개, 줄거리 1번): 줄거리:맞서다
+
+[파묘] 후보 7개 중 5개 선택
+  * horror [장르] (3종류 3개, 줄거리 1번): 줄거리:불길하다, KMDb장르:공포, TMDB장르:Horror
+  * suspense [장르] (2종류 2개): TMDB키워드:tense, TMDB장르:Thriller
+  * mystery [장르] (2종류 2개): KMDb장르:미스터리, TMDB장르:Mystery
+  * ghosts [키워드] (1종류 1개): TMDB키워드:ghost
+  * weird [줄거리] (1종류 1개, 줄거리 2번): 줄거리:기이하다
+    los angeles [줄거리] (1종류 1개, 줄거리 1번): 줄거리:LA
+    money [줄거리] (1종류 1개, 줄거리 1번): 줄거리:돈
+
+[범죄도시2] 후보 18개 중 5개 선택
+  * crime [장르] (3종류 3개, 줄거리 2번): 줄거리:범죄, KMDb장르:범죄, TMDB장르:Crime
+  * action [장르] (2종류 2개): KMDb장르:액션, TMDB장르:Action
+  * suspense [장르] (1종류 1개): TMDB장르:Thriller
+  * vietnam war [키워드] (3종류 3개, 줄거리 2번): 줄거리:베트남, KMDb키워드:베트남, TMDB키워드:vietnam
+  * police investigation [키워드] (3종류 3개, 줄거리 1번): 줄거리:형사, KMDb키워드:형사, TMDB키워드:detective
+    sequel [키워드] (2종류 2개): KMDb키워드:속편, TMDB키워드:sequel
+    family [키워드] (1종류 1개): KMDb키워드:아들
+    money [키워드] (1종류 1개): KMDb키워드:돈
+    police [키워드] (1종류 1개): TMDB키워드:police
+    gangsters [키워드] (1종류 1개): TMDB키워드:gangster
+    hostage [키워드] (1종류 1개): KMDb키워드:인질
+    intense [키워드] (1종류 1개): TMDB키워드:intense
+    kidnapping [키워드] (1종류 1개): KMDb키워드:납치
+    series [키워드] (1종류 1개): KMDb키워드:시리즈
+    chase [줄거리] (1종류 1개, 줄거리 1번): 줄거리:쫓다
+    monster [줄거리] (1종류 1개, 줄거리 1번): 줄거리:괴물
+    cathartic [줄거리] (1종류 1개, 줄거리 1번): 줄거리:통쾌하다
+    india [줄거리] (1종류 1개, 줄거리 1번): 줄거리:인도
+
+[좀비딸] 후보 16개 중 5개 선택
+  * comedy [장르] (2종류 2개): KMDb장르:코메디, TMDB장르:Comedy
+  * zombie [키워드] (2종류 2개, 줄거리 5번): 줄거리:좀비, TMDB키워드:zombie
+  * family [키워드] (2종류 2개, 줄거리 1번): 줄거리:어머니, TMDB키워드:family
+  * father daughter relationship [키워드] (1종류 1개): TMDB키워드:father daughter relationship
+  * drama [흔한 장르] (2종류 2개): KMDb장르:드라마, TMDB장르:Drama
+    dancing [줄거리] (1종류 2개, 줄거리 2번): 줄거리:댄스, 줄거리:춤
+    adolescence [줄거리] (1종류 1개, 줄거리 2번): 줄거리:사춘기
+    feel-good [줄거리] (1종류 1개, 줄거리 1번): 줄거리:유쾌하다
+    small town [줄거리] (1종류 1개, 줄거리 1번): 줄거리:마을
+    horror [줄거리] (1종류 1개, 줄거리 1번): 줄거리:무섭다
+    passionate [줄거리] (1종류 1개, 줄거리 1번): 줄거리:열정
+    atmospheric [줄거리] (1종류 1개, 줄거리 1번): 줄거리:분위기
+    fun movie [줄거리] (1종류 1개, 줄거리 1번): 줄거리:유쾌하다
+    moody [줄거리] (1종류 1개, 줄거리 1번): 줄거리:분위기
+    silly fun [줄거리] (1종류 1개, 줄거리 1번): 줄거리:유쾌하다
+    virus [줄거리] (1종류 1개, 줄거리 1번): 줄거리:바이러스
+
+[라라랜드] 후보 13개 중 5개 선택
+  * music [장르] (3종류 5개): KMDb키워드:음악가, KMDb키워드:뮤지컬, KMDb장르:뮤지컬, KMDb장르:뮤직, TMDB키워드:musical
+  * love story [장르] (3종류 4개, 줄거리 1번): 줄거리:사랑, KMDb장르:멜로, KMDb장르:로맨스, TMDB장르:Romance
+  * comedy [장르] (2종류 2개): KMDb장르:코메디, TMDB장르:Comedy
+  * jazz [키워드] (3종류 3개, 줄거리 1번): 줄거리:재즈, KMDb키워드:재즈, TMDB키워드:jazz
+  * dreams [키워드] (2종류 2개, 줄거리 1번): 줄거리:꿈, KMDb키워드:꿈
+    dancing [키워드] (1종류 2개): TMDB키워드:dancing, TMDB키워드:dance
+    los angeles [키워드] (1종류 2개): KMDb키워드:로스앤젤레스, KMDb키워드:LA
+    complex [키워드] (1종류 1개): TMDB키워드:complex
+    hollywood [키워드] (1종류 1개): TMDB키워드:hollywood
+    drama [흔한 장르] (1종류 1개): TMDB장르:Drama
+    life [줄거리] (1종류 1개, 줄거리 1번): 줄거리:인생
+    passionate [줄거리] (1종류 1개, 줄거리 1번): 줄거리:열정
+    explosions [줄거리] (1종류 1개, 줄거리 1번): 줄거리:폭발
+
+[인터스텔라] 후보 11개 중 5개 선택
+  * sci fi [장르] (3종류 3개, 줄거리 1번): 줄거리:미래, KMDb장르:SF, TMDB장르:Science Fiction
+  * adventure [장르] (1종류 1개): TMDB장르:Adventure
+  * space [키워드] (3종류 8개, 줄거리 2번): 줄거리:NASA, 줄거리:우주, KMDb키워드:우주, KMDb키워드:우주탐사, TMDB키워드:nasa, TMDB키워드:space travel, TMDB키워드:space, TMDB키워드:astronaut
+  * futuristic [키워드] (2종류 2개, 줄거리 1번): 줄거리:미래, TMDB키워드:dystopia
+  * father daughter relationship [키워드] (1종류 1개): TMDB키워드:father daughter relationship
+    time travel [키워드] (1종류 1개): TMDB키워드:time travel
+    single father [키워드] (1종류 1개): TMDB키워드:single father
+    drama [흔한 장르] (1종류 1개): TMDB장르:Drama
+    humanity [줄거리] (1종류 1개, 줄거리 2번): 줄거리:인류
+    family [줄거리] (1종류 1개, 줄거리 1번): 줄거리:가족
+    love story [줄거리] (1종류 1개, 줄거리 1번): 줄거리:사랑
+
+[어바웃 타임] 후보 19개 중 5개 선택
+  * love story [장르] (4종류 7개, 줄거리 5번): 줄거리:사랑, 줄거리:여자친구, KMDb키워드:로맨스, KMDb키워드:연애, KMDb장르:멜로, KMDb장르:멜로드라마, TMDB장르:Romance
+  * comedy [장르] (2종류 2개): KMDb키워드:코미디, KMDb장르:코메디
+  * fantasy [장르] (2종류 2개): KMDb장르:판타지, TMDB장르:Fantasy
+  * family [키워드] (3종류 3개, 줄거리 1번): 줄거리:아버지, KMDb키워드:가족, TMDB키워드:family
+  * london [키워드] (2종류 2개, 줄거리 1번): 줄거리:런던, KMDb키워드:런던
+    time travel [키워드] (2종류 2개): KMDb키워드:시간여행, TMDB키워드:time travel
+    destiny [키워드] (1종류 1개): KMDb키워드:운명
+    sci fi [키워드] (1종류 1개): KMDb키워드:SF
+    compassionate [키워드] (1종류 1개): TMDB키워드:compassionate
+    family bonds [키워드] (1종류 1개): KMDb키워드:가족애
+    girlie movie [키워드] (1종류 1개): KMDb키워드:로맨틱코미디
+    intimate [키워드] (1종류 1개): TMDB키워드:intimate
+    reflective [키워드] (1종류 1개): TMDB키워드:reflective
+    time loop [키워드] (1종류 1개): KMDb키워드:타임루프
+    whimsical [키워드] (1종류 1개): TMDB키워드:whimsical
+    drama [흔한 장르] (2종류 2개): KMDb장르:드라마, TMDB장르:Drama
+    dreams [줄거리] (1종류 1개, 줄거리 2번): 줄거리:꿈
+    sweet [줄거리] (1종류 1개, 줄거리 1번): 줄거리:사랑스럽다
+    secrets [줄거리] (1종류 1개, 줄거리 1번): 줄거리:비밀
+
+[더 퍼스트 슬램덩크] 후보 12개 중 6개 선택
+  * animation [유형] (3종류 3개): 유형:애니메이션, TMDB키워드:anime, TMDB장르:Animation
+  * comedy [장르] (1종류 1개): TMDB장르:Comedy
+  * sports [장르] (1종류 1개): KMDb장르:스포츠
+  * teen movie [키워드] (1종류 2개): TMDB키워드:high school, TMDB키워드:teenager
+  * love story [키워드] (1종류 1개): TMDB키워드:romance
+  * feel-good [키워드] (1종류 1개): TMDB키워드:inspiring
+    based on a comic [키워드] (1종류 1개): KMDb키워드:만화 원작
+    basketball [키워드] (1종류 1개): TMDB키워드:basketball
+    competition [키워드] (1종류 1개): TMDB키워드:competition
+    drama [흔한 장르] (1종류 1개): TMDB장르:Drama
+    dreams [줄거리] (1종류 1개, 줄거리 1번): 줄거리:꿈
+    passionate [줄거리] (1종류 1개, 줄거리 1번): 줄거리:열정
+
+[스즈메의 문단속] 후보 12개 중 7개 선택
+  * animation [유형] (3종류 3개): 유형:애니메이션, TMDB키워드:anime, TMDB장르:Animation
+  * art house [영진위 인정] (1종류 1개): KOBIS:예술영화 인정
+  * adventure [장르] (3종류 3개): KMDb장르:어드벤처, TMDB키워드:adventure, TMDB장르:Adventure
+  * fantasy [장르] (3종류 3개): KMDb장르:판타지, TMDB키워드:magic, TMDB장르:Fantasy
+  * action [장르] (1종류 1개): KMDb장르:액션
+  * travel [키워드] (2종류 2개, 줄거리 2번): 줄거리:여행, TMDB키워드:travel
+  * catastrophe [키워드] (1종류 1개): TMDB키워드:natural disaster
+    drama [흔한 장르] (1종류 1개): TMDB장르:Drama
+    road movie [줄거리] (1종류 1개, 줄거리 2번): 줄거리:여행
+    road trip [줄거리] (1종류 1개, 줄거리 2번): 줄거리:여행
+    small town [줄거리] (1종류 1개, 줄거리 1번): 줄거리:작은 마을
+    chase [줄거리] (1종류 1개, 줄거리 1번): 줄거리:쫓다
+
+[벌새] 후보 19개 중 7개 선택
+  * art house [영진위 인정] (1종류 1개): KOBIS:예술영화 인정
+  * independent film [영진위 인정] (1종류 1개): KOBIS:독립영화 인정
+  * family [장르] (2종류 2개, 줄거리 1번): 줄거리:가족, KMDb장르:가족
+  * teacher [키워드] (2종류 2개, 줄거리 2번): 줄거리:선생님, KMDb키워드:선생님
+  * memory [키워드] (2종류 2개, 줄거리 1번): 줄거리:기억, KMDb키워드:기억
+  * coming of age [키워드] (2종류 2개): KMDb키워드:성장영화, TMDB키워드:coming of age
+  * teen movie [키워드] (1종류 2개): KMDb키워드:청춘, KMDb키워드:청소년
+    berlin [키워드] (1종류 1개): KMDb키워드:베를린
+    relationships [키워드] (1종류 1개): TMDB키워드:relationship
+    drama [흔한 장르] (2종류 2개): KMDb장르:드라마, TMDB장르:Drama
+    love story [줄거리] (1종류 2개, 줄거리 4번): 줄거리:연애, 줄거리:사랑
+    children [줄거리] (1종류 1개, 줄거리 3번): 줄거리:아이
+    friendship [줄거리] (1종류 1개, 줄거리 2번): 줄거리:친구
+    school [줄거리] (1종류 1개, 줄거리 2번): 줄거리:학교
+    birds [줄거리] (1종류 1개, 줄거리 2번): 줄거리:새
+    life [줄거리] (1종류 1개, 줄거리 1번): 줄거리:삶
+    childhood [줄거리] (1종류 1개, 줄거리 1번): 줄거리:어린 시절
+    brutality [줄거리] (1종류 1개, 줄거리 1번): 줄거리:폭력적
+    island [줄거리] (1종류 1개, 줄거리 1번): 줄거리:섬
+
+[퍼펙트 데이즈] 후보 7개 중 6개 선택
+  * art house [영진위 인정] (1종류 1개): KOBIS:예술영화 인정
+  * japan [키워드] (2종류 2개, 줄거리 1번): 줄거리:도쿄, KMDb키워드:도쿄
+  * working class [키워드] (1종류 1개): TMDB키워드:working class
+  * character study [키워드] (1종류 1개): TMDB키워드:character study
+  * solitude [키워드] (1종류 1개): TMDB키워드:solitude
+  * drama [흔한 장르] (2종류 2개): KMDb장르:드라마, TMDB장르:Drama
+    drinking [줄거리] (1종류 1개, 줄거리 1번): 줄거리:술
+
+[헤어질 결심] 후보 15개 중 5개 선택
+  * love story [장르] (3종류 4개): KMDb장르:멜로, KMDb장르:로맨스, TMDB키워드:love, TMDB장르:Romance
+  * mystery [장르] (3종류 3개): KMDb장르:미스터리, TMDB키워드:murder mystery, TMDB장르:Mystery
+  * suspense [장르] (1종류 1개): TMDB장르:Thriller
+  * police investigation [키워드] (3종류 6개, 줄거리 3번): 줄거리:형사, 줄거리:수사, KMDb키워드:형사, KMDb키워드:수사, TMDB키워드:detective, TMDB키워드:investigation
+  * death [키워드] (2종류 3개, 줄거리 2번): 줄거리:죽다, 줄거리:죽음, KMDb키워드:죽음
+    marriage [키워드] (2종류 3개, 줄거리 2번): 줄거리:아내, 줄거리:남편, KMDb키워드:남편
+    police [키워드] (2종류 2개, 줄거리 1번): 줄거리:경찰, TMDB키워드:police
+    mountain climbing [키워드] (2종류 2개): KMDb키워드:암벽등반, TMDB키워드:mountain climbing
+    brutality [키워드] (1종류 1개): KMDb키워드:폭력
+    child abuse [키워드] (1종류 1개): KMDb키워드:학대
+    disability [키워드] (1종류 1개): KMDb키워드:장애
+    gratuitous violence [키워드] (1종류 1개): KMDb키워드:폭력
+    murder [키워드] (1종류 1개): KMDb키워드:살인
+    drama [흔한 장르] (1종류 1개): KMDb장르:드라마
+    paranoia [줄거리] (1종류 1개, 줄거리 2번): 줄거리:의심
+
+[엑시트] 후보 13개 중 5개 선택
+  * action [장르] (2종류 2개): KMDb장르:액션, TMDB장르:Action
+  * comedy [장르] (2종류 2개): KMDb장르:코메디, TMDB장르:Comedy
+  * catastrophe [키워드] (3종류 3개, 줄거리 1번): 줄거리:재난, KMDb키워드:재난, TMDB키워드:disaster
+  * mountain climbing [키워드] (2종류 2개, 줄거리 2번): 줄거리:산악, KMDb키워드:산악
+  * slackers [키워드] (2종류 2개, 줄거리 1번): 줄거리:백수, KMDb키워드:백수
+    survival [키워드] (1종류 1개): TMDB키워드:survival
+    terrorism [키워드] (1종류 1개): KMDb키워드:테러
+    weapons [키워드] (1종류 1개): KMDb키워드:무기
+    family [줄거리] (1종류 2개, 줄거리 2번): 줄거리:가족, 줄거리:어머니
+    dragons [줄거리] (1종류 1개, 줄거리 2번): 줄거리:용
+    birds [줄거리] (1종류 1개, 줄거리 1번): 줄거리:새
+    college [줄거리] (1종류 1개, 줄거리 1번): 줄거리:대학교
+    explosions [줄거리] (1종류 1개, 줄거리 1번): 줄거리:폭발
+
+[대도시의 사랑법] 후보 8개 중 5개 선택
+  * love story [장르] (3종류 4개, 줄거리 1번): 줄거리:사랑, KMDb장르:멜로, KMDb장르:로맨스, TMDB장르:Romance
+  * based on a book [키워드] (1종류 3개): KMDb키워드:베스트셀러원작, KMDb키워드:소설원작, KMDb키워드:원작
+  * friendship [키워드] (1종류 1개): TMDB키워드:friendship
+  * homophobia [키워드] (1종류 1개): TMDB키워드:homophobia
+  * drama [흔한 장르] (2종류 2개): KMDb장르:드라마, TMDB장르:Drama
+    life [줄거리] (1종류 1개, 줄거리 1번): 줄거리:인생
+    secrets [줄거리] (1종류 1개, 줄거리 1번): 줄거리:비밀
+    stylized [줄거리] (1종류 1개, 줄거리 1번): 줄거리:스타일
+
+[왕과 사는 남자] 후보 7개 중 4개 선택
+  * historical [장르] (3종류 3개, 줄거리 1번): 줄거리:역사, KMDb장르:사극, TMDB장르:History
+  * based on true story [키워드] (1종류 1개): TMDB키워드:based on true story
+  * drama [흔한 장르] (2종류 2개): KMDb장르:드라마, TMDB장르:Drama
+  * small town [줄거리] (1종류 1개, 줄거리 2번): 줄거리:마을
+    life [줄거리] (1종류 1개, 줄거리 1번): 줄거리:삶
+    dreams [줄거리] (1종류 1개, 줄거리 1번): 줄거리:꿈
+    surveillance [줄거리] (1종류 1개, 줄거리 1번): 줄거리:감시
+
+[리틀 포레스트] 후보 13개 중 5개 선택
+  * friendship [키워드] (2종류 2개, 줄거리 1번): 줄거리:친구, TMDB키워드:friendship
+  * feel-good [키워드] (1종류 1개): KMDb키워드:힐링
+  * small town [키워드] (1종류 1개): KMDb키워드:시골
+  * based on a comic [키워드] (1종류 1개): KMDb키워드:만화 원작
+  * japan [키워드] (1종류 1개): KMDb키워드:일본
+    cooking [키워드] (1종류 1개): TMDB키워드:cooking
+    food [키워드] (1종류 1개): TMDB키워드:food
+    mother daughter relationship [키워드] (1종류 1개): TMDB키워드:mother daughter relationship
+    nature [키워드] (1종류 1개): TMDB키워드:nature
+    remake [키워드] (1종류 1개): KMDb키워드:리메이크
+    drama [흔한 장르] (2종류 2개): KMDb장르:드라마, TMDB장르:Drama
+    love story [줄거리] (1종류 1개, 줄거리 1번): 줄거리:연애
+    life [줄거리] (1종류 1개, 줄거리 1번): 줄거리:삶
+
+[탑건: 매버릭] 후보 8개 중 5개 선택
+  * action [장르] (2종류 2개): KMDb장르:액션, TMDB장르:Action
+  * sequel [키워드] (1종류 1개): TMDB키워드:sequel
+  * war [키워드] (1종류 1개): TMDB키워드:war
+  * military [키워드] (1종류 1개): TMDB키워드:military
+  * drama [흔한 장르] (1종류 1개): TMDB장르:Drama
+    aviation [줄거리] (1종류 1개, 줄거리 2번): 줄거리:비행
+    school [줄거리] (1종류 1개, 줄거리 1번): 줄거리:학교
+    manipulation [줄거리] (1종류 1개, 줄거리 1번): 줄거리:조종
+
+[오펜하이머] 후보 12개 중 5개 선택
+  * war [장르] (2종류 2개): TMDB키워드:world war ii, TMDB장르:War
+  * suspense [장르] (1종류 1개): KMDb장르:스릴러
+  * historical [장르] (1종류 1개): TMDB장르:History
+  * based on true story [키워드] (1종류 1개): TMDB키워드:based on true story
+  * biographical [키워드] (1종류 1개): TMDB키워드:biography
+    anti-semitism [키워드] (1종류 1개): TMDB키워드:antisemitism
+    communism [키워드] (1종류 1개): TMDB키워드:communism
+    guilt [키워드] (1종류 1개): TMDB키워드:guilt
+    drama [흔한 장르] (2종류 2개): KMDb장르:드라마, TMDB장르:Drama
+    death [줄거리] (1종류 1개, 줄거리 1번): 줄거리:죽음
+    mad scientist [줄거리] (1종류 1개, 줄거리 1번): 줄거리:과학자
+    nuclear war [줄거리] (1종류 1개, 줄거리 1번): 줄거리:핵
+
+[에브리씽 에브리웨어 올 앳 원스] 후보 16개 중 6개 선택
+  * art house [영진위 인정] (1종류 1개): KOBIS:예술영화 인정
+  * action [장르] (2종류 2개): KMDb장르:액션, TMDB장르:Action
+  * adventure [장르] (2종류 2개): KMDb장르:어드벤처, TMDB장르:Adventure
+  * sci fi [장르] (2종류 2개): KMDb장르:SF, TMDB장르:Science Fiction
+    comedy [장르] (1종류 1개): KMDb장르:코메디
+    fantasy [장르] (1종류 1개): KMDb장르:판타지
+  * family [키워드] (2종류 2개, 줄거리 1번): 줄거리:가족, TMDB키워드:family
+  * divorce [키워드] (2종류 2개, 줄거리 1번): 줄거리:이혼, TMDB키워드:divorce
+    martial arts [키워드] (1종류 2개): TMDB키워드:martial arts, TMDB키워드:kung fu
+    mother daughter relationship [키워드] (1종류 1개): TMDB키워드:mother daughter relationship
+    existentialism [키워드] (1종류 1개): TMDB키워드:philosophy
+    surreal [키워드] (1종류 1개): TMDB키워드:surrealism
+    destiny [줄거리] (1종류 1개, 줄거리 1번): 줄거리:운명
+    police investigation [줄거리] (1종류 1개, 줄거리 1번): 줄거리:조사
+    immigrants [줄거리] (1종류 1개, 줄거리 1번): 줄거리:이민
+    marriage [줄거리] (1종류 1개, 줄거리 1번): 줄거리:남편
+
+[패스트 라이브즈] 후보 13개 중 5개 선택
+  * love story [장르] (2종류 3개): KMDb장르:멜로, KMDb장르:로맨스, TMDB장르:Romance
+  * new york [키워드] (2종류 2개, 줄거리 2번): 줄거리:뉴욕, TMDB키워드:new york city
+  * memory [키워드] (2종류 2개, 줄거리 1번): 줄거리:기억, TMDB키워드:memories
+  * friendship [키워드] (1종류 1개): TMDB키워드:friendship
+  * independent film [키워드] (1종류 1개): TMDB키워드:independent film
+    immigrants [키워드] (1종류 1개): TMDB키워드:immigrant
+    nostalgic [키워드] (1종류 1개): TMDB키워드:nostalgia
+    drama [흔한 장르] (2종류 2개): KMDb장르:드라마, TMDB장르:Drama
+    life [줄거리] (1종류 1개, 줄거리 1번): 줄거리:인생
+    dreams [줄거리] (1종류 1개, 줄거리 1번): 줄거리:꿈
+    childhood [줄거리] (1종류 1개, 줄거리 1번): 줄거리:어린 시절
+    courage [줄거리] (1종류 1개, 줄거리 1번): 줄거리:용기
+    writers [줄거리] (1종류 1개, 줄거리 1번): 줄거리:작가
+
+[위키드] 후보 15개 중 5개 선택
+  * fantasy [장르] (4종류 6개, 줄거리 3번): 줄거리:마법, 줄거리:마법사, KMDb장르:판타지, TMDB키워드:fantasy world, TMDB키워드:fantasy, TMDB장르:Fantasy
+  * music [장르] (2종류 2개): KMDb장르:뮤지컬, TMDB키워드:musical
+  * love story [장르] (1종류 1개): TMDB장르:Romance
+  * dancing [키워드] (1종류 1개): TMDB키워드:dancing
+  * bullying [키워드] (1종류 1개): TMDB키워드:bullying
+    college [키워드] (1종류 1개): TMDB키워드:college
+    fairy tale [키워드] (1종류 1개): TMDB키워드:fairy tale
+    lyrical [키워드] (1종류 1개): TMDB키워드:lyrical
+    prequel [키워드] (1종류 1개): TMDB키워드:prequel
+    witch [키워드] (1종류 1개): TMDB키워드:witch
+    wizards [키워드] (1종류 1개): TMDB키워드:wizard
+    drama [흔한 장르] (1종류 1개): TMDB장르:Drama
+    destiny [줄거리] (1종류 1개, 줄거리 2번): 줄거리:운명
+    friendship [줄거리] (1종류 1개, 줄거리 1번): 줄거리:우정
+    adventure [줄거리] (1종류 1개, 줄거리 1번): 줄거리:모험
+
+[듄: 파트 2] 후보 14개 중 5개 선택
+  * adventure [장르] (2종류 2개): KMDb장르:어드벤처, TMDB장르:Adventure
+  * sci fi [장르] (2종류 2개): KMDb장르:SF, TMDB장르:Science Fiction
+  * action [장르] (1종류 1개): KMDb장르:액션
+  * destiny [키워드] (2종류 2개, 줄거리 1번): 줄거리:운명, TMDB키워드:destiny
+  * desert [키워드] (2종류 2개, 줄거리 1번): 줄거리:사막, TMDB키워드:desert
+    sequel [키워드] (1종류 1개): TMDB키워드:sequel
+    space [키워드] (1종류 1개): TMDB키워드:space opera
+    vengeance [키워드] (1종류 1개): TMDB키워드:vengeance
+    family [줄거리] (1종류 1개, 줄거리 1번): 줄거리:어머니
+    brutality [줄거리] (1종류 1개, 줄거리 1번): 줄거리:잔혹하다
+    assassination [줄거리] (1종류 1개, 줄거리 1번): 줄거리:암살자
+    enormously long battle scene [줄거리] (1종류 1개, 줄거리 1번): 줄거리:전투
+    fight scenes [줄거리] (1종류 1개, 줄거리 1번): 줄거리:전투
+    splatter [줄거리] (1종류 1개, 줄거리 1번): 줄거리:잔혹하다
+
+[서브스턴스] 후보 14개 중 6개 선택
+  * art house [영진위 인정] (1종류 1개): KOBIS:예술영화 인정
+  * horror [장르] (2종류 2개): KMDb장르:공포, TMDB장르:Horror
+  * suspense [장르] (1종류 1개): KMDb장르:스릴러
+  * sci fi [장르] (1종류 1개): TMDB장르:Science Fiction
+  * dark humor [키워드] (1종류 1개): TMDB키워드:dark comedy
+  * absurd [키워드] (1종류 1개): TMDB키워드:absurd
+    aging [키워드] (1종류 1개): TMDB키워드:aging
+    biting [키워드] (1종류 1개): TMDB키워드:biting
+    drugs [키워드] (1종류 1개): TMDB키워드:drug
+    identity [키워드] (1종류 1개): TMDB키워드:identity
+    ironic [키워드] (1종류 1개): TMDB키워드:ironic
+    satirical [키워드] (1종류 1개): TMDB키워드:satire
+    drama [흔한 장르] (1종류 1개): KMDb장르:드라마
+    life [줄거리] (1종류 1개, 줄거리 1번): 줄거리:인생
+
+[인사이드 아웃 2] 후보 17개 중 6개 선택
+  * animation [유형] (2종류 2개): 유형:애니메이션, TMDB장르:Animation
+  * adventure [장르] (3종류 3개, 줄거리 1번): 줄거리:모험, KMDb장르:어드벤처, TMDB장르:Adventure
+  * family [장르] (2종류 2개): KMDb장르:가족, TMDB장르:Family
+  * comedy [장르] (2종류 2개): KMDb장르:코메디, TMDB장르:Comedy
+    fantasy [장르] (1종류 1개): KMDb장르:판타지
+  * sequel [키워드] (1종류 1개): TMDB키워드:sequel
+  * witty [키워드] (1종류 1개): TMDB키워드:witty
+    computer animation [키워드] (1종류 1개): TMDB키워드:computer animation
+    drama [흔한 장르] (1종류 1개): KMDb장르:드라마
+    feel-good [줄거리] (1종류 1개, 줄거리 1번): 줄거리:유쾌하다
+    disney [줄거리] (1종류 1개, 줄거리 1번): 줄거리:디즈니
+    fun movie [줄거리] (1종류 1개, 줄거리 1번): 줄거리:유쾌하다
+    imagination [줄거리] (1종류 1개, 줄거리 1번): 줄거리:상상
+    silly fun [줄거리] (1종류 1개, 줄거리 1번): 줄거리:유쾌하다
+    happy ending [줄거리] (1종류 1개, 줄거리 1번): 줄거리:행복
+    pixar animation [줄거리] (1종류 1개, 줄거리 1번): 줄거리:픽사
+    sad [줄거리] (1종류 1개, 줄거리 1번): 줄거리:슬픔
+
+[주토피아 2] 후보 18개 중 6개 선택
+  * animation [유형] (2종류 2개): 유형:애니메이션, TMDB장르:Animation
+  * comedy [장르] (2종류 2개): KMDb장르:코메디, TMDB장르:Comedy
+  * adventure [장르] (2종류 2개): KMDb장르:어드벤처, TMDB장르:Adventure
+  * family [장르] (1종류 1개): TMDB장르:Family
+    action [장르] (1종류 1개): KMDb장르:액션
+    mystery [장르] (1종류 1개): TMDB장르:Mystery
+  * snakes [키워드] (2종류 2개, 줄거리 1번): 줄거리:뱀, TMDB키워드:snake
+  * animals [키워드] (1종류 2개): TMDB키워드:animals, TMDB키워드:talking animal
+    sequel [키워드] (1종류 1개): TMDB키워드:sequel
+    complex [키워드] (1종류 1개): TMDB키워드:complex
+    buddy movie [줄거리] (1종류 1개, 줄거리 2번): 줄거리:콤비
+    chase [줄거리] (1종류 1개, 줄거리 1번): 줄거리:추적
+    sweet [줄거리] (1종류 1개, 줄거리 1번): 줄거리:사랑스럽다
+    disney [줄거리] (1종류 1개, 줄거리 1번): 줄거리:디즈니
+    imagination [줄거리] (1종류 1개, 줄거리 1번): 줄거리:상상
+    colourful [줄거리] (1종류 1개, 줄거리 1번): 줄거리:화려하다
+    hallucinatory [줄거리] (1종류 1개, 줄거리 1번): 줄거리:환상
+    undercover cop [줄거리] (1종류 1개, 줄거리 1번): 줄거리:잠입 수사
+
+[귀멸의 칼날: 무한성편] 후보 8개 중 6개 선택
+  * animation [유형] (3종류 3개): 유형:애니메이션, TMDB키워드:anime, TMDB장르:Animation
+  * action [장르] (2종류 2개): KMDb장르:액션, TMDB장르:Action
+  * fantasy [장르] (1종류 1개): TMDB장르:Fantasy
+  * supernatural [키워드] (1종류 2개): TMDB키워드:supernatural, TMDB키워드:demon
+  * friendship [키워드] (1종류 1개): TMDB키워드:friendship
+  * sequel [키워드] (1종류 1개): TMDB키워드:sequel
+    based on a comic [키워드] (1종류 1개): KMDb키워드:만화 원작
+    trilogy [키워드] (1종류 1개): TMDB키워드:trilogy
+
+[남매의 여름밤] 후보 10개 중 7개 선택
+  * art house [영진위 인정] (1종류 1개): KOBIS:예술영화 인정
+  * independent film [영진위 인정] (1종류 1개): KOBIS:독립영화 인정
+  * family [장르] (2종류 2개): KMDb장르:가족, TMDB키워드:family
+  * childhood [키워드] (2종류 2개, 줄거리 1번): 줄거리:유년, KMDb키워드:유년기
+  * teen movie [키워드] (1종류 1개): KMDb키워드:청소년
+  * family drama [키워드] (1종류 1개): KMDb키워드:가족 드라마
+  * drama [흔한 장르] (2종류 2개): KMDb장르:드라마, TMDB장르:Drama
+    love story [줄거리] (1종류 1개, 줄거리 1번): 줄거리:사랑
+    life [줄거리] (1종류 1개, 줄거리 1번): 줄거리:삶
+    over the top [줄거리] (1종류 1개, 줄거리 1번): 줄거리:과장
+
+[소공녀] 후보 6개 중 5개 선택
+  * art house [영진위 인정] (1종류 1개): KOBIS:예술영화 인정
+  * independent film [영진위 인정] (1종류 1개): KOBIS:독립영화 인정
+  * love story [장르] (3종류 4개, 줄거리 3번): 줄거리:사랑, 줄거리:남자친구, KMDb장르:멜로드라마, TMDB장르:Romance
+  * homeless [키워드] (2종류 2개): KMDb키워드:홈리스, TMDB키워드:homeless
+  * drama [흔한 장르] (2종류 2개): KMDb장르:드라마, TMDB장르:Drama
+    sweet [줄거리] (1종류 1개, 줄거리 1번): 줄거리:사랑스럽다
+
+[괴물] 후보 22개 중 6개 선택
+  * art house [영진위 인정] (1종류 1개): KOBIS:예술영화 인정
+  * suspense [장르] (2종류 2개): KMDb장르:스릴러, TMDB장르:Thriller
+  * mystery [장르] (2종류 2개): KMDb장르:미스터리, TMDB장르:Mystery
+  * drama [키워드] (3종류 3개): KMDb장르:드라마, TMDB키워드:dramatic, TMDB장르:Drama
+  * friendship [키워드] (2종류 2개, 줄거리 1번): 줄거리:친구, TMDB키워드:friendship
+  * school [키워드] (2종류 2개, 줄거리 1번): 줄거리:학교, TMDB키워드:school
+    bullying [키워드] (2종류 2개, 줄거리 1번): 줄거리:따돌림, TMDB키워드:bullying
+    childhood [키워드] (1종류 1개): TMDB키워드:childhood
+    complex [키워드] (1종류 1개): TMDB키워드:complex
+    japan [키워드] (1종류 1개): TMDB키워드:japan
+    children [키워드] (1종류 1개): TMDB키워드:kids
+    coming of age [키워드] (1종류 1개): TMDB키워드:coming of age
+    witty [키워드] (1종류 1개): TMDB키워드:witty
+    mother-son relationship [키워드] (1종류 1개): TMDB키워드:mother son relationship
+    family [줄거리] (1종류 1개, 줄거리 3번): 줄거리:아들
+    monster [줄거리] (1종류 1개, 줄거리 2번): 줄거리:괴물
+    teacher [줄거리] (1종류 1개, 줄거리 1번): 줄거리:선생님
+    atmospheric [줄거리] (1종류 1개, 줄거리 1번): 줄거리:분위기
+    cooking [줄거리] (1종류 1개, 줄거리 1번): 줄거리:요리
+    courage [줄거리] (1종류 1개, 줄거리 1번): 줄거리:용기
+    food [줄거리] (1종류 1개, 줄거리 1번): 줄거리:요리
+    moody [줄거리] (1종류 1개, 줄거리 1번): 줄거리:분위기

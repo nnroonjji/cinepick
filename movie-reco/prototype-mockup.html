@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="ko" data-mockup>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>씨네픽 영화 추천 프로토타입</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Nunito:wght@800&family=Noto+Sans+KR:wght@400;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="pin-mark"><path d="M0 0C-4-6-10-11-10-17A10 10 0 1 1 10-17C10-11 4-6 0 0Z" fill="currentColor" stroke="#fffdf7" stroke-width="1.5"/><circle cy="-17" r="3.6" fill="#fffdf7"/></g><g id="mapbase">
+<g id="mapgeo">
+<rect x="-900" y="-900" width="3507" height="2716" fill="#efece4"/>
+<path d="M-800 -90L-666 -59L-613 -22L-580 7L-544 26L-514 45L-453 104L-429 137L-393 177L-346 217L-207 272L-142 317L-104 344L-54 381L19 432L58 433L83 417L130 471L165 509L510 840L530 865L551 899L583 927L629 947L713 965L754 972L807 965L913 920L970 915L991 920L1170 1003L1226 1008L1275 1018L1302 1033L1321 1052L1419 1217L1500 1500L-800 1500Z" fill="#cfdfe3"/>
+<path d="M1910 1080L1907 1088L1820 1060L1780 1042L1731 1004L1709 993L1714 986L1786 1027L1805 1045L1910 1080ZM963 428L968 436L970 434L959 413L805 167L791 154L774 146L791 161L804 186L963 428Z" fill="#d6e4c6"/>
+<path d="M1099 533L1102 528L1081 512L1037 487L1036 489L1029 485L1024 491L1075 515L1099 533ZM1106 532L1184 602L1182 605L1103 536L1106 532Z" fill="#d6e4c6"/>
+<path d="M373 -86L377 -91L476 -25L467 -17L373 -86Z" fill="#d6e4c6"/>
+<path d="M-577 -172L-599 -148L-604 -133L-599 -124L-383 41L-272 121L-225 63L-257 40L-262 47L-242 63L-281 103L-298 90L-296 79L-284 57L-175 -70L-154 -54L-152 -73L-156 -86L-239 -168L-239 -178L-222 -198L-328 -277L-344 -275L-377 -259L-541 -200L-577 -172Z" fill="#d6e4c6"/>
+<path d="M83 409L83 417L58 433L35 436L19 432L-54 381L-104 344L-105 340L-111 339L-104 327L-111 319L-127 315L-142 317L-207 272L-346 217L-393 177L-429 137L-453 104L-514 45L-544 26L-570 24L-580 7L-613 -22L-666 -59L-628 -110L-99 271L1 353L48 379L75 399L83 409Z" fill="#d6e4c6"/>
+<path d="M-142 -78L-147 -77L-148 -50L-153 -29L-263 131L-262 133L-213 173L-43 292L-32 297L-17 296L-6 288L36 239L76 181L65 170L61 156L6 56L-35 19L-65 6L-87 -9L-115 -35L-125 -63L-142 -78Z" fill="#d6e4c6"/>
+<path d="M157 161L124 142L97 172L108 180L118 170L126 167L157 161Z" fill="#d6e4c6"/>
+<path d="M167 -4L175 6L170 32L166 38L176 38L143 86L131 73L128 51L101 29L100 4L82 4L84 -15L89 -27L121 -38L152 -23L167 -26L173 -16L167 -4Z" fill="#d6e4c6"/>
+<path d="M130 -94L135 -90L141 -97L153 -89L150 -85L154 -82L160 -90L172 -81L181 -87L191 -85L204 -75L200 -71L185 -68L182 -75L164 -73L160 -56L163 -54L158 -50L153 -59L154 -72L131 -88L125 -87L124 -93L132 -99L133 -102L135 -101L130 -94Z" fill="#d6e4c6"/>
+<path d="M285 -49L289 -77L305 -104L319 -119L313 -124L270 -67L272 -60L285 -49Z" fill="#d6e4c6"/>
+<path d="M1184 603L1222 640L1300 703L1412 790L1560 905L1709 990" fill="none" stroke="#d6e4c6" style="stroke-width:var(--rg,13px)" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M971 758L968 747L963 740L952 743L933 740L931 719L933 681L927 632L938 621L943 626L958 617L966 627L1019 663L1008 689L1000 689L998 692L997 713L991 720L987 719L987 740L993 740L993 748L989 748L989 758L979 757L979 789L966 789L967 781L971 777L971 758Z" fill="#dfe4ee" stroke="#9aa8c6" style="stroke-width:var(--hk,1.6px);stroke-dasharray:var(--hkd,4 3)"/>
+<path d="M1353 604L1367 607L1391 597L1409 578L1431 567L1426 560L1429 558L1437 561L1435 563L1440 584L1430 603L1428 616L1442 617L1450 622L1451 629L1445 637L1462 660L1455 679L1457 683L1455 694L1446 709L1366 729L1364 721L1355 718L1338 723L1339 728L1323 732L1314 720L1300 689L1290 654L1311 638L1325 619L1327 620L1332 607L1353 604Z" fill="#e3dfd1"/>
+<path d="M1395 339L1405 348L1428 326L1438 337L1440 394L1533 388L1600 370L1624 343L1617 321L1609 313L1607 278L1610 265L1617 249L1635 259L1645 255L1647 244L1641 233L1642 221L1635 212L1633 203L1642 169L1648 157L1649 128L1641 118L1643 116L1651 116L1656 103L1614 81L1609 83L1595 113L1593 112L1587 118L1590 125L1582 136L1582 142L1574 146L1571 150L1565 151L1557 166L1565 180L1546 219L1520 202L1490 243L1466 269L1484 289L1455 318L1437 299L1395 339Z" fill="#e3dfd1"/>
+<path d="M1390 93L1484 185L1503 177L1511 179L1496 202L1484 199L1435 254L1428 248L1397 238L1385 240L1376 271L1340 259L1334 280L1324 290L1329 297L1304 319L1305 322L1296 330L1293 339L1290 339L1292 347L1277 375L1254 375L1252 372L1198 364L1190 360L1129 297L1127 286L1140 276L1158 284L1165 282L1184 264L1189 255L1190 226L1199 178L1215 170L1225 161L1241 129L1253 115L1276 106L1302 102L1301 70L1339 64L1356 55L1347 42L1342 42L1339 36L1327 34L1327 29L1321 28L1318 0L1305 -30L1306 -38L1313 -44L1313 -66L1305 -110L1332 -116L1337 -123L1354 -126L1361 -79L1373 -61L1375 -52L1369 -24L1372 -12L1387 10L1390 93Z" fill="#dde6cf"/>
+<path d="M260 109L259 93L248 74L235 65L215 62L197 69L185 82L178 96L176 111L180 126L188 141L203 151L220 153L235 148L248 138L256 124L260 109Z" fill="#e6e1d4" stroke="#cfc6b3" style="stroke-width:var(--hk,1.6px)"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M1281 -354L1288 -335L1287 -323L1276 -305L1237 -275L1169 -246L1145 -233L978 -126L867 -18L711 143L690 160L666 172L318 294L258 328L234 335L108 408L51 460L-97 547M719 -915L672 -687L641 -520L629 -490L392 -206L299 -88L292 -48L278 316" stroke="#b9d3dc" style="stroke-width:var(--rw,5px)"/>
+<path d="M1267 530L1270 400L1267 378M1271 405L1356 405M1267 384L1268 417M647 741L652 748L668 757L778 785L1083 799L1092 778L1102 765L1110 759L1089 799M837 767L854 789M1083 799L1318 807L1449 861L1497 900L1608 970M980 793L979 757M1018 795L1013 790L985 786L983 778M1301 806L1302 797L1322 794M1335 789L1352 811L1351 821M899 816L904 814L915 803L921 791M1094 788L1103 794L1103 803L1106 807L1118 807M1123 738L1136 715L1142 712L1109 843L972 1109M1045 828L1059 823L1076 823L1098 825L1110 831M975 1111L1105 862L1121 814L1118 834L1108 863M1221 544L1236 550L1244 562L1192 602L1171 627L1156 660L1142 712M1121 814L1166 648L1175 630L1199 603L1247 565M1117 813L1103 850L1072 911L1073 917L1076 919L1081 918M1283 537L1244 562M898 894L902 693L914 650L921 638L934 621L962 607L995 608L1047 593L1080 567L1101 535M881 710L875 732L885 740L900 744M1058 586L1062 593L1069 598L1074 611M899 808L866 803M906 829L899 823L896 824L890 817L891 813M1105 529L1129 488M898 876L911 876L922 871M863 545L934 621M904 590L900 594L902 610L897 618L906 621L912 619L914 622L925 611M826 787L844 741L853 709L862 652L859 652L848 709L839 739L785 870M976 529L954 511M875 597L886 613L897 618L894 613L892 594L881 586M823 708L853 709M984 501L975 506L957 508M1015 498L1014 490L1008 489L988 498M861 650L875 597L889 573M954 508L943 512L916 535L893 566L886 570M1505 488L1506 472L1501 410L1518 409M1440 404L1444 405L1446 412L1501 410M1453 402L1468 398L1469 411" stroke="#f9f6ef" style="stroke-width:var(--rs,5px)"/>
+<path d="M784 618L811 647M389 950L479 856L553 783L584 767L627 755L642 748L647 741L640 742L628 748L588 759L551 780L525 805M951 455L949 454L948 430M740 660L775 687M1002 423L983 426L978 429L649 736L647 741L689 709L986 431L1001 429M954 460L974 469L990 470L997 476M970 445L1001 475M502 827L385 948M1001 429L1251 541L1276 546L1384 502L1778 472L1866 477L1920 422M1252 486L1251 517L1244 532M1920 414L1871 463L1857 471L1848 472L1779 467L1377 499L1283 537L1262 539L1142 488L1002 423M1246 -274L1242 -232L1224 -138L1224 -121L1231 -67L1230 -49L1226 -36L1209 -5L1076 205L1002 339L998 355L995 401L1002 423L1001 429M1082 196L1052 180M1036 279L1064 307L1044 312L1029 322L1015 314M1070 163L1092 178M1025 298L1040 301L1055 297M1069 220L1228 -33L1235 -67L1227 -140L1247 -244L1249 -276M867 164L910 171L971 175L993 179L1018 189L1049 214L1133 316L1177 363L1202 383L1218 387L1332 382L1343 381L1356 376L1369 364L1384 345L1426 306L1492 237L1533 168L1528 169L1524 164L1523 172L1512 192L1470 256L1439 285L1360 366L1347 374L1336 377L1267 378L1213 373L1190 366L1181 360L1048 209L1011 180L990 173L969 169L925 169L892 166L871 162M1879 -30L1878 -23L1873 -19L1853 -4L1839 2L1821 6L1749 9L1711 23L1583 84L1569 96L1548 126L1534 153L1528 158L1535 162L1534 167L1567 105L1586 89L1652 56L1742 16L1760 11L1778 11M244 343L202 365L189 375L151 447M1538 142L1564 93M603 208L692 176L733 146L737 137L729 140L701 162L666 182L483 247L431 269L361 295L310 310L274 328M153 448L178 397L197 377L215 365L322 311L394 286M940 162L943 162L943 166L935 166L934 144M998 155L998 157L995 158L998 164L997 167L1004 178M1152 376L1151 370L1160 366L1159 356L1164 349M1093 310L1114 293M1118 246L1089 254M966 199L969 195L969 175M904 156L925 157L925 162L934 162M916 168L913 166L904 164L895 164L892 166M753 383L743 403L726 418M863 545L788 465L566 155L548 136L394 58L262 -62L88 -188L-107 -335M646 267L623 283M407 68L402 74L420 92M390 280L421 324L412 330M647 741L639 724L602 574L421 324M-215 -197L-66 -88L-23 -51L32 33L60 68L84 93L141 144L164 157L206 172L269 174M577 637L594 643L607 641M269 248L232 248L232 173M372 256L289 285L293 185L333 205L377 262M163 230L164 172L169 159M500 431L396 282L351 222L336 205L333 205M232 248L218 248L192 235L178 231L137 232L80 192M306 -129L245 -43M188 33L151 88M248 -42L309 -127M171 58L66 197L66 202L-1 295L-27 337M-21 339L3 298L52 227L69 203L73 201L165 75L173 60L153 89M173 60L191 36M69 203L101 159M99 158L66 202M52 375L84 406L130 471L165 509L510 840L530 865L551 899L562 912L583 927L600 937L629 947L713 965L754 972L782 970L807 965L913 920L936 916L970 915L991 920L1170 1003L1193 1008L1226 1008L1250 1011L1275 1018L1302 1033L1321 1052L1419 1217L1429 1228L1453 1244L1475 1254L1488 1257M55 370L89 401L200 532L399 719L453 765L483 786L542 844L630 911L657 928L684 938L735 949L680 934L647 919L560 855L496 790L438 752M1479 1236L1459 1229L1444 1215L1378 1093L1342 1038L1317 1016L1289 995L1265 986L1237 984L1202 991L1176 987L1066 930L1003 901L973 893L944 894L898 905L831 946L805 956L778 958L735 949M216 548L91 399L61 374M260 583L221 546L196 515L184 493L173 465L165 437L163 422L164 409L168 393L175 377L193 352L208 339L230 326L650 181L680 169L700 158L733 131L779 73L858 -1L979 -122L1154 -235L1230 -270L1256 -286L1268 -298L1280 -326L1281 -349L1279 -362L1242 -438L1235 -457L1229 -483L1231 -507L1236 -525L1242 -540L1258 -562L1284 -585L1375 -654L1397 -666L1463 -692L1483 -703L1507 -726L1527 -752L1547 -767L1565 -775L1628 -790M1626 -794L1565 -779L1545 -770L1521 -751L1494 -716L1479 -704L1471 -698L1383 -662L1285 -590L1263 -571L1251 -558L1235 -534L1228 -506L1226 -480L1235 -447L1270 -376L1276 -359L1278 -338L1276 -326L1265 -301L1256 -291L1236 -276L1156 -241L1141 -233L982 -129L780 67L730 129L704 151L686 163L650 179L245 318L187 341L165 358L154 374L147 388L143 404L141 425L158 500L165 514L180 533L259 604" stroke="#e6e0d3" style="stroke-width:var(--rmc,14px)"/>
+<path d="M784 618L811 647M389 950L479 856L553 783L584 767L627 755L642 748L647 741L640 742L628 748L588 759L551 780L525 805M951 455L949 454L948 430M740 660L775 687M1002 423L983 426L978 429L649 736L647 741L689 709L986 431L1001 429M954 460L974 469L990 470L997 476M970 445L1001 475M502 827L385 948M1001 429L1251 541L1276 546L1384 502L1778 472L1866 477L1920 422M1252 486L1251 517L1244 532M1920 414L1871 463L1857 471L1848 472L1779 467L1377 499L1283 537L1262 539L1142 488L1002 423M1246 -274L1242 -232L1224 -138L1224 -121L1231 -67L1230 -49L1226 -36L1209 -5L1076 205L1002 339L998 355L995 401L1002 423L1001 429M1082 196L1052 180M1036 279L1064 307L1044 312L1029 322L1015 314M1070 163L1092 178M1025 298L1040 301L1055 297M1069 220L1228 -33L1235 -67L1227 -140L1247 -244L1249 -276M867 164L910 171L971 175L993 179L1018 189L1049 214L1133 316L1177 363L1202 383L1218 387L1332 382L1343 381L1356 376L1369 364L1384 345L1426 306L1492 237L1533 168L1528 169L1524 164L1523 172L1512 192L1470 256L1439 285L1360 366L1347 374L1336 377L1267 378L1213 373L1190 366L1181 360L1048 209L1011 180L990 173L969 169L925 169L892 166L871 162M1879 -30L1878 -23L1873 -19L1853 -4L1839 2L1821 6L1749 9L1711 23L1583 84L1569 96L1548 126L1534 153L1528 158L1535 162L1534 167L1567 105L1586 89L1652 56L1742 16L1760 11L1778 11M244 343L202 365L189 375L151 447M1538 142L1564 93M603 208L692 176L733 146L737 137L729 140L701 162L666 182L483 247L431 269L361 295L310 310L274 328M153 448L178 397L197 377L215 365L322 311L394 286M940 162L943 162L943 166L935 166L934 144M998 155L998 157L995 158L998 164L997 167L1004 178M1152 376L1151 370L1160 366L1159 356L1164 349M1093 310L1114 293M1118 246L1089 254M966 199L969 195L969 175M904 156L925 157L925 162L934 162M916 168L913 166L904 164L895 164L892 166M753 383L743 403L726 418M863 545L788 465L566 155L548 136L394 58L262 -62L88 -188L-107 -335M646 267L623 283M407 68L402 74L420 92M390 280L421 324L412 330M647 741L639 724L602 574L421 324M-215 -197L-66 -88L-23 -51L32 33L60 68L84 93L141 144L164 157L206 172L269 174M577 637L594 643L607 641M269 248L232 248L232 173M372 256L289 285L293 185L333 205L377 262M163 230L164 172L169 159M500 431L396 282L351 222L336 205L333 205M232 248L218 248L192 235L178 231L137 232L80 192M306 -129L245 -43M188 33L151 88M248 -42L309 -127M171 58L66 197L66 202L-1 295L-27 337M-21 339L3 298L52 227L69 203L73 201L165 75L173 60L153 89M173 60L191 36M69 203L101 159M99 158L66 202" stroke="#fffdf8" style="stroke-width:var(--rm,11px)"/>
+<path d="M52 375L84 406L130 471L165 509L510 840L530 865L551 899L562 912L583 927L600 937L629 947L713 965L754 972L782 970L807 965L913 920L936 916L970 915L991 920L1170 1003L1193 1008L1226 1008L1250 1011L1275 1018L1302 1033L1321 1052L1419 1217L1429 1228L1453 1244L1475 1254L1488 1257M55 370L89 401L200 532L399 719L453 765L483 786L542 844L630 911L657 928L684 938L735 949L680 934L647 919L560 855L496 790L438 752M1479 1236L1459 1229L1444 1215L1378 1093L1342 1038L1317 1016L1289 995L1265 986L1237 984L1202 991L1176 987L1066 930L1003 901L973 893L944 894L898 905L831 946L805 956L778 958L735 949M216 548L91 399L61 374M260 583L221 546L196 515L184 493L173 465L165 437L163 422L164 409L168 393L175 377L193 352L208 339L230 326L650 181L680 169L700 158L733 131L779 73L858 -1L979 -122L1154 -235L1230 -270L1256 -286L1268 -298L1280 -326L1281 -349L1279 -362L1242 -438L1235 -457L1229 -483L1231 -507L1236 -525L1242 -540L1258 -562L1284 -585L1375 -654L1397 -666L1463 -692L1483 -703L1507 -726L1527 -752L1547 -767L1565 -775L1628 -790M1626 -794L1565 -779L1545 -770L1521 -751L1494 -716L1479 -704L1471 -698L1383 -662L1285 -590L1263 -571L1251 -558L1235 -534L1228 -506L1226 -480L1235 -447L1270 -376L1276 -359L1278 -338L1276 -326L1265 -301L1256 -291L1236 -276L1156 -241L1141 -233L982 -129L780 67L730 129L704 151L686 163L650 179L245 318L187 341L165 358L154 374L147 388L143 404L141 425L158 500L165 514L180 533L259 604" stroke="#f8efd9" style="stroke-width:var(--rm,11px)"/>
+<path d="M701 -897L648 -652L628 -530L619 -507L595 -471L310 -134L284 -75L278 -40L272 45L276 125L283 156L301 180L345 219L380 266L600 575L641 732L652 749L666 757L777 786L1195 803L1237 801L1331 763L1361 766L1830 1028L1915 1072L2049 1116L2238 1190L2288 1226L2302 1230L2558 1218L2581 1224L2626 1245L2877 1225L2891 1219L2912 1200L2946 1163L2966 1134L2977 1115L2983 1093L2985 1055M2983 1055L2982 1093L2976 1115L2965 1134L2929 1181L2890 1218L2876 1224L2626 1244L2582 1223L2558 1217L2300 1227L2287 1223L2238 1189L2049 1115L1916 1071L1831 1027L1656 926L1362 765L1344 761L1321 764L1237 799L1194 802L777 784L666 756L653 748L642 731L601 574L381 265L346 218L301 179L284 155L277 125L273 45L279 -39L285 -75L311 -133L596 -470L621 -506L631 -530L707 -908" stroke="#c98a55" opacity=".75" style="stroke-width:var(--rl6,3.5px)"/>
+<path d="M2249 280L2075 333L2060 340L1913 453L1876 470L1843 473L1777 468L1402 496L1376 501L1274 543L1256 540L1013 430L1002 426L988 427L976 434L649 742L632 769L618 799L597 871L585 893L379 1192M380 1193L587 893L598 872L619 800L633 769L650 743L978 435L989 428L1013 431L1256 542L1268 545L1281 543L1387 500L1777 470L1860 474L1876 471L1914 454L2061 341L2076 334L2240 285L2310 254" stroke="#3aa24a" style="stroke-width:var(--rl,4.5px)"/>
+</g></g>
+<g id="maplabels">
+<circle cx="273" cy="44" r="5" fill="#fff" stroke="#c98a55" stroke-width="2.5"/>
+<circle cx="380" cy="264" r="5" fill="#fff" stroke="#c98a55" stroke-width="2.5"/>
+<circle cx="559" cy="515" r="5" fill="#fff" stroke="#c98a55" stroke-width="2.5"/>
+<circle cx="897" cy="791" r="5" fill="#fff" stroke="#c98a55" stroke-width="2.5"/>
+<circle cx="1137" cy="800" r="5" fill="#fff" stroke="#c98a55" stroke-width="2.5"/>
+<circle cx="1412" cy="793" r="5" fill="#fff" stroke="#c98a55" stroke-width="2.5"/>
+<circle cx="653" cy="737" r="6" fill="#fff" stroke="#3aa24a" stroke-width="3"/>
+<circle cx="912" cy="495" r="6" fill="#fff" stroke="#3aa24a" stroke-width="3"/>
+<circle cx="1268" cy="544" r="6" fill="#fff" stroke="#3aa24a" stroke-width="3"/>
+<circle cx="1504" cy="491" r="6" fill="#fff" stroke="#3aa24a" stroke-width="3"/>
+<text x="665" y="753" font-size="10.5" font-weight="700" fill="#3d7a45" text-anchor="start">합정역</text>
+<text x="898" y="470" font-size="10.5" font-weight="700" fill="#3d7a45" text-anchor="end">홍대입구역</text>
+<text x="1268" y="566" font-size="10.5" font-weight="700" fill="#3d7a45" text-anchor="middle">신촌역</text>
+<text x="1504" y="513" font-size="10.5" font-weight="700" fill="#3d7a45" text-anchor="middle">이대역</text>
+<text x="283" y="48" font-size="10" font-weight="700" fill="#9a6232" text-anchor="start">월드컵경기장역</text>
+<text x="390" y="268" font-size="10" font-weight="700" fill="#9a6232" text-anchor="start">마포구청역</text>
+<text x="549" y="519" font-size="10" font-weight="700" fill="#9a6232" text-anchor="end">망원역</text>
+<text x="897" y="810" font-size="10" font-weight="700" fill="#9a6232" text-anchor="middle">상수역</text>
+<text x="1137" y="819" font-size="10" font-weight="700" fill="#9a6232" text-anchor="middle">광흥창역</text>
+<text x="1412" y="812" font-size="10" font-weight="700" fill="#9a6232" text-anchor="middle">대흥역</text>
+<text x="735.8" y="289.7" font-size="17" fill="#c3b9a6" letter-spacing="2" text-anchor="middle" style="font-family:var(--font-display)">연남동</text>
+<text x="688.2" y="622.7" font-size="17" fill="#c3b9a6" letter-spacing="2" text-anchor="middle" style="font-family:var(--font-display)">서교동</text>
+<text x="952.9" y="66.6" font-size="17" fill="#c3b9a6" letter-spacing="2" text-anchor="middle" style="font-family:var(--font-display)">연희동</text>
+<text x="1191.1" y="416.3" font-size="17" fill="#c3b9a6" letter-spacing="2" text-anchor="middle" style="font-family:var(--font-display)">창천동</text>
+<text x="1000.5" y="382.9" font-size="17" fill="#c3b9a6" letter-spacing="2" text-anchor="middle" style="font-family:var(--font-display)">동교동</text>
+<text x="383.8" y="466.2" font-size="17" fill="#c3b9a6" letter-spacing="2" text-anchor="middle" style="font-family:var(--font-display)">망원동</text>
+<text x="582.3" y="216.5" font-size="17" fill="#c3b9a6" letter-spacing="2" text-anchor="middle" style="font-family:var(--font-display)">성산동</text>
+<text x="1290" y="170" font-size="11" font-weight="700" fill="#8ea27a" letter-spacing="1" text-anchor="middle">연세대학교</text>
+<text x="1585" y="300" font-size="11" font-weight="700" fill="#8ea27a" letter-spacing="1" text-anchor="middle">이화여대</text>
+<text x="1385" y="690" font-size="11" font-weight="700" fill="#8ea27a" letter-spacing="1" text-anchor="middle">서강대</text>
+<text x="218" y="176" font-size="11" font-weight="700" fill="#8ea27a" letter-spacing="1" text-anchor="middle">서울월드컵경기장</text>
+<text x="330" y="800" font-size="11" font-weight="700" fill="#7d9fab" letter-spacing="1" text-anchor="middle">한강</text>
+<text x="800" y="180" font-size="11" font-weight="700" fill="#8ea27a" letter-spacing="1" transform="rotate(56.3 800 180)" dy="-10">경의선숲길</text>
+<text x="560" y="215" font-size="11" font-weight="700" fill="#7d9fab" letter-spacing="1" transform="rotate(-19.7 560 215)" dy="-10">홍제천</text>
+</g>
+</g></defs><symbol id="popcorn" viewBox="0 0 64 64">
+  <image href="mascot.png" width="64" height="64"/>
+</symbol></svg>
+
+<div class="wrap">
+<div class="bar">
+  <nav class="jump" id="jump" aria-label="화면 바로가기"></nav>
+  <div class="themebar" role="group" aria-label="테마 바꾸기">
+    <span>테마</span>
+    <button type="button" data-theme="base" aria-label="기본" title="기본" style="--sw:linear-gradient(135deg,#f7f1e3 50%,#2b2622 50%)"></button>
+    <button type="button" data-theme="wire" aria-label="Wire" title="Wire" style="--sw:linear-gradient(135deg,#f1e6a6 50%,#e4b445 50%)"></button>
+    <button type="button" data-theme="prev" aria-label="Prev" title="Prev" style="--sw:linear-gradient(135deg,#f6ebb8 50%,#e3b23c 50%)"></button>
+    <button type="button" data-theme="coral" aria-label="Coral" title="Coral" style="--sw:linear-gradient(135deg,#fbf1e6 50%,#d9695a 50%)"></button>
+    <span class="tname" id="themeName">기본</span>
+  </div>
+</div>
+<div class="phone" id="phone">
+<div class="status"><span>9:41</span><span class="r">●●● ▲ ▮</span></div>
+<div class="screen" id="app">
+
+  <!-- 1. Main (Welcome) -->
+  <section class="view main" id="v-main">
+    <div class="top"><button class="link hero" data-go="mbti">로그인 없이 시작</button></div>
+    <div class="welcome-head">
+      <svg class="mascot" width="150" height="150" aria-hidden="true"><use href="#popcorn"/></svg>
+      <h1 class="hero">Welcome to<br>씨네픽!</h1>
+      <p class="sub hero">개인 맞춤 영화 추천 서비스</p>
+    </div>
+    <div class="stage">
+      <img src="posters/now/20265062.jpg" alt="룩백 포스터" data-on fetchpriority="high">
+      <img src="posters/now/20246365.jpg" alt="흐르는 여정 포스터" fetchpriority="low">
+      <img src="posters/now/20181200.jpg" alt="아사코 포스터" fetchpriority="low">
+    </div>
+    <button type="button" class="tap-start" data-go="login"><span>화면을 눌러서 시작하기</span></button> <!-- 화면 아래 70% 어디를 눌러도 시작. 글자는 예전 시작하기 버튼 자리 -->
+  </section>
+
+  <!-- 2. Login (닉네임 + PIN 한 화면: 기존 닉네임이면 로그인, 새 닉네임이면 가입) -->
+  <section class="view login" id="v-login">
+    <div class="top"><button class="back" data-back aria-label="뒤로">←</button><span></span></div>
+    <form class="body" id="loginForm" novalidate>
+      <svg class="mascot" width="80" height="80" aria-hidden="true"><use href="#popcorn"/></svg>
+      <h1>씨네픽에 오신 것을<br>환영합니다!</h1>
+      <p class="sub">닉네임과 PIN 4자리면 끝. 처음 쓰는 닉네임이면 바로 가입돼요</p>
+      <div class="field"><label for="nick">닉네임 <small>2~12자</small></label><input id="nick" autocomplete="username" autocapitalize="off" spellcheck="false" maxlength="12" enterkeyhint="next" placeholder="닉네임"><p class="fmsg" id="nickMsg"></p></div>
+      <div class="field" id="pinField" hidden><label for="pin">PIN 4자리 <small>숫자만</small></label><input id="pin" class="pin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="current-password" placeholder="••••"></div>
+      <div class="field" id="pin2Field" hidden><label for="pin2">PIN 확인 <small>가입할 때만</small></label><input id="pin2" class="pin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="new-password" placeholder="••••"></div>
+      <p class="err" id="loginErr" hidden></p>
+      <button class="cta" type="submit" id="loginCta" disabled><span id="loginCtaLabel">다음</span><span class="arr">→</span></button>
+    </form>
+  </section>
+
+  <!-- 3. Survey 인트로 -->
+  <section class="view survey" id="v-survey">
+    <div class="top"><button class="back" data-back aria-label="뒤로">←</button><span></span></div>
+    <div class="body center">
+      <svg class="mascot" width="128" height="128" aria-hidden="true"><use href="#popcorn"/></svg>
+      <h1 class="hero">맞춤 영화 추천을 위해<br>설문을 진행합니다</h1>
+      <div class="intro-arrow" aria-hidden="true"></div>
+      <div class="end"></div>
+    </div>
+    <button class="cta" data-go="mbti"><span>설문 시작하기</span><span class="arr">→</span></button>
+  </section>
+
+  <!-- 4. MBTI -->
+  <section class="view survey" id="v-mbti">
+    <div class="top"><button class="back" data-back aria-label="뒤로">←</button><span class="step">1 / 3</span></div>
+    <div class="body">
+      <svg class="mascot self-c" width="88" height="88" aria-hidden="true"><use href="#popcorn"/></svg>
+      <h2 class="hero center">MBTI를 선택하세요</h2>
+      <div class="axes" id="mbti">
+        <div class="axis" data-axis="0"><button type="button" data-v="I" aria-pressed="false">I</button><button type="button" data-v="E" aria-pressed="false">E</button><div class="knob" aria-hidden="true"></div></div>
+        <div class="axis" data-axis="1"><button type="button" data-v="S" aria-pressed="false">S</button><button type="button" data-v="N" aria-pressed="false">N</button><div class="knob" aria-hidden="true"></div></div>
+        <div class="axis" data-axis="2"><button type="button" data-v="T" aria-pressed="false">T</button><button type="button" data-v="F" aria-pressed="false">F</button><div class="knob" aria-hidden="true"></div></div>
+        <div class="axis" data-axis="3"><button type="button" data-v="J" aria-pressed="false">J</button><button type="button" data-v="P" aria-pressed="false">P</button><div class="knob" aria-hidden="true"></div></div>
+      </div>
+      <div class="mbti-out" id="mbtiOut">_ _ _ _</div>
+      <div class="spacer"></div>
+    </div>
+    <button class="cta" id="mbtiNext" data-go="pref" disabled><span>다음</span><span class="arr">→</span></button>
+  </section>
+
+  <!-- 5. Pref -->
+  <section class="view survey" id="v-pref">
+    <div class="top"><button class="back" data-back aria-label="뒤로">←</button><span class="step">2 / 3</span></div>
+    <div class="body">
+      <svg class="mascot self-c" width="88" height="88" aria-hidden="true"><use href="#popcorn"/></svg>
+      <h2 class="center">재미있게 봤던 영화를 골라주세요</h2>
+      <p class="sub center">2편 이상 골라 주세요 · <span id="prefCount">0</span>편 선택됨</p>
+      <div class="pref-scroll">
+        <div class="posters" id="prefGrid"></div>
+        <button type="button" class="link self-c" id="prefMore">다른 영화 보기</button>
+      </div>
+    </div>
+    <button class="cta" id="prefNext" data-go="price" disabled><span>다음</span><span class="arr">→</span></button>
+  </section>
+
+  <!-- 6. Price -->
+  <section class="view survey" id="v-price">
+    <div class="top"><button class="back" data-back aria-label="뒤로">←</button><span class="step">3 / 3</span></div>
+    <div class="body">
+      <svg class="mascot self-c" width="88" height="88" aria-hidden="true"><use href="#popcorn"/></svg>
+      <h2 class="center">예산을 선택하세요</h2>
+      <p class="sub center">티켓 1인 기준. 독립영화관·조조·할인 포함해서 찾아요</p>
+      <div class="price-card">
+        <div class="row"><span>최대</span><b id="priceOut">10,000원</b></div>
+        <input type="range" id="price" min="5000" max="20000" step="1000" value="10000" aria-label="최대 예산">
+        <div class="row"><span>5,000원</span><span>20,000원</span></div>
+      </div>
+      <div class="spacer"></div>
+    </div>
+    <button class="cta" data-go="reco"><span>추천 받기</span><span class="arr">→</span></button>
+  </section>
+
+  <!-- 7. Reco -->
+  <section class="view reco" id="v-reco">
+    <div class="top"><button class="back" data-back aria-label="뒤로">←</button><h2 id="recoHead">오늘 당신을 위한 영화는</h2><button type="button" class="home-btn" data-go="home" aria-label="홈 화면으로"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9v11h13V9"/><path d="M10 20v-6h4v6"/></svg></button></div>
+    <div class="reco-body">
+      <div class="rt-wrap" id="recoTicket">
+        <div class="rt-ghost" aria-hidden="true"></div><div class="rt-ghost g2" aria-hidden="true"></div>
+        <div class="rt" id="recoCard">
+          <div class="rt-art">
+            <img id="recoImg" src="posters/now/20265062.jpg" alt="">
+            <p class="rt-why" id="recoWhy"></p>
+          </div>
+          <a class="rt-stub" href="#booking" data-go="booking" id="recoSheet" aria-label="누르면 지도와 예약 화면">
+            <div class="rt-main">
+              <div class="rt-adm"><i aria-hidden="true">★</i>ADMIT ONE<i aria-hidden="true">★</i><em id="recoTag">MBTI 추천</em></div>
+              <div class="rt-ttl" id="recoTitle">룩백</div>
+              <div class="rt-box"><div><span>DATE</span><b id="recoDate">10.30 <small>(금)</small></b></div><div class="t"><span>TIME</span><b id="recoTime">11:40</b><em class="rt-early" id="recoEarly" hidden>조조</em></div><div><span>PRICE</span><b id="recoPrice">10,000원</b></div></div>
+              <div class="rt-plc"><b id="recoTheater">상상마당 시네마</b><span id="recoWhen">01관 · 2D</span></div>
+              <div class="rt-bar" aria-hidden="true"></div>
+            </div>
+            <div class="rt-side" aria-hidden="true"><span id="recoNo">No.1030-1140</span></div>
+          </a>
+          <div class="rt-end" id="recoEndCard" hidden>
+            <div class="rt-end-top"><svg class="mascot" aria-hidden="true"><use href="#popcorn"/></svg><h3>즐거운 관람 되세요!</h3><p>마음에 든 표는 왼쪽으로 넘기면<br>다시 볼 수 있어요</p></div>
+            <div class="rt-end-stub"><button class="cta" data-go="home"><span>홈으로 가기</span><span class="arr">→</span></button><button type="button" class="rt-end-again" id="recoAgain"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11a8 8 0 1 1 2.3 5.7M4 4v7h7"/></svg>첫 추천부터 다시 보기</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rt-nav" id="recoNav">
+      <button type="button" class="rt-arr" id="recoPrev" aria-label="이전 추천"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="rt-dots" id="recoDots" aria-hidden="true"></div><span class="sr" id="recoStep" aria-live="polite">추천 1 / 3</span>
+      <button type="button" class="rt-arr" id="recoNext" aria-label="다음 추천"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <canvas class="rt-cf" id="recoCf" aria-hidden="true"></canvas>
+  </section>
+
+  <!-- 8. Home -->
+  <section class="view home" id="v-home">
+    <div class="home-top">
+      <button class="me" data-sheet="mypage" aria-label="마이페이지"><span class="me-av"><svg width="32" height="32" aria-hidden="true"><use href="#popcorn"/></svg></span><span class="me-n" id="homeUser">김치찌 님</span></button>
+      <button class="iconbtn" data-drawer aria-label="메뉴"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+    </div>
+    <div class="scroll">
+      <div class="sec tight">
+        <h1 class="hero">오늘 뭐 볼까요?</h1>
+        <form class="qbox" id="searchForm">
+          <label for="q">오늘 영화 찾기</label>
+          <textarea id="q" rows="2" placeholder="홍대에서 혼자 볼 잔잔한 영화"></textarea>
+          <div class="qbar">
+            <div class="kw" id="suggest">
+              <button type="button" class="sg" data-q="오늘은 혼자 조용히 보고 싶어. 끝나고도 한참 생각나는 좀 쓸쓸한 영화">여운 남는</button>
+              <button type="button" class="sg" data-q="친구랑 가서 아무 생각 없이 깔깔 웃고 나올 수 있는 거">친구랑 웃긴 거</button>
+              <button type="button" class="sg" data-q="좀 기묘하고 이상한 예술영화 좋아함. 꿈 같은 이야기, 보고 나서 이게 뭐였지 하고 곱씹게 되는 거">이상하고 깊은</button>
+              <button type="button" class="sg" data-q="요즘 좀 지쳐서 보고 나면 기분 좋아지는 달달한 연애 얘기 보고 싶다">설레는 로맨스</button>
+              <button type="button" class="sg" data-q="끝까지 긴장감 있고 반전 있는 거. 범인 맞히면서 보는 거 좋아해">손에 땀 쥐는</button>
+              <button type="button" class="sg" data-q="머리 비우고 볼 수 있게 전개 빠르고 시원하게 때려 부수는 액션">시원한 액션</button>
+            </div>
+            <button class="go" type="submit" aria-label="추천 받기"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+        </form>
+      </div>
+
+      <div class="grid2">
+        <button type="button" class="pcard" id="homeReco" data-go="reco" aria-label="오늘 너를 위한 추천. 누르면 추천 화면으로"><img id="homePoster" src="posters/now/20265062.jpg" alt=""><span class="tag">#추천</span><span class="pc-cap"><b id="homeRecoT">룩백</b><span><em id="homeRecoTime">15:20</em> <span id="homeRecoTh">아트하우스 모모</span></span></span></button>
+        <button type="button" class="ccard bcard" data-go="budget" aria-label="예산으로 고르기. 누르면 예산 안에서 볼 수 있는 상영작 목록">
+          <span class="ch"><b>예산으로 고르기</b></span>
+          <span class="bc-big" id="homeBudget">10,000원</span>
+          <span class="bc-sub">이하 상영작 <b id="homeBudgetN">0</b>편</span>
+          <span class="bc-fan" id="homeFan" aria-hidden="true"><img alt=""><img alt=""><img alt=""><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></span>
+        </button>
+      </div>
+
+      <section class="sec">
+        <div class="sh"><h2>근처 영화공간</h2><button type="button" class="more-btn" data-go="map">지도 크게<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="mapcard">
+          <div class="map" id="homeMap" data-go="map">
+            <svg viewBox="0 0 330 170" preserveAspectRatio="xMidYMid slice" role="img" aria-label="홍대 주변 영화공간 지도: 홍익대학교, 홍대입구역 앞 극장 5곳, 상상마당 시네마, 라이카시네마, 필름포럼, 아트하우스 모모, 메가박스 상암">
+              <rect width="330" height="170" fill="#efece4"/>
+              <use href="#mapgeo" transform="translate(-41.7 0.8) scale(0.2)" style="--rm:20.5px;--rmc:25px;--rs:10px;--rl:11.8px;--rl6:9.1px;--rw:9.1px;--rg:18.2px;--hk:5.5px;--hkd:13.6 9.1"/>
+              <circle cx="101.9" cy="162.9" r="3" fill="#fff" stroke="#3aa24a" stroke-width="1.8"/>
+              <circle cx="158.9" cy="109.7" r="3" fill="#fff" stroke="#3aa24a" stroke-width="1.8"/>
+              <circle cx="237.2" cy="120.4" r="3" fill="#fff" stroke="#3aa24a" stroke-width="1.8"/>
+              <circle cx="289.2" cy="108.8" r="3" fill="#fff" stroke="#3aa24a" stroke-width="1.8"/>
+              <g aria-label="홍익대학교"><rect x="144.7" y="149.9" width="72.2" height="19.9" rx="10" fill="#33476e" stroke="#fffdf7" stroke-width="1.5"/><path d="M149.9 158.4l5.7 -3.3 5.7 3.3 -5.7 3.3 z" fill="#fffdf7"/><text x="163.2" y="163.4" font-size="9.5" font-weight="700" fill="#fffdf7">홍익대학교</text></g>
+              <g data-cat="culture"><use href="#pin-mark" transform="translate(134.8,168.3) scale(.72)" style="color:var(--culture)"/></g>
+              <g data-cat="culture"><use href="#pin-mark" transform="translate(247.1,166.6) scale(.72)" style="color:var(--culture)"/></g>
+              <g data-cat="culture"><use href="#pin-mark" transform="translate(159.4,150) scale(.72)" style="color:var(--culture)"/></g>
+              <g data-cat="culture"><use href="#pin-mark" transform="translate(113.8,142.6) scale(.72)" style="color:var(--culture)"/></g>
+              <g data-cat="culture"><use href="#pin-mark" transform="translate(143.6,151.4) scale(.72)" style="color:var(--culture)"/></g>
+              <g data-cat="culture"><use href="#pin-mark" transform="translate(148.3,146.8) scale(.72)" style="color:var(--culture)"/></g>
+              <g data-cat="multi"><use href="#pin-mark" transform="translate(173.2,102.1) scale(.72)" style="color:var(--cat-multi)"/></g>
+              <g data-cat="indie"><use href="#pin-mark" transform="translate(166.5,105.6) scale(.72)" style="color:var(--hot)"/></g>
+              <g data-cat="multi"><use href="#pin-mark" transform="translate(169.7,104.6) scale(.72)" style="color:var(--cat-multi)"/></g>
+              <g data-cat="multi"><use href="#pin-mark" transform="translate(154.9,111.2) scale(.72)" style="color:var(--cat-multi)"/></g>
+              <g data-cat="multi"><use href="#pin-mark" transform="translate(151,113.8) scale(.72)" style="color:var(--cat-multi)"/></g>
+              <g data-cat="indie"><rect x="47.8" y="120.4" width="87" height="17" rx="8.5" fill="#fffdf7"/><text x="91.3" y="132.5" font-size="10" fill="#3a3330" text-anchor="middle">상상마당 시네마</text><use href="#pin-mark" transform="translate(144.8,150.9) scale(.72)" style="color:var(--hot)"/></g>
+              <g data-cat="indie"><rect x="118.4" y="26.6" width="74" height="17" rx="8.5" fill="#fffdf7"/><text x="155.4" y="38.7" font-size="10" fill="#3a3330" text-anchor="middle">라이카시네마</text><use href="#pin-mark" transform="translate(202.4,47.1) scale(.72)" style="color:var(--hot)"/></g>
+              <g data-cat="indie"><rect x="217.6" y="30.2" width="54" height="17" rx="8.5" fill="#fffdf7"/><text x="244.6" y="42.3" font-size="10" fill="#3a3330" text-anchor="middle">필름포럼</text><use href="#pin-mark" transform="translate(281.6,54.7) scale(.72)" style="color:var(--hot)"/></g>
+              <g data-cat="indie"><rect x="223.6" y="69.7" width="87" height="17" rx="8.5" fill="#fffdf7"/><text x="267.1" y="81.8" font-size="10" fill="#3a3330" text-anchor="middle">아트하우스 모모</text><use href="#pin-mark" transform="translate(298.6,66.2) scale(.72)" style="color:var(--hot)"/></g>
+              <g data-cat="multi"><rect x="21.9" y="-1.9" width="77" height="17" rx="8.5" fill="#fffdf7"/><text x="60.4" y="10.2" font-size="10" fill="#3a3330" text-anchor="middle">메가박스 상암</text><use href="#pin-mark" transform="translate(11.9,18.6) scale(.72)" style="color:var(--cat-multi)"/></g>
+              <rect x="49.3" y="87.8" width="95.8" height="17" rx="8.5" fill="#3a3330"/><text x="97.2" y="99.9" font-size="10" font-weight="700" fill="#fffdf7" text-anchor="middle">홍대입구역 앞 5곳</text>
+              </svg>
+            <button type="button" class="map-open" data-go="map">크게 보기 ›</button>
+          </div>
+          <div class="rail cats" id="cats">
+            <button type="button" class="cat" data-cat="multi" aria-pressed="true" style="--c:var(--cat-multi)"><i></i>멀티플렉스</button>
+            <button type="button" class="cat" data-cat="indie" aria-pressed="true" style="--c:var(--hot)"><i></i>독립영화관</button>
+            <button type="button" class="cat" data-cat="culture" aria-pressed="true" style="--c:var(--culture)"><i></i>문화공간</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <div class="sh"><h2>커뮤니티</h2><button type="button" class="more-btn" data-sheet="community">더 보기<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="rail bleed">
+          <button type="button" class="pst" data-sheet="community"><span class="pst-at"><i style="--c:var(--hot)"></i>상상마당 시네마</span><b>상상마당 GV 후기</b><span class="pst-tx">감독님이 엔딩 장면 이야기를 해 주셔서 한 번 더 보고 싶어졌어요</span><span class="pst-by"><i style="background:var(--pink)">p</i><span>popcorn_lover · 2시간 전</span><em>댓글 12</em></span></button>
+          <button type="button" class="pst" data-sheet="community"><span class="pst-at"><i style="--c:var(--hot)"></i>인디스페이스</span><b>인디스페이스 조조 꿀팁</b><span class="pst-tx">평일 첫 회차가 제일 한산해요. 자리는 가운데 뒤쪽 추천</span><span class="pst-by"><i style="background:var(--brown)">김</i><span>김치찌 · 어제</span><em>댓글 5</em></span></button>
+          <button type="button" class="pst" data-sheet="community"><span class="pst-at"><i style="--c:var(--slate)"></i>자유</span><b>이번 주 뭐 봄?</b><span class="pst-tx">혼자 볼 잔잔한 영화 있으면 추천해 주세요</span><span class="pst-by"><i style="background:var(--slate)">c</i><span>cine_kim · 3일 전</span><em>댓글 31</em></span></button>
+        </div>
+      </section>
+
+      <section class="sec">
+        <div class="sh"><h2>나들이</h2><button type="button" class="more-btn" data-sheet="outing">더 보기<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button></div>
+        <div class="rail bleed outs-rail" id="homeOuts" aria-label="나들이 장소"></div>
+      </section>
+    </div>
+  </section>
+
+  <!-- 8-2. Budget: 예산 안 회차가 있는 상영작 전부. 누르면 그 영화 회차 보기 -->
+  <section class="view budget" id="v-budget">
+    <div class="top bd-top"><button class="back" data-back aria-label="뒤로">←</button><h1>예산에 맞는 영화</h1><span></span></div>
+    <div class="bd-head">
+      <div class="bd-card">
+        <div class="bd-row">
+          <svg class="mascot" width="64" height="64" aria-hidden="true"><use href="#popcorn"/></svg>
+          <div class="bd-amt"><span class="lab">최대 예산</span><output id="bdOut" for="bdRange">10,000원</output></div>
+          <div class="bd-cnt"><span class="lab">볼 수 있는 영화</span><b><span id="bdN">0</span>편</b></div>
+        </div>
+        <input type="range" class="range" id="bdRange" min="5000" max="20000" step="1000" value="10000" aria-label="최대 예산">
+        <div class="bd-ends"><span>5,000원</span><span>20,000원</span></div>
+      </div>
+      <input class="bd-q" id="bdQ" type="search" placeholder="제목으로 찾기" aria-label="영화 제목으로 찾기" autocomplete="off">
+    </div>
+    <div class="bd-list"><div class="bd-grid" id="bdGrid"></div></div>
+  </section>
+
+  <!-- 8-3. Map: 지도 크게. SVG 그림 지도(마포구, 서대문구). 핀을 누르면 아래 시트에 위치 정보, 칩으로 종류별 켜고 끄기 -->
+  <section class="view mapfull" id="v-map">
+    <div class="bmap">
+      <svg id="mapSvg" viewBox="748 270 390 600" data-w="1707" data-h="916" preserveAspectRatio="xMidYMid slice" role="group" aria-label="마포구와 서대문구 영화공간 지도. 실제 위치 기준, 끌어서 움직이고 확대할 수 있음. 핀을 누르면 아래에 위치 정보">
+        <use href="#mapbase"/>
+        <g class="fix" data-x="975" data-y="705"><g aria-label="홍익대학교"><rect x="929.4" y="692.4" width="91.2" height="25.2" rx="12.6" fill="#33476e" stroke="#fffdf7" stroke-width="1.5"/><path d="M936 703.2l7.3 -4.2 7.3 4.2 -7.3 4.2 z" fill="#fffdf7"/><text x="952.8" y="709.4" font-size="12" font-weight="700" fill="#fffdf7">홍익대학교</text></g></g>
+        <g data-cat="culture" data-n="씨네마포" data-x="803" data-y="762" role="button" tabindex="0" aria-label="씨네마포"><rect class="lb" x="814.5" y="732.6" width="64" height="22" rx="11"/><text x="846.5" y="747.6" text-anchor="middle">씨네마포</text><use href="#pin-mark" transform="translate(802.5,761.6)" style="color:var(--culture)"/></g>
+        <g data-cat="culture" data-n="포로토커피" data-x="1313" data-y="754" role="button" tabindex="0" aria-label="포로토커피"><rect class="lb" x="1324.9" y="724.9" width="75" height="22" rx="11"/><text x="1362.4" y="740" text-anchor="middle">포로토커피</text><use href="#pin-mark" transform="translate(1312.9,753.9)" style="color:var(--culture)"/></g>
+        <g data-cat="culture" data-n="만월다방 시네마" data-x="914" data-y="678" role="button" tabindex="0" aria-label="만월다방 시네마"><rect class="lb" x="926.2" y="649.3" width="100" height="22" rx="11"/><text x="976.2" y="664.4" text-anchor="middle">만월다방 시네마</text><use href="#pin-mark" transform="translate(914.2,678.3)" style="color:var(--culture)"/></g>
+        <g data-cat="culture" data-n="마이페이보릿" data-x="707" data-y="645" role="button" tabindex="0" aria-label="마이페이보릿"><path class="ld" d="M706.7 627.7 L696.7 627.7" stroke="#8a7f70" stroke-width="1.2" fill="none"/><rect class="lb" x="610.7" y="615.7" width="86" height="22" rx="11"/><text x="653.7" y="630.8" text-anchor="middle">마이페이보릿</text><use href="#pin-mark" transform="translate(706.7,644.7)" style="color:var(--culture)"/></g>
+        <g data-cat="culture" data-n="킬링타임 OTT카페" data-x="843" data-y="685" role="button" tabindex="0" aria-label="킬링타임 OTT카페"><path class="ld" d="M842.5 667.6 L830.5 688.6" stroke="#8a7f70" stroke-width="1.2" fill="none"/><rect class="lb" x="718.5" y="688.6" width="112" height="22" rx="11"/><text x="774.5" y="703.7" text-anchor="middle">킬링타임 OTT카페</text><use href="#pin-mark" transform="translate(842.5,684.6)" style="color:var(--culture)"/></g>
+        <g data-cat="culture" data-n="캣툰 홍대점" data-x="864" data-y="664" role="button" tabindex="0" aria-label="캣툰 홍대점"><path class="ld" d="M863.7 647 L845.7 628" stroke="#8a7f70" stroke-width="1.2" fill="none"/><rect class="lb" x="767.7" y="606" width="78" height="22" rx="11"/><text x="806.7" y="621.1" text-anchor="middle">캣툰 홍대점</text><use href="#pin-mark" transform="translate(863.7,664)" style="color:var(--culture)"/></g>
+        <g data-cat="multi" data-n="CGV 연남" data-x="977" data-y="461" role="button" tabindex="0" aria-label="CGV 연남"><rect class="lb" x="988.7" y="431.5" width="68" height="22" rx="11"/><text x="1022.7" y="446.6" text-anchor="middle">CGV 연남</text><use href="#pin-mark" transform="translate(976.7,460.5)" style="color:var(--cat-multi)"/></g>
+        <g data-cat="indie" data-n="인디스페이스" data-x="947" data-y="477" role="button" tabindex="0" aria-label="인디스페이스"><path class="ld" d="M946.5 459.5 L927.5 438.5" stroke="#8a7f70" stroke-width="1.2" fill="none"/><rect class="lb" x="841.5" y="416.5" width="86" height="22" rx="11"/><text x="884.5" y="431.6" text-anchor="middle">인디스페이스</text><use href="#pin-mark" transform="translate(946.5,476.5)" style="color:var(--hot)"/></g>
+        <g data-cat="multi" data-n="롯데시네마 홍대입구" data-x="961" data-y="472" role="button" tabindex="0" aria-label="롯데시네마 홍대입구"><path class="ld" d="M961.1 454.9 L997.1 465.9" stroke="#8a7f70" stroke-width="1.2" fill="none"/><rect class="lb" x="997.1" y="465.9" width="122" height="22" rx="11"/><text x="1058.1" y="480.9" text-anchor="middle">롯데시네마 홍대입구</text><use href="#pin-mark" transform="translate(961.1,471.9)" style="color:var(--cat-multi)"/></g>
+        <g data-cat="multi" data-n="CGV 홍대" data-x="894" data-y="502" role="button" tabindex="0" aria-label="CGV 홍대"><path class="ld" d="M893.6 484.8 L905.6 487.8" stroke="#8a7f70" stroke-width="1.2" fill="none"/><rect class="lb" x="905.6" y="487.8" width="68" height="22" rx="11"/><text x="939.6" y="502.9" text-anchor="middle">CGV 홍대</text><use href="#pin-mark" transform="translate(893.6,501.8)" style="color:var(--cat-multi)"/></g>
+        <g data-cat="multi" data-n="메가박스 홍대" data-x="876" data-y="514" role="button" tabindex="0" aria-label="메가박스 홍대"><path class="ld" d="M875.9 496.8 L856.9 501.8" stroke="#8a7f70" stroke-width="1.2" fill="none"/><rect class="lb" x="767.9" y="501.8" width="89" height="22" rx="11"/><text x="812.4" y="516.9" text-anchor="middle">메가박스 홍대</text><use href="#pin-mark" transform="translate(875.9,513.8)" style="color:var(--cat-multi)"/></g>
+        <g data-cat="indie" data-n="상상마당 시네마" data-x="848" data-y="683" role="button" tabindex="0" aria-label="상상마당 시네마"><rect class="lb" x="867.8" y="612.6" width="100" height="22" rx="11"/><text x="917.8" y="627.7" text-anchor="middle">상상마당 시네마</text><use href="#pin-mark" transform="translate(847.8,682.6)" style="color:var(--hot)"/></g>
+        <g data-cat="indie" data-n="라이카시네마" data-x="1110" data-y="211" role="button" tabindex="0" aria-label="라이카시네마"><rect class="lb" x="1121.8" y="181.8" width="86" height="22" rx="11"/><text x="1164.8" y="196.9" text-anchor="middle">라이카시네마</text><use href="#pin-mark" transform="translate(1109.8,210.8)" style="color:var(--hot)"/></g>
+        <g data-cat="indie" data-n="필름포럼" data-x="1470" data-y="245" role="button" tabindex="0" aria-label="필름포럼"><path class="ld" d="M1469.6 228.4 L1455.6 228.4" stroke="#8a7f70" stroke-width="1.2" fill="none"/><rect class="lb" x="1391.6" y="216.4" width="64" height="22" rx="11"/><text x="1423.6" y="231.5" text-anchor="middle">필름포럼</text><use href="#pin-mark" transform="translate(1469.6,245.4)" style="color:var(--hot)"/></g>
+        <g data-cat="indie" data-n="아트하우스 모모" data-x="1547" data-y="298" role="button" tabindex="0" aria-label="아트하우스 모모"><rect class="lb" x="1559.1" y="268.7" width="100" height="22" rx="11"/><text x="1609.1" y="283.8" text-anchor="middle">아트하우스 모모</text><use href="#pin-mark" transform="translate(1547.1,297.7)" style="color:var(--hot)"/></g>
+        <g data-cat="multi" data-n="메가박스 상암" data-x="244" data-y="81" role="button" tabindex="0" aria-label="메가박스 상암"><rect class="lb" x="255.5" y="51.9" width="89" height="22" rx="11"/><text x="300" y="67" text-anchor="middle">메가박스 상암</text><use href="#pin-mark" transform="translate(243.5,80.9)" style="color:var(--cat-multi)"/></g>
+        </svg>
+      <span class="map-hint" id="mapHint" aria-hidden="true">끌어서 이동, 휠이나 두 손가락으로 확대</span>
+      <div class="map-zoom" id="mapZoom"><button type="button" data-z="1.6" aria-label="지도 확대">+</button><button type="button" data-z="0.625" aria-label="지도 축소">−</button></div>
+      <button type="button" class="fab" data-back aria-label="뒤로">←</button>
+      <div class="rail cats" id="mapCats">
+        <button type="button" class="cat" data-cat="multi" aria-pressed="true" style="--c:var(--cat-multi)"><i></i>멀티플렉스</button>
+        <button type="button" class="cat" data-cat="indie" aria-pressed="true" style="--c:var(--hot)"><i></i>독립영화관</button>
+        <button type="button" class="cat" data-cat="culture" aria-pressed="true" style="--c:var(--culture)"><i></i>문화공간</button>
+      </div>
+    </div>
+    <div class="bsheet mapsheet">
+      <div class="map-info" id="mapInfo" aria-live="polite"></div>
+      <div class="rail bleed mp-rail" id="mapList" aria-label="영화공간 목록"></div>
+    </div>
+  </section>
+
+  <!-- 9. Booking -->
+  <section class="view booking" id="v-booking">
+    <div class="bmap">
+      <svg id="bkSvg" viewBox="653 410 390 480" preserveAspectRatio="xMidYMid slice" role="img" aria-label="극장 위치 지도">
+        <use href="#mapbase"/>
+        <g aria-label="홍익대학교"><rect x="929.4" y="692.4" width="91.2" height="25.2" rx="12.6" fill="#33476e" stroke="#fffdf7" stroke-width="1.5"/><path d="M936 703.2l7.3 -4.2 7.3 4.2 -7.3 4.2 z" fill="#fffdf7"/><text x="952.8" y="709.4" font-size="12" font-weight="700" fill="#fffdf7">홍익대학교</text></g>
+        <g opacity=".45">
+        <use href="#pin-mark" transform="translate(893.6,501.8)" style="color:var(--cat-multi)"/>
+        <use href="#pin-mark" transform="translate(976.7,460.5)" style="color:var(--cat-multi)"/>
+        <use href="#pin-mark" transform="translate(961.1,471.9)" style="color:var(--cat-multi)"/>
+        <use href="#pin-mark" transform="translate(875.9,513.8)" style="color:var(--cat-multi)"/>
+        <use href="#pin-mark" transform="translate(243.5,80.9)" style="color:var(--cat-multi)"/>
+        <use href="#pin-mark" transform="translate(853.6,568.4)" style="color:var(--brown)"/>
+        <use href="#pin-mark" transform="translate(847.8,682.6)" style="color:var(--hot)"/>
+        <use href="#pin-mark" transform="translate(946.5,476.5)" style="color:var(--hot)"/>
+        <use href="#pin-mark" transform="translate(1109.8,210.8)" style="color:var(--hot)"/>
+        <use href="#pin-mark" transform="translate(1547.1,297.7)" style="color:var(--hot)"/>
+        <use href="#pin-mark" transform="translate(1469.6,245.4)" style="color:var(--hot)"/>
+        </g>
+        <g id="bkSel" transform="translate(847.8,682.6)"><use id="bkPin" href="#pin-mark" transform="scale(1.7)" style="color:var(--hot)"/><rect id="bkMapBg" x="-65" y="-80" width="130" height="28" rx="14" style="fill:var(--ink)"/><text id="bkMapLabel" y="-61" font-size="13" font-weight="700" style="fill:var(--surface)" text-anchor="middle">상상마당 시네마</text></g>
+        </svg>
+      <div class="map-zoom" id="bkZoom"><button type="button" data-z="1.6" aria-label="지도 확대">+</button><button type="button" data-z="0.625" aria-label="지도 축소">−</button></div>
+      <button type="button" class="fab" data-back aria-label="뒤로">←</button>
+      <button type="button" class="fab fab-home" data-go="home" aria-label="홈 화면으로"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9v11h13V9"/><path d="M10 20v-6h4v6"/></svg></button>
+    </div>
+    <div class="bsheet">
+      <span class="handle" aria-hidden="true"></span>
+      <div class="bhead">
+        <div><h1 id="bkTheater">상상마당 시네마</h1><div class="bk-tags"><span id="bkKind" data-type="indie">독립예술영화관</span><span id="bkArea">홍대</span></div></div>
+        <button type="button" class="outline" data-go="showtimes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>다른 회차 보기</button>
+      </div>
+      <div class="bk-stub-wrap">
+        <div class="bk-stub" id="bkStub">
+          <div class="rt-main">
+            <div class="rt-adm"><i aria-hidden="true">★</i>ADMIT ONE<i aria-hidden="true">★</i><em id="bkTag">MBTI 추천</em></div>
+            <div class="rt-ttl" id="bkTitle">룩백</div>
+            <div class="rt-box"><div><span>DATE</span><b id="bkDate">10.30 <small>(금)</small></b></div><div class="t"><span>TIME</span><b id="bkTime">11:40</b><em class="rt-early" id="bkEarly" hidden>조조</em></div><div><span>PRICE</span><b id="bkPrice">10,000원</b></div></div>
+            <div class="rt-plc"><b id="bkTh2">상상마당 시네마</b><span id="bkWhen">01관 · 2D</span></div>
+            <div class="rt-bar" aria-hidden="true"></div>
+          </div>
+          <div class="rt-side" aria-hidden="true"><span id="bkNo">No.1030-1140</span></div>
+        </div>
+      </div>
+      <a class="cta static" id="bkGo" href="https://www.sangsangmadang.com" target="_blank" rel="noopener"><span>예약 바로가기</span><span class="arr">→</span></a>
+      <span class="caption" id="bkCaption">상상마당 시네마 페이지로 이동해요</span>
+    </div>
+  </section>
+
+  <!-- 10. Showtimes -->
+  <section class="view showtimes" id="v-showtimes">
+    <div class="top"><button class="back" data-back aria-label="뒤로">←</button><button type="button" class="home-btn" data-go="home" aria-label="홈 화면으로"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9v11h13V9"/><path d="M10 20v-6h4v6"/></svg></button></div>
+    <div class="st-head">
+      <div><span class="st-q">언제 볼까요?</span><h1 id="stMovie">룩백</h1><span class="st-sub">예산 <span id="stBudget">10,000원</span> 이하 <button type="button" class="inline-link" data-sheet="budget">바꾸기</button></span></div>
+      <img class="st-thumb" id="stThumb" src="posters/now/20265062.jpg" alt="">
+    </div>
+    <div class="dates-wrap"><div class="rail dates" id="dates"></div></div>
+    <div class="st-list" id="shows"></div>
+    <div class="st-bar">
+      <div class="st-sel"><b id="selLine1">회차를 골라 주세요</b><span id="selLine2">시간을 누르면 여기에 표시돼요</span></div>
+      <button type="button" class="pill-cta" data-go="booking">보러가기</button>
+    </div>
+  </section>
+
+  <div id="overlay"></div>
+</div>
+<div class="home-ind"></div>
+<div class="qr" aria-label="청중용 링크 QR"><span class="qr-say">폰으로 찍어 봐요!</span><svg class="qr-mascot" width="128" height="128" aria-hidden="true"><use href="#popcorn"/></svg><svg class="qr-hand l" width="128" height="128" aria-hidden="true"><use href="#popcorn"/></svg><svg class="qr-hand r" width="128" height="128" aria-hidden="true"><use href="#popcorn"/></svg><div class="qr-card"><span class="qr-admit">ADMIT ONE</span><span class="qr-title">TICKET</span><svg viewBox="0 0 37 37" shape-rendering="crispEdges" role="img" aria-label="청중용 링크 QR"><path d="M0 0h7v1h-7zM8 0h2v1h-2zM11 0h1v1h-1zM17 0h3v1h-3zM21 0h1v1h-1zM25 0h1v1h-1zM30 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h1v1h-1zM12 1h2v1h-2zM15 1h1v1h-1zM17 1h2v1h-2zM20 1h2v1h-2zM25 1h2v1h-2zM28 1h1v1h-1zM30 1h1v1h-1zM36 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h1v1h-1zM12 2h5v1h-5zM18 2h1v1h-1zM20 2h2v1h-2zM23 2h5v1h-5zM30 2h1v1h-1zM32 2h3v1h-3zM36 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM9 3h2v1h-2zM15 3h1v1h-1zM17 3h5v1h-5zM23 3h3v1h-3zM28 3h1v1h-1zM30 3h1v1h-1zM32 3h3v1h-3zM36 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h1v1h-1zM13 4h5v1h-5zM19 4h1v1h-1zM21 4h2v1h-2zM26 4h1v1h-1zM28 4h1v1h-1zM30 4h1v1h-1zM32 4h3v1h-3zM36 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM12 5h1v1h-1zM15 5h4v1h-4zM20 5h4v1h-4zM25 5h1v1h-1zM28 5h1v1h-1zM30 5h1v1h-1zM36 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h1v1h-1zM28 6h1v1h-1zM30 6h7v1h-7zM10 7h2v1h-2zM14 7h1v1h-1zM20 7h1v1h-1zM22 7h1v1h-1zM24 7h5v1h-5zM0 8h1v1h-1zM3 8h8v1h-8zM13 8h1v1h-1zM15 8h2v1h-2zM18 8h5v1h-5zM24 8h1v1h-1zM26 8h1v1h-1zM28 8h2v1h-2zM32 8h1v1h-1zM34 8h3v1h-3zM0 9h1v1h-1zM2 9h3v1h-3zM7 9h2v1h-2zM10 9h2v1h-2zM14 9h1v1h-1zM20 9h1v1h-1zM22 9h2v1h-2zM25 9h1v1h-1zM27 9h1v1h-1zM31 9h5v1h-5zM0 10h1v1h-1zM3 10h5v1h-5zM9 10h2v1h-2zM12 10h3v1h-3zM17 10h1v1h-1zM21 10h4v1h-4zM26 10h2v1h-2zM29 10h2v1h-2zM36 10h1v1h-1zM0 11h3v1h-3zM7 11h3v1h-3zM12 11h1v1h-1zM15 11h1v1h-1zM17 11h1v1h-1zM22 11h1v1h-1zM26 11h2v1h-2zM31 11h6v1h-6zM0 12h1v1h-1zM2 12h2v1h-2zM6 12h4v1h-4zM11 12h4v1h-4zM19 12h1v1h-1zM22 12h1v1h-1zM24 12h1v1h-1zM26 12h3v1h-3zM30 12h2v1h-2zM34 12h1v1h-1zM36 12h1v1h-1zM3 13h1v1h-1zM7 13h1v1h-1zM9 13h2v1h-2zM15 13h3v1h-3zM23 13h1v1h-1zM25 13h3v1h-3zM32 13h2v1h-2zM36 13h1v1h-1zM0 14h1v1h-1zM3 14h5v1h-5zM9 14h1v1h-1zM15 14h3v1h-3zM19 14h1v1h-1zM21 14h2v1h-2zM24 14h1v1h-1zM27 14h1v1h-1zM29 14h1v1h-1zM32 14h5v1h-5zM1 15h3v1h-3zM8 15h2v1h-2zM12 15h1v1h-1zM15 15h6v1h-6zM22 15h2v1h-2zM29 15h1v1h-1zM31 15h1v1h-1zM33 15h4v1h-4zM1 16h1v1h-1zM3 16h1v1h-1zM6 16h1v1h-1zM8 16h1v1h-1zM10 16h1v1h-1zM12 16h2v1h-2zM16 16h2v1h-2zM20 16h2v1h-2zM23 16h3v1h-3zM27 16h2v1h-2zM30 16h1v1h-1zM34 16h1v1h-1zM1 17h2v1h-2zM4 17h2v1h-2zM7 17h1v1h-1zM10 17h1v1h-1zM12 17h3v1h-3zM16 17h1v1h-1zM18 17h1v1h-1zM20 17h3v1h-3zM25 17h1v1h-1zM27 17h1v1h-1zM30 17h2v1h-2zM34 17h1v1h-1zM2 18h3v1h-3zM6 18h1v1h-1zM9 18h4v1h-4zM15 18h1v1h-1zM18 18h1v1h-1zM20 18h1v1h-1zM23 18h1v1h-1zM27 18h1v1h-1zM33 18h2v1h-2zM36 18h1v1h-1zM0 19h2v1h-2zM4 19h1v1h-1zM7 19h2v1h-2zM10 19h1v1h-1zM18 19h1v1h-1zM22 19h1v1h-1zM24 19h2v1h-2zM30 19h4v1h-4zM36 19h1v1h-1zM0 20h1v1h-1zM2 20h1v1h-1zM4 20h1v1h-1zM6 20h1v1h-1zM8 20h2v1h-2zM12 20h2v1h-2zM15 20h1v1h-1zM20 20h2v1h-2zM23 20h2v1h-2zM26 20h1v1h-1zM28 20h5v1h-5zM34 20h1v1h-1zM0 21h3v1h-3zM7 21h2v1h-2zM13 21h1v1h-1zM15 21h1v1h-1zM19 21h5v1h-5zM26 21h2v1h-2zM32 21h1v1h-1zM34 21h1v1h-1zM36 21h1v1h-1zM2 22h1v1h-1zM4 22h1v1h-1zM6 22h4v1h-4zM11 22h2v1h-2zM14 22h5v1h-5zM20 22h1v1h-1zM22 22h2v1h-2zM26 22h2v1h-2zM31 22h1v1h-1zM33 22h1v1h-1zM36 22h1v1h-1zM4 23h2v1h-2zM7 23h5v1h-5zM13 23h1v1h-1zM17 23h1v1h-1zM19 23h1v1h-1zM21 23h4v1h-4zM26 23h1v1h-1zM31 23h4v1h-4zM2 24h10v1h-10zM13 24h1v1h-1zM15 24h4v1h-4zM21 24h1v1h-1zM24 24h1v1h-1zM27 24h2v1h-2zM30 24h2v1h-2zM35 24h1v1h-1zM0 25h3v1h-3zM9 25h2v1h-2zM13 25h2v1h-2zM16 25h1v1h-1zM19 25h2v1h-2zM23 25h1v1h-1zM25 25h5v1h-5zM31 25h3v1h-3zM0 26h2v1h-2zM3 26h4v1h-4zM8 26h3v1h-3zM13 26h2v1h-2zM16 26h2v1h-2zM19 26h4v1h-4zM24 26h2v1h-2zM27 26h2v1h-2zM30 26h1v1h-1zM32 26h1v1h-1zM34 26h3v1h-3zM0 27h1v1h-1zM3 27h1v1h-1zM7 27h1v1h-1zM9 27h2v1h-2zM12 27h1v1h-1zM15 27h1v1h-1zM20 27h1v1h-1zM27 27h1v1h-1zM29 27h2v1h-2zM32 27h1v1h-1zM34 27h1v1h-1zM36 27h1v1h-1zM0 28h1v1h-1zM3 28h4v1h-4zM8 28h2v1h-2zM11 28h1v1h-1zM14 28h1v1h-1zM17 28h1v1h-1zM24 28h2v1h-2zM28 28h5v1h-5zM34 28h1v1h-1zM36 28h1v1h-1zM8 29h1v1h-1zM10 29h2v1h-2zM13 29h1v1h-1zM19 29h2v1h-2zM25 29h2v1h-2zM28 29h1v1h-1zM32 29h1v1h-1zM34 29h2v1h-2zM0 30h7v1h-7zM8 30h2v1h-2zM11 30h1v1h-1zM13 30h4v1h-4zM19 30h7v1h-7zM28 30h1v1h-1zM30 30h1v1h-1zM32 30h1v1h-1zM36 30h1v1h-1zM0 31h1v1h-1zM6 31h1v1h-1zM8 31h1v1h-1zM10 31h3v1h-3zM17 31h2v1h-2zM20 31h1v1h-1zM22 31h1v1h-1zM25 31h4v1h-4zM32 31h1v1h-1zM36 31h1v1h-1zM0 32h1v1h-1zM2 32h3v1h-3zM6 32h1v1h-1zM8 32h2v1h-2zM13 32h1v1h-1zM19 32h1v1h-1zM21 32h2v1h-2zM24 32h9v1h-9zM36 32h1v1h-1zM0 33h1v1h-1zM2 33h3v1h-3zM6 33h1v1h-1zM8 33h4v1h-4zM16 33h3v1h-3zM23 33h1v1h-1zM27 33h4v1h-4zM33 33h2v1h-2zM36 33h1v1h-1zM0 34h1v1h-1zM2 34h3v1h-3zM6 34h1v1h-1zM11 34h1v1h-1zM14 34h7v1h-7zM23 34h1v1h-1zM25 34h2v1h-2zM32 34h1v1h-1zM36 34h1v1h-1zM0 35h1v1h-1zM6 35h1v1h-1zM10 35h1v1h-1zM16 35h2v1h-2zM19 35h2v1h-2zM22 35h1v1h-1zM30 35h1v1h-1zM32 35h5v1h-5zM0 36h7v1h-7zM8 36h2v1h-2zM12 36h2v1h-2zM15 36h1v1h-1zM22 36h1v1h-1zM28 36h1v1h-1zM30 36h2v1h-2zM33 36h1v1h-1zM36 36h1v1h-1z"/></svg><span class="qr-cut" aria-hidden="true"></span><b>내 폰으로 열어 보기</b><span class="qr-sub">카메라로 찍으면 바로 열려요</span><span class="qr-no">No. 0261105</span></div></div> <!-- 발표용 목업에서만 보임(style.css). 주소 끝의 #no_universal_links는 claude.ai의 애플 앱 링크 규칙에서 제외 항목이라 아이폰 카메라로 찍어도 Claude 앱 대신 사파리로 열림(2026-10-30) -->
+</div>
+</div>
+
+<script src="data/data.js"></script>
+<script src="data/schedule.js"></script>
+<script src="data/tags.js"></script>
+<script src="reco.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

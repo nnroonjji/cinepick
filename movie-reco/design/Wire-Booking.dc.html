@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>예약 바로가기</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&amp;family=Nunito:wght@800&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#3a3330}a:hover{color:#000}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #f1e6a6; color: #3a3330; font-family: 'Noto Sans KR', system-ui, sans-serif; font-size: 14px; display: flex; flex-direction: column">
+
+<div style="position: relative; flex: 1; min-height: 200px; background: #efece4">
+<svg viewBox="0 0 390 480" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" role="img" aria-label="상상마당 시네마 위치 지도">
+<rect x="0" y="0" width="390" height="480" fill="#efece4"></rect>
+<rect x="22" y="268" width="92" height="74" rx="8" fill="#dbe7d3"></rect>
+<rect x="166" y="150" width="84" height="56" rx="6" fill="#e4e0d6"></rect>
+<rect x="296" y="250" width="70" height="80" rx="6" fill="#e4e0d6"></rect>
+<rect x="166" y="276" width="72" height="50" rx="6" fill="#e4e0d6"></rect>
+<rect x="20" y="40" width="80" height="60" rx="6" fill="#e4e0d6"></rect>
+<path d="M0 140 L390 110 M0 390 L390 362 M120 0 L150 480 M280 0 L262 480" stroke="#ffffff" stroke-width="16" fill="none"></path>
+<path d="M0 250 L390 230 M200 0 L205 480 M60 0 L70 480 M345 0 L335 480" stroke="#f8f6f1" stroke-width="6" fill="none"></path>
+<g opacity=".5">
+<g transform="translate(96,318)"><path d="M0 0C-4-6-10-11-10-17A10 10 0 1 1 10-17C10-11 4-6 0 0Z" fill="#d9546d" stroke="#fffdf7" stroke-width="1.5"></path><circle cx="0" cy="-17" r="3.6" fill="#fffdf7"></circle></g>
+<g transform="translate(318,400)"><path d="M0 0C-4-6-10-11-10-17A10 10 0 1 1 10-17C10-11 4-6 0 0Z" fill="#d9546d" stroke="#fffdf7" stroke-width="1.5"></path><circle cx="0" cy="-17" r="3.6" fill="#fffdf7"></circle></g>
+</g>
+<g transform="translate(271,208) scale(1.7)"><path d="M0 0C-4-6-10-11-10-17A10 10 0 1 1 10-17C10-11 4-6 0 0Z" fill="#d9546d" stroke="#fffdf7" stroke-width="1.2"></path><circle cx="0" cy="-17" r="3.8" fill="#fffdf7"></circle></g>
+<rect x="206" y="128" width="130" height="28" rx="14" fill="#2b2622"></rect>
+<text x="271" y="147" font-size="13" font-weight="700" fill="#fffdf7" text-anchor="middle" font-family="Noto Sans KR, sans-serif">상상마당 시네마</text>
+</svg>
+<a href="Wire-Reco.dc.html" aria-label="뒤로" style="position: absolute; top: 14px; left: 16px; width: 44px; height: 44px; border-radius: 50%; background: #fffdf7; display: grid; place-items: center; box-shadow: 0 4px 12px rgba(60,40,10,.18)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3a3330" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
+</div>
+
+<div style="position: relative; z-index: 1; margin-top: -24px; flex-shrink: 0; background: #fffdf7; border-radius: 26px 26px 0 0; padding: 10px 20px 36px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 -8px 24px rgba(60,40,10,.14)">
+<span aria-hidden="true" style="align-self: center; width: 40px; height: 4px; border-radius: 2px; background: #e2d8c2"></span>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+<h1 style="margin: 0; font-family: 'Jua', 'Noto Sans KR', sans-serif; font-weight: 400; font-size: 26px; line-height: 1.2">상상마당 시네마</h1>
+<span style="font-size: 12px; color: #5f574b">독립영화관 · 홍대</span>
+</div>
+<a href="Wire-Showtimes.dc.html" style="flex-shrink: 0; min-height: 44px; display: flex; align-items: center; gap: 6px; padding: 0 14px; border-radius: 999px; border: 1.5px solid #e2d8c2; font-size: 13px; font-weight: 700; color: #3a3330; text-decoration: none; box-sizing: border-box"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3a3330" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg>다른 회차 보기</a>
+</div>
+<div style="border: 2px dashed #f1afb0; border-radius: 16px; padding: 12px 14px; display: flex; align-items: center; gap: 12px">
+<img src="../posters/final-interview.jpg" alt="" style="width: 44px; height: 62px; border-radius: 6px; object-fit: cover; flex-shrink: 0">
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<b style="font-size: 15px">최종면접</b>
+<span style="font-size: 12px; color: #5f574b">11.02 (월) · 2관 · 1명</span>
+<span style="font-family: 'Jua', 'Noto Sans KR', sans-serif; font-size: 22px; line-height: 1.1; font-variant-numeric: tabular-nums">13:35</span>
+</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px; flex-shrink: 0">
+<span style="font-size: 11px; color: #5f574b">티켓</span>
+<span style="font-family: 'Jua', 'Noto Sans KR', sans-serif; font-size: 24px; line-height: 1.1; color: #b23e54; font-variant-numeric: tabular-nums">10,000원</span>
+</div>
+</div>
+<button type="button" style="position: relative; display: flex; align-items: center; justify-content: center; border: 0; border-radius: 999px; padding: 18px 24px; background: #f1e6a6; color: #3a3330; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer; box-shadow: 0 6px 14px rgba(140,105,20,.28); border: 2px solid #fffdf7"><span>예약 바로가기</span><span style="position: absolute; right: 22px; font-size: 18px">→</span></button>
+<span style="font-size: 12px; color: #5f574b; text-align: center; margin-top: -6px">상상마당 시네마 예매 페이지로 이동해요</span>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

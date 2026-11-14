@@ -599,7 +599,7 @@
   if(!isMock) resume(); // 목업(발표용)은 늘 로그인 전부터
 })();
 
-// ── 포스터 대체: posters/now/영화코드.jpg가 없으면 POSTER_FB(TMDB) 주소로 ──
+// ── 포스터 대체: 포스터 주소가 안 열리면 POSTER_FB(KOBIS 썸네일) 주소로 ──
 function posterFallback(i){const f=POSTER_FB[i.getAttribute('src')]; if(f&&i.src!==f) i.src=f;}
 document.addEventListener('error',e=>{if(e.target.tagName==='IMG') posterFallback(e.target);},true);
 document.querySelectorAll('img').forEach(i=>{if(i.complete&&!i.naturalWidth) posterFallback(i);});

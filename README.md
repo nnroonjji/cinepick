@@ -128,7 +128,7 @@ Supabase Edge Function 하나를 만듦 (이름 예: `text-pick`)
 - 부르는 주소는 `SUPABASE_URL + '/functions/v1/함수이름'`, 머리에 `apikey: SUPABASE_KEY`. `app.js`의 `rpc()`가 같은 방식으로 Supabase를 부르고 있으니 참고
 - `SUPABASE_URL`이 없을 때(`config.js` 없이 파일을 더블클릭해서 열 때)는 LLM을 부르지 않고 지금 방식 그대로
 
-Edge Function이 publishable 키만으로 불리는지, JWT 확인 설정을 꺼야 하는지는 확인해 보지 않았음. 401이 나오면 함수의 JWT 확인 설정부터 볼 것
+Supabase 문서(API keys, Edge Functions auth)에 따르면 함수의 JWT 확인(`verify_jwt`, 기본으로 켜짐)은 `apikey` 머리에 실린 publishable 키를 받아 줌. 그래서 설정을 끄지 않고 위 방식 그대로 부르면 됨. 실제로 올려서 불러 본 것은 아니니 401이 나오면 이 부분부터 볼 것. 이 확인은 누가 부르는지를 가려 주지 않으므로(키가 공개라 누구나 부를 수 있음) 글 길이와 후보 수 제한은 함수 안에서 꼭 할 것
 
 **3. 확인**
 

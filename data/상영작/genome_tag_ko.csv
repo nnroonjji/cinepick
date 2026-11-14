@@ -87,7 +87,7 @@ basketball,basketball,농구,,농구
 batman,batman,배트맨,,배트맨
 bdsm,bdsm,BDSM,,BDSM
 beatles,beatles,비틀즈,,비틀즈
-beautiful scenery,beautiful scenery,,애매,
+beautiful scenery,beautiful scenery,,평가,
 beautifully filmed,beautifully filmed,,평가,
 beauty pageant,beauty pageant,미인대회,,미인대회
 beer,beer,맥주,,맥주
@@ -157,15 +157,15 @@ china,china,,,
 chocolate,chocolate,초콜릿,,초콜릿
 chris tucker,chris tucker,크리스 터커,,크리스 터커
 cia,cia,CIA,,CIA
-cinematography,cinematography|great cinematography,,애매,
+cinematography,cinematography|great cinematography,,평가,
 circus,circus,서커스,,서커스
 civil war,civil war,내전,,내전
-classic,classic,,애매,
+classic,classic,,평가,
 classic car,classic car,클래식카,,클래식카
 classical music,classical music,클래식 음악|클래식,,클래식 음악
 claustrophobic,claustrophobic,밀실|폐쇄,,밀실
 claymation,claymation,클레이 애니메이션,,클레이 애니메이션
-clever,clever,,애매,
+clever,clever,,평가,
 clones,clones|cloning,클론|복제인간|복제,,클론
 clowns,clowns,광대|피에로,,광대
 coen bros,coen bros|coen brothers,코엔 형제,,코엔 형제
@@ -188,7 +188,7 @@ confrontational,confrontational,대립|대결,,대립
 confusing,confusing,,,난해함
 conspiracy,conspiracy,음모,,음모
 conspiracy theory,conspiracy theory,음모론,,음모론
-controversial,controversial,,애매,
+controversial,controversial,,평가,
 cooking,cooking,,,요리
 cool,cool,,평가,
 corporate america,corporate america,대기업,,대기업
@@ -221,7 +221,7 @@ depp & burton,depp & burton,팀 버튼|조니 뎁,,팀 버튼
 desert,desert,사막,,사막
 destiny,destiny,운명,,운명
 devil,devil,,,악마
-dialogue,dialogue,,애매,
+dialogue,dialogue,,평가,
 dinosaurs,dinosaurs,공룡,,공룡
 directorial debut,directorial debut,데뷔작,,데뷔작
 disability,disability,장애|장애인,,장애
@@ -242,7 +242,7 @@ dreams,dreams,꿈,,꿈
 dreamworks,dreamworks,,,
 drinking,drinking,술|음주,,술
 drugs,drugs|addiction|drug abuse|drug addiction,중독|마약|약물|마약 중독,,마약
-dumb but funny,dumb but funny,,애매,
+dumb but funny,dumb but funny,,평가,
 dynamic cgi action,dynamic cgi action,,평가,
 dysfunctional family,dysfunctional family,가족 갈등|불화|콩가루,,가족 갈등
 earnest,earnest,진지하다,,진지함
@@ -304,7 +304,7 @@ free to download,free to download,,,
 freedom,freedom,자유,,자유
 friendship,friendship|unlikely friendships,우정|친구|뜻밖의 우정,,우정
 fun movie,fun movie|fun,재미있다,,유쾌함
-funniest movies,funniest movies,,애매,
+funniest movies,funniest movies,,평가,
 funny,funny|funny as hell|hilarious|hillarious|very funny,웃기다|코믹|폭소,,웃긴 영화
 futuristic,futuristic|dystopia|dystopic future|future,디스토피아,,미래
 gambling,gambling,도박,,도박
@@ -368,7 +368,7 @@ heist,heist|bank robbery|robbery,하이스트|강도|털다|도둑|은행 강도
 heroin,heroin,헤로인,,헤로인
 heroine,heroine,여주인공|히로인,,여주인공
 heroine in tight suit,heroine in tight suit,,,액션 여주인공
-highly quotable,highly quotable|quotable,,애매,
+highly quotable,highly quotable|quotable,,평가,
 hip hop,hip hop,힙합,,힙합
 historical,historical|history|us history,역사|사극|미국 역사|시대극,,역사
 hitchcock,hitchcock,히치콕,,히치콕
@@ -452,7 +452,7 @@ liv tyler,liv tyler,리브 타일러,,리브 타일러
 london,london,런던,,런던
 lone hero,lone hero,외로운 영웅|홀로,,외로운 영웅
 loneliness,loneliness,외로움|고독|외롭다,,외로움
-long,long,,애매,
+long,long,,평가,
 los angeles,los angeles,로스앤젤레스|LA,,로스앤젤레스
 love triangles,love triangles,삼각관계,,삼각관계
 low budget,low budget,저예산,,저예산
@@ -529,7 +529,7 @@ non-hollywood ending,non-hollywood ending,열린 결말|비극적 결말,,열린
 nonlinear,nonlinear|non-linear,비선형,,비선형
 nostalgic,nostalgic|nostalgia,향수|추억|그리움|그립다,,향수
 not as good as the first,not as good as the first,,평가,
-not funny,not funny,,애매,
+not funny,not funny,,평가,
 notable nudity,notable nudity,,등급,
 notable soundtrack,notable soundtrack,,평가,
 nuclear bomb,nuclear bomb,핵폭탄|원자폭탄,,핵폭탄
@@ -548,7 +548,7 @@ office,office,사무실,,사무실
 oil,oil,석유,,석유
 olympics,olympics,올림픽,,올림픽
 opera,opera,오페라,,오페라
-original,original,,애매,
+original,original,,평가,
 original plot,original plot,,평가,
 orphans,orphans,고아,,고아
 oscar,oscar|oscar winner,아카데미상|오스카,,아카데미상
@@ -579,11 +579,11 @@ pg,pg,,등급,
 pg-13,pg-13,,등급,
 philip k. dick,philip k. dick,필립 K. 딕,,필립 K. 딕
 photographer,photographer,사진작가|사진가,,사진작가
-photography,photography,,애매,
+photography,photography,,평가,
 pigs,pigs,돼지,,돼지
 pirates,pirates,,,해적
 pixar animation,pixar animation|pixar,픽사,,픽사
-plot,plot,,애매,
+plot,plot,,평가,
 plot holes,plot holes,,평가,
 poetry,poetry,시인|시집,,시
 poignant,poignant,애틋하다,,애틋함
@@ -598,8 +598,8 @@ pornography,pornography,포르노,,포르노
 post-apocalyptic,post-apocalyptic|post apocalyptic,포스트 아포칼립스|종말 이후,,포스트 아포칼립스
 potential oscar nom,potential oscar nom,,,
 poverty,poverty,가난|빈곤,,가난
-powerful ending,powerful ending,,애매,
-predictable,predictable,,애매,
+powerful ending,powerful ending,,평가,
+predictable,predictable,,평가,
 pregnancy,pregnancy,임신,,임신
 prejudice,prejudice,차별,,편견
 prequel,prequel,프리퀄,,프리퀄
@@ -666,7 +666,7 @@ science,science,과학,,과학
 scifi cult,scifi cult,,,
 scotland,scotland,스코틀랜드,,스코틀랜드
 screwball,screwball|screwball comedy,스크루볼 코미디,,스크루볼 코미디
-script,script,,애매,
+script,script,,평가,
 secrets,secrets,비밀,,비밀
 segregation,segregation,인종 분리,,인종 분리
 self discovery,self discovery,자아 찾기|자아,,자아 찾기
@@ -684,7 +684,7 @@ shopping,shopping,쇼핑,,쇼핑
 short,short,단편,,단편
 silent,silent,무성영화,,무성영화
 silly fun,silly fun|silly,우스꽝스럽다|유치하다,,엉뚱한 재미
-simple,simple,,애매,
+simple,simple,,평가,
 single father,single father,홀아버지|싱글대디,,홀아버지
 sisters,sisters,자매,,자매
 skinhead,skinhead,스킨헤드,,스킨헤드
@@ -695,8 +695,8 @@ slavery,slavery,노예|노예제,,노예
 slow paced,slow paced|slow,느리다,,느린 전개
 small town,small town,작은 마을|시골|마을,,작은 마을
 snakes,snakes,뱀,,뱀
-so bad it's funny,so bad it's funny,,애매,
-so bad it's good,so bad it's good,,애매,
+so bad it's funny,so bad it's funny,,평가,
+so bad it's good,so bad it's good,,평가,
 social commentary,social commentary,사회 비판|사회 고발|사회 문제,,사회 비판
 solitude,solitude,,,고독
 sophia coppola,sophia coppola,소피아 코폴라,,소피아 코폴라
@@ -723,8 +723,8 @@ steampunk,steampunk,스팀펑크,,스팀펑크
 stereotypes,stereotypes,고정관념|편견,,고정관념
 stoner movie,stoner movie,대마초,,대마초 코미디
 stop motion,stop motion|stop-motion,스톱모션,,스톱모션
-story,story,,애매,
-storytelling,storytelling,,애매,
+story,story,,평가,
+storytelling,storytelling,,평가,
 stranded,stranded,고립|조난|표류,,조난
 strippers,strippers,스트리퍼,,스트리퍼
 studio ghibli,studio ghibli|miyazaki,지브리|스튜디오 지브리|미야자키 하야오,,지브리
@@ -739,7 +739,7 @@ suicide,suicide,자살,,자살
 suicide attempt,suicide attempt,자살 시도,,자살 시도
 superheroes,superheroes|marvel|super hero|super-hero|superhero,슈퍼히어로|히어로|마블,,슈퍼히어로
 supernatural,supernatural|demons,초자연|초능력|귀신|악마|악령,,초자연
-suprisingly clever,suprisingly clever,,애매,
+suprisingly clever,suprisingly clever,,평가,
 surfing,surfing,서핑,,서핑
 surprise ending,surprise ending,,,
 surreal,surreal|surrealism,초현실|초현실적|초현실주의,,초현실
@@ -766,8 +766,8 @@ time loop,time loop,타임루프,,타임루프
 time travel,time travel,시간여행|타임슬립|시간 여행,,시간여행
 tolkien,tolkien,톨킨,,톨킨
 tom clancy,tom clancy,톰 클랜시,,톰 클랜시
-too long,too long,,애매,
-too short,too short,,애매,
+too long,too long,,평가,
+too short,too short,,평가,
 torture,torture,고문,,고문
 toys,toys,장난감,,장난감
 tragedy,tragedy,비극,,비극
@@ -785,12 +785,12 @@ underdog,underdog,약자|언더독,,약자
 underrated,underrated,,평가,
 understated,understated,절제,,담담함
 underwater,underwater,수중|물속,,수중
-unfunny,unfunny,,애매,
-unintentionally funny,unintentionally funny,,애매,
-unique,unique,,애매,
+unfunny,unfunny,,평가,
+unintentionally funny,unintentionally funny,,평가,
+unique,unique,,평가,
 united nations,united nations,유엔|UN,,유엔
 unlikeable characters,unlikeable characters,,평가,
-unrealistic,unrealistic,,애매,
+unrealistic,unrealistic,,평가,
 unusual plot structure,unusual plot structure,독특한 구성,,독특한 구성
 utopia,utopia,유토피아,,유토피아
 vampire,vampire|vampires,뱀파이어|흡혈귀,,뱀파이어
@@ -807,7 +807,7 @@ virginity,virginity,순결|처녀,,순결
 virtual reality,virtual reality,가상현실|VR,,가상현실
 virus,virus,바이러스,,바이러스
 visceral,visceral,날것|본능적,,날것
-visually appealing,visually appealing|visual|visually stunning|visuals,,애매,
+visually appealing,visually appealing|visual|visually stunning|visuals,,평가,
 voodoo,voodoo,부두,,부두
 voyeurism,voyeurism,관음|엿보다,,관음
 war,war|best war films|war movie|wartime|world war i|world war ii|wwii,전쟁|전쟁영화|1차 세계대전|제1차 세계대전|전시|2차 세계대전|제2차 세계대전,,전쟁

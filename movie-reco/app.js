@@ -93,7 +93,7 @@
   // ── 계정: 닉네임 + PIN ──
   // data/config.js에 SUPABASE_URL, SUPABASE_KEY가 있으면 Supabase에 저장(표와 함수: data/supabase.sql. PIN은 서버에서 해시로 확인하고 브라우저는 표를 직접 못 읽음)
   // config.js가 없으면(파일을 더블클릭해서 열 때, 아티팩트) 전처럼 이 브라우저 저장소에만 흉내
-  const SB=typeof SUPABASE_URL==='string'&&SUPABASE_URL&&typeof SUPABASE_KEY==='string'&&SUPABASE_KEY?SUPABASE_URL.replace(/\/$/,''):'';
+  const SB=typeof SUPABASE_URL==='string'&&SUPABASE_URL&&typeof SUPABASE_KEY==='string'&&SUPABASE_KEY?SUPABASE_URL.replace(/\/(rest\/v1\/?)?$/,''):''; // 주소 끝에 /rest/v1/이 붙어 있어도 됨
   const rpc=(fn,args)=>fetch(SB+'/rest/v1/rpc/'+fn,{method:'POST',headers:{apikey:SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify(args)}).then(r=>{if(!r.ok) throw new Error(fn+' '+r.status); return r.json();});
   const known={}; // 닉네임 → 서버에 있는지 (물어본 것만)
   const seedUsers={'김치찌':{pin:'1234',mbti:['I','N','F','P'],picked:{'라라랜드':1,'벌새':1},price:10000},'popcorn_lover':{pin:'0000'}};

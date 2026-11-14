@@ -71,8 +71,8 @@ def price(cd, d: date, tm: str, first_of_day: bool, hall: str = '', fmt: str = '
         if first_of_day:
             return (8000 if weekend else 7000), '조조'
         return (11000 if weekend else 10000), ''
-    if cd == '001148':  # 아트하우스 모모: 12시 전 회차는 6천원(공식 관람 가이드, 11/14 확인). 일반 요금은 공개된 곳에 없어 임시값
+    if cd == '001148':  # 아트하우스 모모: 평일 1만, 주말 1.1만, 12시 전 회차는 6천원 (조조는 공식 관람 가이드, 일반 요금은 채은 확인 11/15)
         if tm < '12:00':
             return 6000, '조조'
-        return 10000, '요금 미확인'
+        return (11000 if wd >= 5 else 10000), ''  # 주말은 토, 일로 둠 (금요일 포함 여부는 확인 못 함)
     return None, '요금 없음'

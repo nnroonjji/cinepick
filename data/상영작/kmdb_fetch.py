@@ -64,7 +64,11 @@ def row(kind, title, hint, res):
             '개봉일': m.get('repRlsDate', ''), '제작연도': m.get('prodYear', ''), '감독': directors(m) if m else '',
             '국가': m.get('nation', ''), '유형': m.get('type', ''), '장르': m.get('genre', ''),
             '키워드': m.get('keywords', ''), '줄거리': kr_plot(m) if m else '',
-            '포스터': (m.get('posters') or '').split('|')[0].strip().replace('http://', 'https://')}   # 앱 상영작 포스터(build_schedule.py). 첫 장만
+            '포스터': big_poster((m.get('posters') or '').split('|')[0].strip().replace('http://', 'https://'))}   # 앱 상영작 포스터(build_schedule.py). 첫 장만
+
+def big_poster(u):
+    # KMDb가 주는 주소는 가로 213px 썸네일(thm/02/../tn_이름.jpg). 같은 자리의 큰 그림(poster/../이름_01.jpg, 가로 418px쯤)으로 바꿈. 11/14 상영작 36장 모두 열림
+    return re.sub(r'thm/02/(.*)/tn_([^./]+)\.\w+$', r'poster/\1/\2_01.jpg', u)
 
 def main():
     # 자동 실행(GitHub Actions): 환경변수 KMDB_KEY에 키, python kmdb_fetch.py now 로 상영작만 받음 (30편은 확인해 둔 kmdb_picks.csv 그대로)

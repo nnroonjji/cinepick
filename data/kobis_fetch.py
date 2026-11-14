@@ -14,14 +14,15 @@ MIN_ROWS = 50
 
 def post(path, **form):
     req = urllib.request.Request(BASE + path, urllib.parse.urlencode(form).encode(), {'User-Agent': 'Mozilla/5.0'})
-    for attempt in range(3):
+    waits = (3, 10, 20, 40, 60)  # GitHub 서버에서 부르면 KOBIS가 연결을 안 받아 줄 때가 있음 (11/15). 점점 길게 쉬며 다시
+    for attempt in range(len(waits) + 1):
         try:
             with urllib.request.urlopen(req, timeout=30) as r:
                 return r.read().decode('utf-8', 'replace')
         except OSError:
-            if attempt == 2:
+            if attempt == len(waits):
                 raise
-            time.sleep(3)
+            time.sleep(waits[attempt])
 
 
 def text(s):

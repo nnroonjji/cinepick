@@ -58,8 +58,12 @@ jobs:
         working-directory: data
         run: |
           test -n "$KMDB_KEY" || { echo "::error::KMDB_KEY secret이 없음"; exit 1; }
-          python kobis_fetch.py
+          # KOBIS에서 못 받으면 저장소에 올려 둔 원본(PC에서 받아 올린 것)을 씀. 3일 넘게 지난 것이면 쓰지 않고 실패
+          python kobis_fetch.py || echo "::warning::KOBIS에서 상영표를 못 받아 저장소에 있는 원본을 씀"
           RAW=$(ls raw/kobis_raw_*.json | tail -1)
+          AGE=$(( ( $(TZ=Asia/Seoul date +%s) - $(date -d "$(basename "$RAW" .json | tail -c 9)" +%s) ) / 86400 ))
+          echo "상영표 원본: $RAW (${AGE}일 전)"
+          test "$AGE" -le 3
           python poster_fetch.py "$RAW" || echo "::warning::포스터 파일 만들기 실패. 주소로 대신 씀"
           (cd 상영작 && python kmdb_fetch.py now && python tag_movies.py now)
           python build_schedule.py "$RAW"

@@ -2,6 +2,7 @@
 /*
 !/.gitignore
 !/README.md
+!/supabase/
 !/.github/
 !/movie-reco/
 !/data/

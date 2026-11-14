@@ -41,14 +41,21 @@ def price(cd, d: date, tm: str, first_of_day: bool, hall: str = '', fmt: str = '
         if tm <= '11:00':
             return (pick(12000, 13000) if is3d else pick(10000, 11000)) + extra, ('조조, ' + note).strip(', ')
         return (pick(16000, 17000) if is3d else pick(14000, 15000)) + extra, note
-    if cd in ('001222', '001283'):  # CGV: 2D는 조원이 정한 값, 특별관은 공식 요금을 못 찾아 추정값
-        if 'SUITE' in hall:
-            return 30000, 'SUITE CINEMA, 요금 추정'
-        if fmt == '4D':
-            return pick(19000, 20000), '4DX, 요금 추정'
-        if fmt.upper() == 'SCREENX':
-            return pick(16000, 17000), 'ScreenX, 요금 추정'
-        return pick(14000, 15000), ''
+    if cd in ('001222', '001283'):  # CGV 홍대, 연남: 공식 관람가격 (cgv.co.kr 극장 페이지의 관람가격, 11/15 확인. 두 곳의 2D, 3D 요금이 같음)
+        # 시간대: 모닝 06:00~11:00, 브런치 11:01~13:00, 일반 13:01~. (평일 모닝, 브런치, 일반), (주말 모닝, 브런치, 일반)
+        slot = 0 if '06:00' <= tm <= '11:00' else 1 if '11:00' < tm <= '13:00' else 2
+        when = ('조조', '브런치', '')[slot]
+        if 'SUITE' in hall:  # 연남 SUITE CINEMA(PRIVATE BOX). 요금표에 50,000원으로만 나와 1인 요금인지 박스 요금인지는 확인 못 함
+            return 50000, 'SUITE CINEMA'
+        if fmt == '4D':  # 연남 4DX(2D)
+            table, kind = ((14000, 18000, 19000), (15000, 20000, 20000)), '4DX'
+        elif fmt.upper() == 'SCREENX':  # 홍대 SCREENX(2D, 리클라이너)
+            table, kind = ((14000, 17000, 18000), (14000, 19000, 19000)), 'ScreenX'
+        elif is3d:
+            table, kind = ((12000, 14000, 16000), (13000, 17000, 17000)), ''
+        else:
+            table, kind = ((10000, 12000, 14000), (11000, 15000, 15000)), ''
+        return pick(*table)[slot], ', '.join(x for x in (when, kind) if x)
     if cd == '001297':  # 요금 못 찾음. 멀티플렉스와 같게 둠
         return (15000 if fri_sun else 14000), '요금 미확인'
     if cd == '001146':  # 상상마당: 정가 1만원, 매주 수요일 6천원

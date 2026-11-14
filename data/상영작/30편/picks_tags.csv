@@ -93,12 +93,12 @@
 어바웃 타임,fantasy,Y,장르,2,2,0,KMDb장르:판타지 / TMDB장르:Fantasy
 어바웃 타임,family,Y,키워드,3,3,1,줄거리:아버지 / KMDb키워드:가족 / TMDB키워드:family
 어바웃 타임,london,Y,키워드,2,2,1,줄거리:런던 / KMDb키워드:런던
-어바웃 타임,time travel,,키워드,2,2,0,KMDb키워드:시간여행 / TMDB키워드:time travel
+어바웃 타임,time travel,,키워드,2,2,0,KMDb키워드:시간 여행 / TMDB키워드:time travel
 어바웃 타임,destiny,,키워드,1,1,0,KMDb키워드:운명
 어바웃 타임,sci fi,,키워드,1,1,0,KMDb키워드:SF
 어바웃 타임,compassionate,,키워드,1,1,0,TMDB키워드:compassionate
 어바웃 타임,family bonds,,키워드,1,1,0,KMDb키워드:가족애
-어바웃 타임,girlie movie,,키워드,1,1,0,KMDb키워드:로맨틱 코미디
+어바웃 타임,girlie movie,,키워드,1,1,0,KMDb키워드:로맨틱코미디
 어바웃 타임,intimate,,키워드,1,1,0,TMDB키워드:intimate
 어바웃 타임,reflective,,키워드,1,1,0,TMDB키워드:reflective
 어바웃 타임,time loop,,키워드,1,1,0,KMDb키워드:타임루프
@@ -347,7 +347,7 @@
 남매의 여름밤,family,Y,장르,2,2,0,KMDb장르:가족 / TMDB키워드:family
 남매의 여름밤,childhood,Y,키워드,2,2,1,줄거리:유년 / KMDb키워드:유년기
 남매의 여름밤,teen movie,Y,키워드,1,1,0,KMDb키워드:청소년
-남매의 여름밤,family drama,Y,키워드,1,1,0,KMDb키워드:가족드라마
+남매의 여름밤,family drama,Y,키워드,1,1,0,KMDb키워드:가족 드라마
 남매의 여름밤,drama,Y,흔한 장르,2,2,0,KMDb장르:드라마 / TMDB장르:Drama
 남매의 여름밤,romance,,줄거리,1,1,1,줄거리:사랑
 남매의 여름밤,life,,줄거리,1,1,1,줄거리:삶

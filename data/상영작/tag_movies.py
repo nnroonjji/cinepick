@@ -1,6 +1,6 @@
 # 영화에 genome 태그 붙이기 (data\상영작 폴더에서 python tag_movies.py picks  또는  python tag_movies.py now)
-#   picks: 좋아하는 영화 후보 30편 (kmdb_picks.csv + tmdb_picks.csv)
-#   now:   현재 상영작 (kmdb_now.csv만. TMDB 안 씀)
+#   picks: 좋아하는 영화 후보 30편 (30편/kmdb_picks.csv + tmdb_picks.csv)
+#   now:   현재 상영작 (현재상영작/kmdb_now.csv만. TMDB 안 씀)
 # 근거 1. 한국어: KMDb 장르, KMDb 키워드, 줄거리 → kiwi 형태소 분석 → genome_tag_ko.csv의 한국어와 비교
 #   - 접사는 붙여서 나눔 (사랑스럽다, 영화계, 신도시가 사랑, 영화, 도시로 쪼개지지 않게)
 #   - 명사 + 하다 동사는 명사로 바꿈 (사랑하다 → 사랑, 여행하다 → 여행, 결혼하다 → 결혼)
@@ -22,6 +22,7 @@ from lemminflect import getLemma
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 MODE = sys.argv[1] if len(sys.argv) > 1 else 'picks'
+DIR = {'picks': '30편', 'now': '현재상영작'}[MODE]   # 입력과 태그 결과를 두는 폴더. 리포트는 보고서 폴더 (11/14 폴더 정리)
 TOP_N = 5
 MIN_N = 3      # 채은 결정: 태그 최소 3개
 PLOT_MIN = 2   # 채은 결정: 줄거리 태그는 2번 이상 나온 것 (검증 85편에서 1번 나온 것 맞음 36%, 2번 이상 71%)
@@ -145,12 +146,12 @@ if MODE == 'now':
         for x in json.load(f)['movies'].values():
             KOBIS[html.unescape(x.get('title', '')).strip()] = x
 else:   # 30편은 KOBIS 영화정보에서 찾아 둔 kobis_picks.csv (제목, 연도, 감독으로 확인)
-    for _, x in pd.read_csv('kobis_picks.csv').fillna('').iterrows():
+    for _, x in pd.read_csv('30편/kobis_picks.csv').fillna('').iterrows():
         KOBIS[x['제목']] = {'art': x['예술영화 인정'], 'indie': x['독립영화 인정']}
 
 # 영화별 근거 모으기
-km = pd.read_csv('kmdb_picks.csv' if MODE == 'picks' else 'kmdb_now.csv').fillna('')
-tm = pd.read_csv('tmdb_picks.csv').fillna('').set_index('제목') if MODE == 'picks' else None
+km = pd.read_csv(f'{DIR}/kmdb_{MODE}.csv').fillna('')
+tm = pd.read_csv('30편/tmdb_picks.csv').fillna('').set_index('제목') if MODE == 'picks' else None
 films = []
 for _, r in km.iterrows():
     title = r['제목']
@@ -217,7 +218,7 @@ for title, ev, occ in films:
     L.append('')
 
 out = pd.DataFrame(rows, columns=['제목', '태그', '선택', '우선순위', '근거 종류 수', '근거 수', '줄거리 횟수', '근거'])
-out.to_csv(f'{MODE}_tags.csv', index=False, encoding='utf-8-sig')
+out.to_csv(f'{DIR}/{MODE}_tags.csv', index=False, encoding='utf-8-sig')
 per = out.groupby('제목').size().reindex(km['제목'], fill_value=0)
 sel = out[out['선택'] == 'Y']
 nsel = sel.groupby('제목').size().reindex(km['제목'], fill_value=0)
@@ -231,6 +232,7 @@ head = [f'{name} 태그 붙이기 결과 (영화당 최대 {TOP_N}개, 장르(�
         f'선택된 태그 {len(sel)}개의 우선순위: ' + ', '.join(f'{k} {v}' for k, v in sel['우선순위'].value_counts().items()) + f' / 서로 다른 태그 {sel["태그"].nunique()}개',
         '선택된 태그 중 많은 영화에 붙은 것 (붙은 영화 수): ' + ', '.join(f'{k} {v}' for k, v in cnt.head(30).items()),
         '줄거리에서 많이 걸린 한국어 (걸린 영화 수): ' + ', '.join(f'{k.split(":")[1]} {v}' for k, v in wcnt.head(30).items()), '']
-with open(f'{MODE}_tags_report.txt', 'w', encoding='utf-8') as f:
+os.makedirs('보고서', exist_ok=True)
+with open(f'보고서/{MODE}_tags_report.txt', 'w', encoding='utf-8') as f:
     f.write('\n'.join(head + L))
 print('\n'.join(head))

@@ -24,9 +24,5 @@ __pycache__/
 !/data/상영작/tag_movies.py
 !/data/상영작/kmdb_fetch.py
 !/data/상영작/genome_tag_ko.csv
-!/data/상영작/kobis_picks.csv
-!/data/상영작/kmdb_picks.csv
-!/data/상영작/tmdb_picks.csv
-!/data/상영작/kmdb_now.csv
-!/data/상영작/now_tags.csv
-!/data/상영작/picks_tags.csv
+!/data/상영작/30편/
+!/data/상영작/현재상영작/

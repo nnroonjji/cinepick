@@ -3,7 +3,7 @@
 # 대상: 좋아하는 영화 후보 30편(PICKS) + 현재 상영작(../raw/kobis_raw_*.json 중 가장 최근 파일)
 # 매칭: KMDb 검색 결과 중 제목이 정확히 같은 것 (없으면 제목이 포함되는 것) → 개봉연도가 연도 힌트와 가장 가까운 것 → 한국어 줄거리 있는 것 → 극영화
 # 결과: kmdb_picks.csv, kmdb_now.csv, kmdb_report.txt (후보가 여러 개였던 영화는 리포트에 후보 목록을 남김)
-import csv, getpass, glob, html, json, os, re, sys, time, urllib.parse, urllib.request
+import csv, getpass, glob, html, http.client, json, os, re, sys, time, urllib.parse, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 RAW = sorted(glob.glob(os.path.join(HERE, '..', 'raw', 'kobis_raw_*.json')))[-1]  # 가장 최근 상영작 원본 (파일 이름의 날짜 순, 11/4부터)
@@ -28,8 +28,15 @@ def strip_hl(s):
 
 def search(key, title):
     q = urllib.parse.urlencode({'collection': 'kmdb_new2', 'detail': 'Y', 'ServiceKey': key, 'title': title, 'listCount': 50})
-    with urllib.request.urlopen(URL + '?' + q, timeout=30) as r:
-        d = json.loads(r.read().decode('utf-8'), strict=False)
+    for attempt in range(3):   # KMDb가 가끔 응답 없이 연결을 끊음 (11/14 GitHub 서버에서 108편 중 12편). 잠깐 쉬고 다시
+        try:
+            with urllib.request.urlopen(URL + '?' + q, timeout=30) as r:
+                d = json.loads(r.read().decode('utf-8'), strict=False)
+            break
+        except (OSError, http.client.HTTPException):
+            if attempt == 2:
+                raise
+            time.sleep(2)
     return (d.get('Data') or [{}])[0].get('Result') or []
 
 def kr_plot(m):
@@ -78,7 +85,7 @@ def main():
     now = [(html.unescape(x.get('title', '')).strip(), (x.get('open') or '')[:4]) for x in raw['movies'].values()]
     now = [(t, int(y) if y.isdigit() else None) for t, y in now]
     report = []
-    for kind, items, out in [('후보', PICKS, 'kmdb_picks.csv'), ('상영작', now, 'kmdb_now.csv')][only_now:]:
+    for kind, items, out in [('후보', PICKS, '30편/kmdb_picks.csv'), ('상영작', now, '현재상영작/kmdb_now.csv')][only_now:]:
         rows = []
         for i, (title, hint) in enumerate(items, 1):
             try:
@@ -96,10 +103,11 @@ def main():
             w.writeheader(); w.writerows(rows)
         n = len(rows)
         report.insert(0, f'{kind} {n}편: KMDb 찾음 {sum(1 for r in rows if r["KMDb 제목"])}편, 줄거리 {sum(1 for r in rows if r["줄거리"])}편, 키워드 {sum(1 for r in rows if r["키워드"].strip())}편, 못 찾음: ' + ', '.join(r['제목'] for r in rows if not r['KMDb 제목']))
-    with open(os.path.join(HERE, 'kmdb_report.txt'), 'w', encoding='utf-8') as f:
+    os.makedirs(os.path.join(HERE, '보고서'), exist_ok=True)
+    with open(os.path.join(HERE, '보고서', 'kmdb_report.txt'), 'w', encoding='utf-8') as f:
         f.write('\n'.join(report))
     print('\n'.join(report[:2]))
-    print('저장: kmdb_picks.csv, kmdb_now.csv, kmdb_report.txt')
+    print('저장: 30편/kmdb_picks.csv, 현재상영작/kmdb_now.csv, 보고서/kmdb_report.txt')
 
 if __name__ == '__main__':
     main()

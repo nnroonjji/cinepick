@@ -43,10 +43,16 @@ jobs:
           cache: pip
           cache-dependency-path: .github/workflows/deploy.yml
       - if: github.event_name != 'push'
-        run: pip install pandas kiwipiepy lemminflect
+        run: pip install pandas kiwipiepy lemminflect pillow
+      # 선명한 상영작 포스터 파일(poster_fetch.py가 만듦)은 저장소 대신 캐시에 둠. 매번 새 이름으로 저장해 새로 받은 것이 쌓이게 함
+      - uses: actions/cache@v4
+        with:
+          path: movie-reco/posters/now
+          key: posters-${{ github.run_id }}
+          restore-keys: posters-
       - name: 상영표 새로 받기
         id: refresh
-        timeout-minutes: 10  # KOBIS가 GitHub 서버에 응답을 안 주고 멈출 때가 있음. 보통 2분
+        timeout-minutes: 18  # KOBIS가 GitHub 서버에 응답을 안 주고 멈출 때가 있음. 보통 2분, 포스터를 처음 받는 날은 7분쯤 더
         if: github.event_name != 'push'
         continue-on-error: true
         working-directory: data
@@ -54,6 +60,7 @@ jobs:
           test -n "$KMDB_KEY" || { echo "::error::KMDB_KEY secret이 없음"; exit 1; }
           python kobis_fetch.py
           RAW=$(ls raw/kobis_raw_*.json | tail -1)
+          python poster_fetch.py "$RAW" || echo "::warning::포스터 파일 만들기 실패. 주소로 대신 씀"
           (cd 상영작 && python kmdb_fetch.py now && python tag_movies.py now)
           python build_schedule.py "$RAW"
           python build_reco_tags.py "$RAW"
@@ -68,7 +75,7 @@ jobs:
           fi
       # 새로 받기가 실패하면: 정해진 시각 실행은 어제 올린 사이트를 그대로 두고, push는 저장소에 있는 상영표로 올림
       - if: steps.refresh.outcome == 'failure'
-        run: git checkout -- .
+        run: git checkout -- .  # 캐시에서 온 포스터 파일은 그대로 남음
       - name: 올릴 파일 모으기
         if: steps.refresh.outcome == 'success' || github.event_name != 'schedule'
         run: |

@@ -44,9 +44,11 @@ for dd, tm, cd, mcd, scrn, fl, rf in sorted(shows):
     day_list[-1]['s'].append([tm, THEATERS[cd][0], scrn, p, None, fl, note])
 
 tm = json.load(open(Path(__file__).with_name('tmdb_posters.json'), encoding='utf-8'))  # 영화코드 → [TMDB id, 포스터 파일] (손으로 확인한 표)
-TMDB_IMG = 'https://image.tmdb.org/t/p/w500/'
-# 상영작 포스터는 파일로 두지 않고 주소를 바로 씀: TMDB 표 → KMDb(상영작/kmdb_now.csv 포스터 열) → KOBIS 썸네일
-# POSTER_FB: 그 주소가 안 열릴 때 앱이 대신 쓸 KOBIS 썸네일
+TMDB_IMG = 'https://image.tmdb.org/t/p/w780/'
+# 상영작 포스터: 배포할 때 poster_fetch.py가 만든 파일(posters/now/영화코드.jpg, 가로 800px. 저장소에는 없음)이 있으면 그 파일,
+# 없으면 주소를 바로 씀: TMDB 표(w780) → KMDb(상영작/kmdb_now.csv 포스터 열, 가로 418px) → KOBIS 썸네일(가로 352px)
+# POSTER_FB: 포스터가 안 열릴 때 앱이 대신 쓸 주소 (파일이면 위의 주소, 주소면 KOBIS 썸네일)
+APP = Path(__file__).resolve().parents[1] / 'movie-reco'
 kmdb = {}
 kp = Path(__file__).with_name('상영작') / 'kmdb_now.csv'
 if kp.exists():
@@ -56,15 +58,18 @@ POSTER_FB = {}
 for mcd, x in d['movies'].items():
     parts = [p.strip() for p in x.get('summary', '').split('|') if p.strip()]
     run = next((p for p in parts if '분' in p), '')
-    kobis = ('https://www.kobis.or.kr' + x['img']) if x.get('img') else ''
-    poster = (TMDB_IMG + tm[mcd][1]) if mcd in tm else (kmdb.get(movies[mcd]) or kobis)
+    kobis = ('https://www.kobis.or.kr' + x['img'].replace('thumb_x192/', 'thumb_x640/')) if x.get('img') else ''
+    remote = (TMDB_IMG + tm[mcd][1]) if mcd in tm else (kmdb.get(movies[mcd]) or kobis)
+    local = f'posters/now/{mcd}.jpg'
+    poster = local if (APP / local).exists() else remote
     info[movies[mcd]] = {'code': mcd, 'kind': parts[1] if len(parts) > 1 else '', 'genre': parts[2] if len(parts) > 2 else '',
                          'min': int(run.split('분')[0]) if run else None,
                          'rating': next((p for p in parts if '관람' in p), ''),
                          'tmdb': tm[mcd][0] if mcd in tm else None,
                          'poster': poster}
-    if kobis and kobis != poster:
-        POSTER_FB[poster] = kobis
+    fb = remote if poster == local else kobis
+    if fb and fb != poster:
+        POSTER_FB[poster] = fb
 th = {v[0]: {'type': v[1], 'kind': KIND_KO[v[1]], 'area': v[2], 'll': list(v[3]) if v[3] else None, 'addr': v[4], 'url': v[5]}
       for cd, v in THEATERS.items() if cd not in CLOSED}  # 주소, 홈페이지는 pricing.py (KOBIS url은 예매 대행 사이트라 안 씀)
 

@@ -138,19 +138,31 @@
     if(s==='login'){
       if(SB){try{u=await rpc('cp_login',{p_nick:n,p_pin:pin.value})}catch(_){return offline()} if(!u) return showErr('PIN이 달라요');}
       else if(u.pin!==pin.value) return showErr('PIN이 달라요');
-      state.user=n; state.pin=pin.value; lastSave=''; useDisc(u.disc||{}); state.text=''; state.method='match'; // 줄글은 홈 화면에서 그때그때 받음
-      if(u.mbti&&u.picked){state.mbti=u.mbti.slice(); state.picked=Object.assign({},u.picked); state.price=u.price||state.price; syncMbti(); renderPref(); price.value=state.price; priceUpdate(); toast(n+' 님, 저장된 취향으로 추천'); show('reco',true);}
-      else{state.mbti=['','','','']; state.picked={}; syncMbti(); renderPref(); toast(n+' 님, 설문부터 시작'); show('mbti',true);}
-      return;
+      return enter(n,pin.value,u);
     }
     if(pin.value!==pin2.value) return showErr('PIN 확인이 달라요');
     if(SB){let ok; try{ok=await rpc('cp_signup',{p_nick:n,p_pin:pin.value})}catch(_){return offline()}
       if(!ok){known[n]=true; syncLogin(); return showErr('방금 다른 사람이 가입한 닉네임이에요. PIN을 알면 로그인해줘');}
       known[n]=true;}
     else saveUser(n,{pin:pin.value});
-    state.user=n; state.pin=pin.value; lastSave=''; state.mbti=['','','','']; state.picked={}; state.text=''; useDisc({}); syncMbti(); renderPref();
+    state.user=n; state.pin=pin.value; lastSave=''; keepLogin(n,pin.value); state.mbti=['','','','']; state.picked={}; state.text=''; useDisc({}); syncMbti(); renderPref();
     toast(n+' 님 가입 완료'); show('survey',true);
   });
+  // 로그인 성공 뒤 상태 채우고 화면 이동. back: 새로고침해서 로그인이 이어질 때(알림 없이 홈으로)
+  function enter(n,p,u,back){
+    state.user=n; state.pin=p; lastSave=''; keepLogin(n,p); useDisc(u.disc||{}); state.text=''; state.method='match'; // 줄글은 홈 화면에서 그때그때 받음
+    if(u.mbti&&u.picked){state.mbti=u.mbti.slice(); state.picked=Object.assign({},u.picked); state.price=u.price||state.price; syncMbti(); renderPref(); price.value=state.price; priceUpdate(); if(!back) toast(n+' 님, 저장된 취향으로 추천'); show(back?'home':'reco',true);}
+    else{state.mbti=['','','','']; state.picked={}; syncMbti(); renderPref(); if(!back) toast(n+' 님, 설문부터 시작'); show('mbti',true);}
+  }
+  // ── 로그인 유지: 닉네임과 PIN을 이 브라우저에 두고, 다시 열면 그걸로 로그인. 로그아웃하면 지움 ──
+  // ponytail: PIN을 브라우저 저장소에 그대로 둠(서버에 세션이 없어서). 공용 PC까지 챙기려면 서버가 내주는 세션 토큰으로 바꿀 것
+  function keepLogin(n,p){try{n?localStorage.setItem('cinepick_login',JSON.stringify({n,p})):localStorage.removeItem('cinepick_login')}catch(e){}}
+  async function resume(){
+    let k; try{k=JSON.parse(localStorage.getItem('cinepick_login'))}catch(e){} if(!k||!k.n) return;
+    let u; if(SB){try{u=await rpc('cp_login',{p_nick:k.n,p_pin:k.p})}catch(_){return}} else{u=loadUsers()[k.n]; if(u&&u.pin!==k.p) u=null;} // 서버에 못 닿으면 저장은 두고 다음에 다시
+    if(!u) return keepLogin(); // PIN이 바뀌었거나 없는 계정
+    if(state.user==='게스트'&&(current==='main'||current==='login')) enter(k.n,k.p,u,true);
+  }
 
   // ── MBTI: 탭으로도, 노브를 위아래로 끌어서도 선택 ──
   const mbtiBox=$('mbti'),mbtiOut=$('mbtiOut'),mbtiNext=$('mbtiNext');
@@ -544,7 +556,7 @@
   overlay.addEventListener('click',e=>{if(e.target.classList.contains('drawer')||e.target.classList.contains('sheet')||e.target.closest('[data-close]')) closeOverlay();});
   function openDrawer(){
     overlay.innerHTML='<div class="drawer"><div class="panel">'+X+'<h2>메뉴</h2><button data-go="mbti">설문 다시 하기</button><button data-logout>로그아웃</button></div></div>';
-    overlay.querySelector('[data-logout]').addEventListener('click',()=>{state.user='게스트'; useDisc({}); toast('로그아웃'); show('main',false);});
+    overlay.querySelector('[data-logout]').addEventListener('click',()=>{state.user='게스트'; keepLogin(); useDisc({}); toast('로그아웃'); show('main',false);});
   }
   function openSheet(kind,arg){
     let html='';
@@ -585,6 +597,7 @@
   addEventListener('resize',fit); fit();
 
   show(isMock&&location.hash?location.hash.slice(1):'main',false); // 실제 앱은 늘 첫 화면부터. 아티팩트 주소를 복사하면 보고 있던 화면이 #login처럼 붙어 와서 청중이 로그인 화면부터 보게 됐음(2026-10-30). 목업만 #화면 바로가기 유지
+  if(!isMock) resume(); // 목업(발표용)은 늘 로그인 전부터
 })();
 
 // ── 포스터 대체: posters/now/영화코드.jpg가 없으면 POSTER_FB(TMDB) 주소로 ──

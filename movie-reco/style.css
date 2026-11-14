@@ -332,11 +332,6 @@ input[type=range]{width:100%;accent-color:var(--range)}
 .ch{display:flex;align-items:center;gap:6px;margin-bottom:4px}
 .ch b{font-size:15px}
 .beta{font-size:10px;font-weight:700;color:var(--mute);border:1px solid #c9bfa8;border-radius:999px;padding:0 6px}
-.post{display:flex;flex-direction:column;gap:2px;padding:8px 0}
-.post+.post{border-top:1px solid var(--line)}
-.post b{font-size:13px;line-height:1.35}
-.post span{font-size:11px;color:var(--mute)}
-.ccard.wide{aspect-ratio:auto;padding:4px 16px} /* 지도 아래 커뮤니티: 글 목록만 */
 .sh h2 .beta{vertical-align:2px;margin-left:4px}
 /* 예산으로 고르기 카드: 마스코트 + 지금 예산과 그 안에서 볼 수 있는 상영작 수. 가운데 정렬 타일 */
 .bcard{gap:4px}
@@ -349,16 +344,6 @@ input[type=range]{width:100%;accent-color:var(--range)}
 .bc-fan img:nth-child(2){left:18px;bottom:10px;transform:rotate(1deg)}
 .bc-fan img:nth-child(3){left:36px;transform:rotate(8deg)}
 .bc-fan i{position:absolute;right:0;bottom:0;width:44px;height:44px;box-shadow:0 4px 10px var(--cta-shadow);border-radius:50%;background:var(--accent);color:var(--accent-fg);display:grid;place-items:center}
-/* 커뮤니티: 옆으로 넘기는 글 카드. 극장 태그 점 색은 지도 핀 색 */
-.pst{flex:0 0 236px;display:flex;flex-direction:column;gap:8px;padding:16px;background:var(--surface);border:1px solid var(--card-border);border-radius:20px;text-align:left;box-shadow:var(--card-shadow)}
-.pst-at{align-self:flex-start;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;border:1.5px solid var(--line)}
-.pst-at i{width:7px;height:7px;border-radius:50%;background:var(--c)}
-.pst>b{font-size:15px}
-.pst-tx{font-size:13px;line-height:1.5;color:var(--mute);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.pst-by{display:flex;align-items:center;gap:6px;margin-top:auto}
-.pst-by i{width:22px;height:22px;border-radius:50%;color:#fff;display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:700;flex-shrink:0}
-.pst-by span{flex:1;min-width:0;font-size:11px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pst-by em{font-style:normal;font-size:11px;font-weight:700}
 /* 나들이: 이번 달 영화제 배너(추천 화면 티켓 점선) + 3칸 */
 .fest{display:flex;align-items:center;gap:14px;padding:14px 16px;border:2px dashed var(--pink);border-radius:16px;background:var(--surface);text-align:left}
 .fest-l{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;padding-right:14px;border-right:2px dashed var(--pink)}

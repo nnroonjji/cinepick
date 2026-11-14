@@ -1,6 +1,7 @@
 # 저장소에는 웹앱과 상영표 만드는 스크립트만 올림 (원본 데이터, 발표 자료, 문서는 올리지 않음)
 /*
 !/.gitignore
+!/README.md
 !/.github/
 !/movie-reco/
 !/data/

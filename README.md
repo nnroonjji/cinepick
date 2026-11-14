@@ -12,11 +12,49 @@
 
 ### 받아서 열기
 
-```
-git clone https://github.com/nnroonjji/cinepick.git
-```
+준비물은 git 하나 (https://git-scm.com 에서 설치). 테스트를 돌리려면 Node.js도 필요함
 
-`movie-reco/index.html`을 더블클릭하면 바로 열림. 서버가 필요하면 `movie-reco` 폴더에서 `python -m http.server` 실행 후 http://localhost:8000
+1. 코드를 둘 폴더에서 터미널을 열고 내려받음. `cinepick` 폴더가 새로 생김
+
+   ```
+   git clone https://github.com/nnroonjji/cinepick.git
+   cd cinepick
+   ```
+
+2. `movie-reco/index.html`을 더블클릭하면 앱이 바로 열림. 설치하거나 빌드할 것 없음
+3. 서버로 열어야 할 때(`config.js`를 넣고 Supabase에 붙일 때 권함)는 `movie-reco` 폴더에서 아래를 실행하고 http://localhost:8000 을 엶
+
+   ```
+   cd movie-reco
+   python -m http.server
+   ```
+
+### 고친 것 올리기
+
+내려받기는 누구나 되지만 올리려면 저장소 주인(nnroonjji)의 초대가 필요함. 초대 메일을 수락한 뒤부터 올릴 수 있음
+
+1. 작업을 시작하기 전에 항상 최신 코드를 먼저 받음. 다른 사람도 같은 저장소에 올리고 있음
+
+   ```
+   git pull
+   ```
+
+2. 고친 뒤 테스트를 돌려 `ok`가 나오는지 확인
+
+   ```
+   cd movie-reco
+   node reco.test.js
+   ```
+
+3. 올림. 처음 올릴 때 GitHub 로그인 창이 뜨면 초대받은 계정으로 로그인
+
+   ```
+   git add -A
+   git commit -m "무엇을 바꿨는지 한 줄"
+   git push
+   ```
+
+`git push`가 거절되면 그사이 다른 사람이 올린 것이니 `git pull`을 한 번 하고 다시 `git push`
 
 
 

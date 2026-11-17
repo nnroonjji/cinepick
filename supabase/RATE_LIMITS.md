@@ -32,7 +32,7 @@ DB 트랜잭션 advisory lock이 한도 확인과 INSERT를 함께 보호한다.
 2. RPC 실행 권한이 service_role만인지 확인한다. 일반 공개 키로 `cp_take_recommendation_slot`을 호출하면 거절되어야 한다.
 3. Edge Functions의 기본 서버 환경변수 `SUPABASE_URL`, `SUPABASE_SECRET_KEYS` 안의 `default` secret 키가 제공되는지 확인한다. 키 원문을 브라우저 설정이나 저장소로 복사하지 않는다. 별도의 Redis 가입이나 신규 OpenAI 키는 필요하지 않다.
 4. [함수 편집기](https://supabase.com/dashboard/project/sbmgfvesieaeccmizdzi/functions/recommend/code)에서 `index.ts`, `handler.mjs`, **`rate-limit.mjs`까지 세 파일**을 함께 배포한다. 기존 `verify_jwt=false`와 핸들러의 공개 키 검사를 유지한다.
-5. 표준 주소에서 정상 요청과 위조 `CF-Connecting-IP` 헤더를 보내도 같은 방문자로 집계되는지 확인한다. 원문 IP를 응답으로 반환하거나 로그에 출력하지 않는다. 관찰한 공개 경로 검증은 향후 모든 프록시 구성의 신뢰를 보장하지 않는다.
+5. 표준 주소에서 ~~정상 요청과 위조 `CF-Connecting-IP` 헤더를 보내도 같은 방문자로 집계되는지~~ **정상 요청이 집계되고, 위조 `CF-Connecting-IP`·`X-Forwarded-For` 헤더로 개인 한도를 우회할 수 없는지** 확인한다. 원문 IP를 응답으로 반환하거나 로그에 출력하지 않는다. 관찰한 공개 경로 검증은 향후 모든 프록시 구성의 신뢰를 보장하지 않는다.
 6. AI 호출을 만들지 않는 격리된 SQL 테스트로 5/20/300 경계와 자정 초기화를 확인하고, 배포된 함수에서도 429와 `Retry-After`를 확인한다. 실제 운영 카운터를 초기화하거나 전체 300회를 소진하는 테스트는 하지 않는다.
 
 DB/RPC가 없거나 시간 초과/응답 검증에 실패하면 **503으로 차단하고 유료 AI를 호출하지 않는다.** 따라서 SQL보다 Edge 코드를 먼저 배포하면 추천이 중단된다. RPC 예약이 커밋된 후 네트워크가 끊긴 경우에도 예약은 남을 수 있다.
@@ -61,6 +61,13 @@ npm --prefix supabase/tests test
 
 SQL 테스트는 PGlite의 실제 PostgreSQL 엔진으로 실행한다. 권한/RLS·트랜잭션 잠금 보유·KST 경계·다른 DB 시간대와 DST·독립 핸들러의 공유 예약을 검사한다. PGlite는 단일 연결이므로 관리형 DB의 다중 세션 동시성/부하 검증을 대체하지 않는다. HTTP 외부 경계만 대체하며 OpenAI 유료 호출은 하지 않는다. 브라우저 회귀는 `movie-reco/text-reco.browser.test.js`와 기존 Playwright 실행 방법을 사용한다.
 
-2026-11-17 개발 상태: 코드와 로컬 SQL/서버/브라우저 검증 완료. 관리 도구의 프로젝트 권한 오류와 화면 제어의 URL 확인 실패로 **원격 SQL/Edge 변경 및 실제 제한 활성화는 아직 미확인**이다. 배포 담당자가 위 순서를 완료하기 전에는 기존 배포 함수에 이 한도가 적용됐다고 보아서는 안 된다.
+~~원격 SQL/Edge 변경 및 실제 제한 활성화는 아직 미확인이다.~~ **2026-11-17 한국시간 19:57 기준, 씨네픽 프로젝트에 SQL과 Edge Function을 적용하고 다음 검증을 완료했다.**
+
+- **실제 DB: 카운터 테이블 존재·RLS 활성화·anon/authenticated의 RPC 실행 불가·service_role 실행 가능을 확인했다. 공개 키로 RPC를 호출한 HTTP 요청도 401로 거절됐다.**
+- **실제 DB에서 격리된 트랜잭션으로 5/20/300 경계·한국시간 자정 초기화·자정 직후에도 유지되는 직전 60초 제한을 확인하고 롤백했다. 합성 테스트 기록은 남기지 않았고 운영 카운터도 초기화하지 않았다.**
+- **실제 함수: 1개 요청 뒤 5개를 병렬로 보내 총 6개 중 AI 추천 5개 HTTP 200, 초과 1개 `VISITOR_MINUTE_LIMIT` HTTP 429를 확인했다. 차단 응답의 `Retry-After`와 JSON `retry_after`는 모두 56초였다.**
+- **각 요청의 임의 `X-Forwarded-For`를 바꿔도 개인 한도를 우회하지 못했다. 위조 `CF-Connecting-IP`를 넣은 비유료 요청은 Cloudflare ingress에서 HTTP 403으로 거절됐다. 이는 해당 공개 경로에서 관찰한 거절 결과이며, 헤더 덮어쓰기나 향후 다른 프록시 경로까지 증명하지는 않는다.**
+- **분당 제한 구간이 지난 뒤 로컬 미리보기에서 실제 추천 HTTP 200·추천 이유·10,000원 카드 표시·JavaScript 오류 없음을 확인했다. 유료 모델 요청을 발생시키는 20회/300회 소진 검증은 하지 않았다.**
+- **서버 제한은 활성화했다. `main`은 병합하지 않았으며 공식 프런트엔드 배포도 수행하지 않았다.**
 
 근거: [Supabase rate limiting](https://supabase.com/docs/guides/functions/examples/rate-limiting), [서버 환경변수](https://supabase.com/docs/guides/functions/secrets), [Cloudflare IP 헤더](https://developers.cloudflare.com/fundamentals/reference/http-headers/).

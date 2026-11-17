@@ -1,6 +1,6 @@
-// 추천 계산 (채은). DOM 안 만짐, state는 인자로 받음. 로드 순서: data/data.js → data/schedule.js → data/tags.js → reco.js → app.js
+// 추천 계산 (채은). DOM 안 만짐, state는 인자로 받음. 로드 순서: data/data.js → data/schedule.js → data/tags.js → reco.js → text-reco.js → app.js
 // 추천은 둘: match(설문의 MBTI와 좋아하는 영화를 합친 추천), text(홈에서 적은 한 줄 취향, 적었을 때만)
-// 둘 다 태그 점수로 순위 (data/tags.js). text는 적은 글에서 태그 이름이나 TEXT_WORDS의 말을 찾아 점수 (Gemini 없이, 11/4). Gemini 줄글 추천을 넣으면 textTags 자리에
+// match는 태그 점수로 순위. text는 TextReco의 검증된 비동기 응답 순서/이유 사용.
 const METHODS=['match','text'];
 // ── 지금 시각 이후 회차만: 추천, 예산 목록, 상영표, 지도 상영작 수 모두 이 기준(2026-10-31) ──
 // 브라우저의 현재 날짜와 시간을 매번 읽음. 날이 바뀌면 다음 날 회차부터 자동으로 추천
@@ -62,8 +62,8 @@ function rankMatch(state,pool,cnt=tagCount(state),pt=pickedTags(state),dir=seren
   const best=Math.max(0,...rows.map(r=>r.score)), top=r=>dir>0?r.score>0&&r.score>=best*POOL_RATIO:r.score===best; // 1위 후보 풀
   return rows.sort((a,b)=>top(b)-top(a)||(top(a)?(dir>0?b.seren-a.seren:dir<0?a.seren-b.seren:0):b.score-a.score)||(a.day<b.day?-1:a.day>b.day?1:0)||a.i-b.i).map(r=>r.m);
 }
-// ── 줄글 추천: 적은 글에서 태그 찾기 (Gemini 없이, 11/4) ──
-// ponytail: 태그 이름(띄어쓰기, 대소문자 무시)과 아래 표의 말을 글에서 부분 문자열로 찾음. 형태소 분석 없음. 한 글자 태그(춤, 꿈, 섬, 삶, 뱀)는 낱말 그대로나 토씨 붙은 꼴만. Gemini Edge Function이 들어오면 textTags만 바꿈
+// ── 줄글 후보 입력 순서: 기존 낱말 찾기. 최종 선택·이유는 TextReco 서버 응답 사용 ──
+// 태그 이름(띄어쓰기, 대소문자 무시)과 아래 표의 말을 부분 문자열로 찾음. 형태소 분석 없음. 한 글자 태그는 낱말/토씨 경계로 검사.
 const TEXT_WORDS={comedy:['웃긴','웃음','유쾌','코믹','웃을','웃고'],horror:['무서','호러','소름'],romance:['사랑','연애','로맨틱','설레','달달','멜로'],suspense:['긴장','쫄깃','스릴','서스펜스'],
   action:['신나','화끈','통쾌'],drama:['감동','눈물','울컥','울고','잔잔','먹먹'],family:['부모','엄마','아빠'],animation:['애니','만화'],'based on a comic':['웹툰'],mystery:['추리','반전','미스테리'],
   crime:['형사','범인'],'sci fi':['에스에프','공상과학'],fantasy:['마법'],music:['노래','뮤지컬','뮤직'],documentary:['다큐'],war:['전투'],friendship:['친구'],'coming of age':['청춘','사춘기'],
@@ -87,6 +87,7 @@ function candidates(state,k){ // 방법별 추천 순위. 지금 이후 회차�
 }
 const anyLeft=()=>{const l=NOW.filter(m=>daysOf(m.t).length).sort((a,b)=>minPrice(a.t)-minPrice(b.t)); return l.length?l:MOVIES;}; // 마지막 대비: 예산 안 영화가 하나도 없으면(5,000원) 제일 싼 상영작부터
 function recommend(state,k=state.method){ // → {mv, sh, why}
+  if(k==='text') return TextReco.recommend(state); // 비동기 응답 전/빈 결과에는 null. 예산 밖 대체 추천 없음.
   const list=candidates(state,k), pool=list.length?list:anyLeft(); // 방법마다 따로 순위를 냄. 맞춤 추천과 줄글 추천이 같은 영화를 골라도 그대로 둠 (11/15)
   const mv=pool[(state.idx[k]||0)%pool.length];
   let sh=state.shows[k];

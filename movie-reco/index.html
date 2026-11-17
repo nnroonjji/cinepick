@@ -190,6 +190,15 @@
   <section class="view reco" id="v-reco">
     <div class="top"><button class="back" data-back aria-label="뒤로">←</button><h2 id="recoHead">오늘 당신을 위한 영화는</h2><button type="button" class="home-btn" data-go="home" aria-label="홈 화면으로"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9v11h13V9"/><path d="M10 20v-6h4v6"/></svg></button></div>
     <div class="reco-body">
+      <div class="reco-state" id="recoStatus" hidden>
+        <svg class="mascot" width="88" height="88" aria-hidden="true"><use href="#popcorn"/></svg>
+        <div role="status" aria-live="polite"><h3 id="recoStatusTitle"></h3><p id="recoStatusText"></p></div>
+        <div class="reco-state-actions">
+          <button type="button" class="cta static" id="recoRetry" hidden>다시 시도하기</button>
+          <button type="button" class="cta static" id="recoBudget" data-sheet="budget" hidden>예산 바꾸기</button>
+          <button type="button" class="rt-end-again" data-go="home">홈으로 가기</button>
+        </div>
+      </div>
       <div class="rt-wrap" id="recoTicket">
         <div class="rt-ghost" aria-hidden="true"></div><div class="rt-ghost g2" aria-hidden="true"></div>
         <div class="rt" id="recoCard">
@@ -233,7 +242,7 @@
         <h1 class="hero">오늘 뭐 볼까요?</h1>
         <form class="qbox" id="searchForm">
           <label for="q">오늘 영화 찾기</label>
-          <textarea id="q" rows="2" placeholder="홍대에서 혼자 볼 잔잔한 영화"></textarea>
+          <textarea id="q" rows="2" maxlength="1000" placeholder="홍대에서 혼자 볼 잔잔한 영화"></textarea>
           <div class="qbar">
             <div class="kw" id="suggest">
               <button type="button" class="sg" data-q="오늘은 혼자 조용히 보고 싶어. 끝나고도 한참 생각나는 좀 쓸쓸한 영화">여운 남는</button>
@@ -434,6 +443,7 @@
 <script src="data/tags.js"></script>
 <script src="data/config.js"></script>
 <script src="reco.js"></script>
+<script src="text-reco.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

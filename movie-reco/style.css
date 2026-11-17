@@ -210,6 +210,11 @@ input[type=range]{width:100%;accent-color:var(--range)}
 /* ── Reco ── */
 /* 추천 화면은 영화표 한 장(2026-11-01). 위는 포스터, 절취선 아래 조각을 누르면 예약 화면. 뒤에 비스듬히 깔린 두 장은 다른 추천이 있다는 표시. */
 .reco-body{flex:1;min-height:140px;padding:8px 24px 14px;display:flex;flex-direction:column}
+.reco-state{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-align:center;padding:24px 12px}
+.reco-state[hidden],#recoTicket[hidden],#recoNav[hidden],.reco-state button[hidden]{display:none}
+.reco-state h3{margin:0 0 10px;font-family:var(--font-display);font-size:24px;font-weight:400}
+.reco-state p{max-width:260px;margin:0;color:var(--mute);font-size:13px;line-height:1.6}
+.reco-state-actions{width:100%;max-width:260px;display:flex;flex-direction:column;gap:12px}
 /* 추천 3개: 다른 추천을 누르면 MBTI → 취향 영화 → 한 줄 취향 순서로 넘어감. 제목(INFP에 어울리는 영화 등)은 뒤로가기와 같은 줄 가운데 */
 .reco .top{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:8px}
 .reco .top .back{justify-self:start}

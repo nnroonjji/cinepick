@@ -1,4 +1,4 @@
-// node reco.test.js — 추천은 예산 안 회차가 있는 영화만 골라야 함. 예산 안 영화가 하나도 없으면(5,000원) 제일 싼 상영작으로. 합친 추천은 MBTI 방향 규칙대로
+// node reco.test.js — 기존 맞춤 추천 + 비동기 줄글 추천 계약 검사
 const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
 const c={location:{search:''},URLSearchParams,console}; vm.createContext(c);
 for(const f of ['data/data.js','data/schedule.js','data/tags.js','reco.js']) vm.runInContext(fs.readFileSync(path.join(__dirname,f),'utf8'),c);
@@ -6,7 +6,7 @@ const R=vm.runInContext('({METHODS,NOW,PICKS,priceOf,recommend,candidates,daysOf
 const minOf=t=>Math.min(...R.daysOf(t).flatMap(d=>d.s.map(x=>R.priceOf(x,d.w))));
 const live=R.NOW.filter(m=>R.daysOf(m.t).length), cheapest=Math.min(...live.map(m=>minOf(m.t)));
 const st=(p,mbti=['I','N','F','P'])=>({mbti,picked:{'라라랜드':1,'벌새':1},price:p,text:'잔잔한 영화',method:'match',idx:{},shows:{}});
-for(let p=5000;p<=50000;p+=1000) for(const k of R.METHODS){
+for(let p=5000;p<=50000;p+=1000) for(const k of ['match']){
   const r=R.recommend(st(p),k), tag=k+' 예산 '+p+': '+r.mv.t+' '+r.sh.price+'원';
   if(live.some(m=>minOf(m.t)<=p)) assert(r.sh.price<=p,'예산 초과 '+tag);
   else assert.strictEqual(r.sh.price,cheapest,'예산 안 영화가 없으면 제일 싼 회차여야 함 '+tag);
@@ -25,9 +25,7 @@ assert.deepStrictEqual(Object.keys(T.textTags('꿈을 다룬 섬세한 영화'))
 assert.deepStrictEqual(Object.keys(T.textTags('')),[]); // vm 컨텍스트 객체는 프로토타입이 달라 {}와 바로 못 비교
 const tx=t=>({...st(20000),text:t,method:'text'});
 assert(R.candidates(tx('웃긴 영화 보고 싶어'),'text')[0].tags.includes('comedy'),'웃긴 → 코미디 상영작이 1위');
-assert(R.recommend(tx('웃긴 영화 보고 싶어'),'text').why.includes('코미디'),'이유 문장에 읽은 태그');
-assert(R.recommend(tx('asdf'),'text').why.includes('못 찾아'),'태그를 못 읽으면 그렇다고 말함');
 assert(R.recommend(st(cheapest-1000),'match').why.includes('예산에 맞는 영화가 없어요'),'예산 안 영화가 없으면 이유 문장에서 알림');
 // 추천 화면은 1~3위를 넘겨 봄: 순위(idx)마다 다른 영화
-for(const k of R.METHODS) assert.strictEqual(new Set([0,1,2].map(i=>R.recommend({...st(20000),idx:{[k]:i}},k).mv.t)).size,3,k+' 1~3위가 서로 다른 영화');
-console.log('ok');
+for(const k of ['match']) assert.strictEqual(new Set([0,1,2].map(i=>R.recommend({...st(20000),idx:{[k]:i}},k).mv.t)).size,3,k+' 1~3위가 서로 다른 영화');
+require('./text-reco.test.js')().then(()=>console.log('ok'),error=>{console.error(error); process.exitCode=1;});

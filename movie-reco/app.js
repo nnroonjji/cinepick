@@ -22,6 +22,7 @@
   const ORDER=['main','login','survey','mbti','pref','price','reco','home','budget','map','booking','showtimes'];
   const SURVEY=['login','survey','mbti','pref','price']; // 이 화면들끼리는 슬라이드 없이 페이드
   const stack=[]; let current='main';
+  const textClient=TextReco.create({onChange:()=>{if(current==='reco'&&state.method==='text') renderReco();}});
 
   // ── 화면 전환 ──
   const jump=$('jump');
@@ -34,6 +35,8 @@
   let animT,booted=false;
   function show(id,push,how){ // how: 'fade'면 전환 방식을 페이드로 고정(추천 표 조각이 예약 화면으로 날아갈 때)
     if(!ORDER.includes(id)) id='main';
+    if((id==='booking'||id==='showtimes')&&!state.pick&&state.method==='text'&&!recommend(state)) id='reco';
+    if(id!=='reco'&&state.textReco?.status==='loading') textClient.cancel(state);
     const prev=$('v-'+current),next=$('v-'+id),anim=booted&&prev!==next;
     const dir=how||SURVEY.includes(current)&&SURVEY.includes(id)?how||'fade':(id==='reco'&&push)?'pop':push?'fwd':'back'; // 설문끼리는 페이드(마스코트만 이동), 추천 결과는 팝
     if(push&&id!==current){
@@ -56,7 +59,7 @@
     if(id==='pref') syncPref(); // 고른 편수에 맞춰 버튼 잠금
     if(id==='price') warmPosters(); // 고른 영화와 지금 예산 기준 추천 포스터를 미리 받아 둠. 슬라이더를 놓으면 다시 받음(아래 change)
     if(id==='reco'||id==='home') state.pick=null; // 예산 화면에서 고른 영화는 추천·홈으로 오면 버림
-    if(id==='reco'){if(prev.id!=='v-booking') atEnd=false; renderReco(); if(anim&&!atEnd) setTimeout(ticketConfetti,dir==='pop'?160:60);}
+    if(id==='reco'){if(prev.id!=='v-booking') atEnd=false; if(state.method==='text'&&(!state.textReco||state.textReco.status==='idle')) textClient.run(state); else renderReco(); if(anim&&!atEnd) setTimeout(ticketConfetti,dir==='pop'?160:60);}
     if(id==='home'){warmPosters(); renderHome();}
     if(id==='budget') renderBudget();
     if(id==='booking'){renderBooking(); logClick('detail');}
@@ -121,7 +124,7 @@
       rpc('cp_save',{p_nick:nick,p_pin:state.pin,p_data:data}).then(ok=>{if(!ok) throw 0;}).catch(()=>{lastSave=''; toast('저장하지 못했어요');}); return;}
     try{const u=JSON.parse(localStorage.getItem('cinepick_users')||'{}'); u[nick]=Object.assign(u[nick]||{},data); localStorage.setItem('cinepick_users',JSON.stringify(u))}catch(e){}
   }
-  function useDisc(d){state.disc=d; setDisc(d); METHODS.forEach(k=>state.shows[k]=null); if(state.pick) state.pick.sh=null;} // 할인 조건이 바뀌면 회차 가격이 달라지니 고른 회차는 다시 고름
+  function useDisc(d){state.disc=d; setDisc(d); METHODS.forEach(k=>state.shows[k]=null); if(state.pick) state.pick.sh=null; refreshText();} // 할인 변경 시 줄글 요청도 현재 조건으로 다시 시작
   const nickOk=n=>/^[가-힣a-zA-Z0-9_]{2,12}$/.test(n), pinOk=p=>/^\d{4}$/.test(p);
   const loginForm=$('loginForm'),nick=$('nick'),nickMsg=$('nickMsg'),pin=$('pin'),pin2=$('pin2'),pinField=$('pinField'),pin2Field=$('pin2Field'),loginCta=$('loginCta'),loginCtaLabel=$('loginCtaLabel'),loginErr=$('loginErr');
   let pinStep=false; // 두 단계: 닉네임 → 다음 → PIN 칸(가입이면 PIN 확인까지). 닉네임을 고치면 다시 1단계 (2026-10-30, 폰에서 칸이 버튼에 가려지는 문제)
@@ -248,7 +251,7 @@
 
   // ── Price ──
   const price=$('price'),priceOut=$('priceOut');
-  function priceUpdate(){state.price=+price.value; priceOut.textContent=fmt(state.price);}
+  function priceUpdate(){const old=state.price; state.price=+price.value; priceOut.textContent=fmt(state.price); if(old!==state.price) refreshText();}
   price.addEventListener('input',priceUpdate); priceUpdate();
   price.addEventListener('change',()=>warmPosters()); // 예산이 바뀌면 추천 영화도 바뀌니 포스터를 다시 받아 둠. 받은 주소는 ready에 남아 중복 요청 없음
 
@@ -257,13 +260,29 @@
   const NOPOSTER='mascot.png'; // 포스터 주소가 없는 상영작(KOBIS, TMDB, KMDb 어디에도 없음)에 대신 넣는 그림. 모양은 style.css img[src="mascot.png"]
   const warm=u=>{if(!u||u in ready) return; ready[u]=''; fetch(u).then(r=>r.ok?r.blob():Promise.reject()).then(b=>{ready[u]=URL.createObjectURL(b);},()=>{});};
   const posterSrc=u=>ready[u]||u||NOPOSTER;
-  function warmPosters(skip){methodsOf(state).forEach(k=>{for(let i=0;i<RECO_N;i++){const u=recommend({...state,idx:{...state.idx,[k]:i},shows:{}},k).mv.img; if(u!==skip) warm(u);}});} // shows를 비운 사본으로 계산해 고른 회차는 안 건드림
-  const RECO_N=3, recoLen=()=>Math.max(1,Math.min(RECO_N,candidates(state,state.method).length)); // 추천 화면은 순위 1~3위를 넘겨 봄 (2026-11-14). 예산 안 영화가 3편이 안 되면 있는 만큼. 지금 몇 위인지는 state.idx
+  function warmPosters(skip){methodsOf(state).forEach(k=>{for(let i=0;i<RECO_N;i++){const r=recommend({...state,idx:{...state.idx,[k]:i},shows:{}},k); if(r&&r.mv.img!==skip) warm(r.mv.img);}});} // 비동기 줄글 응답이 없으면 미리 받지 않음
+  const RECO_N=3, recoLen=()=>state.method==='text'?TextReco.results(state).length:Math.max(1,Math.min(RECO_N,candidates(state,state.method).length));
+  function refreshText(){
+    textClient.cancel(state); state.textReco={status:'idle',items:[]}; state.shows.text=null;
+    if(state.method!=='text'||!state.text||state.pick) return;
+    if(current==='reco'){atEnd=false; textClient.run(state);}
+    else if(current==='booking'||current==='showtimes') show('reco',false);
+  }
   let atEnd=false; // 추천 마지막 장(홈으로 가기)을 보고 있는지
   const METHOD_TAG={match:'맞춤 추천',text:'한 줄 취향'}; // 표 조각의 추천 종류 글자
   function renderReco(){
     tearReset(); // 찢긴 표는 다시 들어오면 붙여 둠
     const k=state.method, len=recoLen(); // 추천 화면은 들어온 길의 추천(맞춤 추천 또는 홈 줄글 추천) 1~3위 + 마지막 장
+    const noResult=k==='text'&&!len, status=state.textReco?.status;
+    $('recoStatus').hidden=!noResult; $('recoTicket').hidden=noResult; $('recoNav').hidden=noResult;
+    $('recoTicket').setAttribute('aria-busy',noResult&&status==='loading'?'true':'false');
+    if(noResult){
+      atEnd=false; $('recoHead').textContent='한 줄 취향에 맞춘 영화';
+      const loading=status==='loading', empty=status==='empty'||status==='success';
+      $('recoStatusTitle').textContent=loading?'취향에 맞는 영화를 찾고 있어요':empty?'예산에 맞는 상영작이 없어요':'추천을 불러오지 못했어요';
+      $('recoStatusText').textContent=loading?'잠시만 기다려 주세요.':empty?'예산을 바꾸거나 나중에 다시 확인해 주세요.':status==='error'&&state.textReco.error==='timeout'?'응답 시간이 초과됐어요. 잠시 뒤 다시 시도해 주세요.':'잠시 뒤 다시 시도해 주세요.';
+      $('recoRetry').hidden=loading||empty; $('recoBudget').hidden=!empty; $('recoDots').innerHTML=''; $('recoStep').textContent=''; return;
+    }
     // 추천 표 뒤에 마지막 장(홈으로 가기)이 하나 더 붙음. 넘기기는 처음과 마지막에서 멈춤(2026-11-01)
     const at=atEnd?len:Math.min(state.idx[k]||0,len-1), n=len+1;
     $('recoStep').textContent=atEnd?'마지막 장':'추천 '+(at+1)+' / '+len;
@@ -309,7 +328,7 @@
   let swapping=false;
   // 다른 추천: 화살표, 좌우 스와이프, 키보드 ←→. 다음은 표가 왼쪽으로 넘어가고, 이전은 오른쪽으로
   function flip(d,from){ // d=1 다음, -1 이전. from: 스와이프로 끌던 위치(px)
-    const len=recoLen(), card=$('recoCard'); if(swapping||document.querySelector('.rt-torn')) return;
+    const len=recoLen(), card=$('recoCard'); if(!len||swapping||document.querySelector('.rt-torn')) return;
     const at=atEnd?len:Math.min(state.idx[state.method]||0,len-1), to=d===0?0:at+d; // d=0: 첫 추천으로(마지막 장의 다시 보기)
     if(to<0||to>len||to===at){ // 처음, 마지막에서는 제자리로
       if(card.style.transform) card.animate([{transform:card.style.transform},{transform:'none'}],{duration:220,easing:'cubic-bezier(.2,.9,.3,1.2)'}); card.style.transform=''; return;}
@@ -323,7 +342,7 @@
       if(!atEnd) ticketConfetti();
     };
   }
-  { const art=$('recoImg').parentNode, open=()=>{if(!atEnd) openSheet('plot',recommend(state).mv.t);}; // 포스터를 누르면 줄거리 시트. 끌어서 넘길 때의 누름은 아래 스와이프가 막음
+  { const art=$('recoImg').parentNode, open=()=>{const r=recommend(state); if(!atEnd&&r) openSheet('plot',r.mv.t);}; // 포스터를 누르면 줄거리 시트
     art.tabIndex=0; art.setAttribute('role','button'); art.setAttribute('aria-label','포스터를 누르면 시놉시스'); art.style.cursor='pointer';
     art.addEventListener('click',open); art.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault(); open();}}); }
   $('recoAgain').addEventListener('click',()=>flip(0));
@@ -333,7 +352,7 @@
     if(current==='reco'&&!overlay.innerHTML&&(e.key==='ArrowRight'||e.key==='ArrowLeft')&&!e.target.closest('input,textarea')){e.preventDefault(); flip(e.key==='ArrowRight'?1:-1);}});
   { // 스와이프: 표를 손가락 따라 끌다가 70px 넘게 밀면 넘김. 끈 뒤 손을 떼면 조각 누름(예약)은 무시
     const card=$('recoCard'); let sx=0,sy=0,dx=0,on=false,moved=false;
-    card.addEventListener('pointerdown',e=>{if(swapping||e.button||e.target.closest('.rt-end button')) return; on=true; moved=false; sx=e.clientX; sy=e.clientY; dx=0;});
+    card.addEventListener('pointerdown',e=>{if(!recoLen()||swapping||e.button||e.target.closest('.rt-end button')) return; on=true; moved=false; sx=e.clientX; sy=e.clientY; dx=0;});
     card.addEventListener('pointermove',e=>{if(!on) return; const z=card.getBoundingClientRect().width/card.offsetWidth||1; dx=(e.clientX-sx)/z;
       if(!moved){if(Math.abs(dx)<8) return; if(Math.abs(e.clientY-sy)/z>Math.abs(dx)){on=false; return;} moved=true; try{card.setPointerCapture(e.pointerId)}catch(_){} }
       card.style.transform='translateX('+dx+'px) rotate('+dx/30+'deg)';});
@@ -349,7 +368,7 @@
   function tearReset(){const c=$('recoCard'); c.style.clipPath=''; $('recoSheet').style.visibility=''; $('bkStub').style.visibility=''; document.querySelectorAll('.rt-torn').forEach(e=>e.remove());}
   $('recoSheet').addEventListener('click',e=>{
     e.preventDefault(); e.stopPropagation();
-    if(swapping||document.querySelector('.rt-torn')) return;
+    if(!recoLen()||swapping||document.querySelector('.rt-torn')) return;
     const view=$('v-reco'),card=$('recoCard'),st=$('recoSheet');
     if(calm()||!card.animate){show('booking',true); return;}
     let L=0,T=0; for(let el=card;el&&el!==view;el=el.offsetParent){L+=el.offsetLeft;T+=el.offsetTop;}
@@ -375,7 +394,7 @@
   // 표 컨페티: 절취선 양쪽 홈과 표 위쪽에서 한 번에 터져 팔랑이며 떨어짐. 색은 테마 변수, 3초쯤 뒤 멈춤
   let cfRaf=0;
   function ticketConfetti(){
-    const cv=$('recoCf'),view=$('v-reco'),card=$('recoCard'); if(calm()||view.hidden) return;
+    const cv=$('recoCf'),view=$('v-reco'),card=$('recoCard'); if(calm()||view.hidden||!recoLen()) return;
     cancelAnimationFrame(cfRaf);
     const W=view.clientWidth,H=view.clientHeight,z=view.getBoundingClientRect().width/W||1,dpr=Math.min(2,(devicePixelRatio||1)*z);
     cv.width=W*dpr; cv.height=H*dpr; const x=cv.getContext('2d'); x.setTransform(dpr,0,0,dpr,0,0);
@@ -582,7 +601,8 @@
   $('shows').addEventListener('click',e=>{const b=e.target.closest('.show'); if(!b) return; const t=cur().mv.t, day=daysOf(t).find(x=>x.d===stDate), s=mk(day,day.s.find(x=>x[0]===b.dataset.time&&x[1]===b.dataset.th&&x[2]===b.dataset.hall),t); if(state.pick) state.pick.sh=s; else state.shows[state.method]=s; renderShowtimes();});
 
   // ── Home: 검색·제안 칩·지도 카테고리 ──
-  $('searchForm').addEventListener('submit',e=>{e.preventDefault(); const q=$('q').value.trim(); if(!q){toast('찾고 싶은 영화를 적어줘'); return;} toast(q.slice(0,18)+(q.length>18?'…':'')+' 기준으로 추천'); state.text=q; state.method='text'; state.idx.text=0; state.shows.text=null; show('reco',true);});
+  $('searchForm').addEventListener('submit',e=>{e.preventDefault(); const q=$('q').value.trim(); if(!q){toast('찾고 싶은 영화를 적어줘'); return;} state.text=q; state.method='text'; state.idx.text=0; state.shows.text=null; textClient.run(state); show('reco',true);});
+  $('recoRetry').addEventListener('click',()=>{atEnd=false; textClient.run(state);});
   $('suggest').addEventListener('click',e=>{const b=e.target.closest('.sg'); if(b){$('q').value=b.dataset.q; $('q').focus();}});
 
   // ── 드로어·시트·토스트 ──
@@ -611,8 +631,13 @@
       overlay.querySelector('.og-cats').addEventListener('click',e=>{const b=e.target.closest('[data-og]'); if(!b) return; overlay.querySelectorAll('[data-og]').forEach(x=>x.setAttribute('aria-pressed',x===b)); k=b.dataset.og; draw();});
       og.addEventListener('click',e=>{const c=e.target.closest('[data-og-i]'); if(c) return one(+c.dataset.ogI); if(e.target.closest('[data-og-back]')) draw();});}
     const bg=overlay.querySelector('#sheetBudget'); // 예산 시트: 현재 화면은 그대로 두고 목록만 갱신
-    if(bg) bg.addEventListener('input',()=>{price.value=bg.value; priceUpdate(); overlay.querySelector('#sheetBudgetOut').textContent=fmt(state.price); if(current==='showtimes') renderShowtimes();});
-    if(bg) bg.addEventListener('change',savePrice);
+    const deferTextBudget=()=>state.method==='text'&&!state.pick&&['reco','booking','showtimes'].includes(current);
+    if(bg) bg.addEventListener('input',()=>{
+      // 드래그 중에는 금액만 표시하고 확정할 때 한 번 재추천함. 중간 값마다 유료 AI 요청을 보내지 않음.
+      if(deferTextBudget()){overlay.querySelector('#sheetBudgetOut').textContent=fmt(+bg.value); return;}
+      price.value=bg.value; priceUpdate(); const out=overlay.querySelector('#sheetBudgetOut'); if(out) out.textContent=fmt(state.price); if(current==='showtimes') renderShowtimes();
+    });
+    if(bg) bg.addEventListener('change',()=>{if(deferTextBudget()){price.value=bg.value; priceUpdate();} savePrice();});
   }
   let toastT;
   function toast(msg){let t=document.querySelector('.toast'); if(!t){t=document.createElement('div'); t.className='toast'; $('app').appendChild(t);} t.textContent=msg; clearTimeout(toastT); toastT=setTimeout(()=>t.remove(),1500);}

@@ -1,0 +1,5 @@
+project_id = "cinepick"
+
+# 씨네픽 게스트는 Supabase Auth JWT가 없음. 핸들러에서 apikey를 확인함.
+[functions.recommend]
+verify_jwt = false

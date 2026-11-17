@@ -84,7 +84,7 @@ jobs:
         if: steps.refresh.outcome != 'failure'
         run: |
           mkdir _site
-          cp -r movie-reco/index.html movie-reco/style.css movie-reco/app.js movie-reco/reco.js movie-reco/mascot.png movie-reco/data movie-reco/posters _site/
+          cp -r movie-reco/index.html movie-reco/style.css movie-reco/app.js movie-reco/reco.js movie-reco/text-reco.js movie-reco/mascot.png movie-reco/data movie-reco/posters _site/
           if [ -n "$SUPABASE_URL" ] && [ -n "$SUPABASE_KEY" ]; then
             echo "const SUPABASE_URL='$SUPABASE_URL',SUPABASE_KEY='$SUPABASE_KEY';" > _site/data/config.js
           else

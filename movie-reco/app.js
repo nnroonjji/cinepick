@@ -281,7 +281,13 @@
       const loading=status==='loading', empty=status==='empty'||status==='success';
       $('recoStatusTitle').textContent=loading?'취향에 맞는 영화를 찾고 있어요':empty?'예산에 맞는 상영작이 없어요':'추천을 불러오지 못했어요';
       $('recoStatusText').textContent=loading?'잠시만 기다려 주세요.':empty?'예산을 바꾸거나 나중에 다시 확인해 주세요.':status==='error'&&state.textReco.error==='timeout'?'응답 시간이 초과됐어요. 잠시 뒤 다시 시도해 주세요.':'잠시 뒤 다시 시도해 주세요.';
-      $('recoRetry').hidden=loading||empty; $('recoBudget').hidden=!empty; $('recoDots').innerHTML=''; $('recoStep').textContent=''; return;
+      const limited=state.textReco?.error, notices={
+        visitor_minute:['추천을 너무 자주 요청하셨어요','AI 추천은 1분에 최대 5회 이용할 수 있어요. 잠시 후 다시 시도해 주세요.'],
+        visitor_day:['오늘의 AI 추천을 모두 사용하셨어요','하루에 이용 가능한 AI 추천 20회를 모두 사용했어요. 한국시간 자정 이후 다시 이용해 주세요.'],
+        global_day:['오늘의 추천 이용량을 모두 사용했어요','씨네픽의 하루 AI 추천 300회를 모두 사용했어요. 한국시간 자정 이후 다시 이용해 주세요.']
+      };
+      if(Object.hasOwn(notices,limited)){ $('recoStatusTitle').textContent=notices[limited][0]; $('recoStatusText').textContent=notices[limited][1]; }
+      $('recoRetry').hidden=loading||empty||limited==='visitor_day'||limited==='global_day'; $('recoBudget').hidden=!empty; $('recoDots').innerHTML=''; $('recoStep').textContent=''; return;
     }
     // 추천 표 뒤에 마지막 장(홈으로 가기)이 하나 더 붙음. 넘기기는 처음과 마지막에서 멈춤(2026-11-01)
     const at=atEnd?len:Math.min(state.idx[k]||0,len-1), n=len+1;

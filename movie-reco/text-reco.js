@@ -39,7 +39,19 @@ const TextReco=(()=>{
     const response=await fetch(url+'/functions/v1/recommend',{
       method:'POST',headers:{apikey:key,'Content-Type':'application/json'},body:JSON.stringify(payload),signal
     });
-    if(!response.ok){const error=Error('Recommendation request failed');if(response.status===504) error.code='timeout';throw error;}
+    if(!response.ok){
+      const error=Error('Recommendation request failed');
+      if(response.status===504) error.code='timeout';
+      if(response.status===429){
+        let info;try{info=(await response.json())?.error;}catch{}
+        const codes={VISITOR_MINUTE_LIMIT:'visitor_minute',VISITOR_DAY_LIMIT:'visitor_day',GLOBAL_DAY_LIMIT:'global_day'};
+        if(Object.hasOwn(codes,info?.code)){
+          error.code=codes[info.code];
+          if(Number.isInteger(info.retry_after)&&info.retry_after>0&&info.retry_after<=86400) error.retryAfter=info.retry_after;
+        }
+      }
+      throw error;
+    }
     return response.json();
   }
   function create({request=serverRequest,timeoutMs=20000,onChange=()=>{}}={}){
@@ -66,7 +78,7 @@ const TextReco=(()=>{
         if(!items.length) throw Error('No valid recommendations');
         state.textReco={status:'success',items}; state.idx.text=0; state.shows.text=null;
       }catch(error){
-        if(id===serial) state.textReco={status:'error',items:[],error:error?.code==='timeout'?'timeout':'request'};
+        if(id===serial) state.textReco={status:'error',items:[],error:['timeout','visitor_minute','visitor_day','global_day'].includes(error?.code)?error.code:'request',retryAfter:error?.retryAfter};
       }finally{
         clearTimeout(timer); controller.signal.removeEventListener('abort',abort);
         if(id===serial){active=null; onChange();}

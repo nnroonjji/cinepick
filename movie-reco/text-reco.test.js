@@ -96,6 +96,16 @@ module.exports=async function(){
   }
   c.fetch=async()=>Response.json({error:{code:'MODEL_TIMEOUT'}},{status:504});
   const httpTimeout=st();await T.create().run(httpTimeout);assert.strictEqual(httpTimeout.textReco.error,'timeout');
+  for(const [serverCode,clientCode] of [['VISITOR_MINUTE_LIMIT','visitor_minute'],['VISITOR_DAY_LIMIT','visitor_day'],['GLOBAL_DAY_LIMIT','global_day']]){
+    c.fetch=async()=>Response.json({error:{code:serverCode,retry_after:42}},{status:429});
+    const limited=st();await T.create().run(limited);
+    assert.strictEqual(limited.textReco.status,'error');assert.strictEqual(limited.textReco.error,clientCode);
+    assert.strictEqual(limited.textReco.retryAfter,42);assert.deepStrictEqual(json(T.results(limited)),[]);
+  }
+  for(const value of [{error:{code:'unknown-private-error'}},{error:{code:'<script>alert(1)</script>'}}]){
+    c.fetch=async()=>Response.json(value,{status:429});
+    const limited=st();await T.create().run(limited);assert.strictEqual(limited.textReco.error,'request');
+  }
   let startFetch,networkSignal;
   const started=new Promise(resolve=>startFetch=resolve);
   c.fetch=(_,options)=>{networkSignal=options.signal;startFetch();return new Promise(()=>{});};

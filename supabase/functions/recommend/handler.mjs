@@ -1,4 +1,5 @@
 // Web API만 사용하여 Deno 배포 코드와 Node 검증 코드가 같은 핸들러를 실행함.
+import { createRateLimiter } from './rate-limit.mjs';
 const BODY_LIMIT=128*1024, OUTPUT_LIMIT=64*1024, REASON_LIMIT=300;
 const DEFAULT_ORIGINS='https://nnroonjji.github.io,http://localhost:8000,http://127.0.0.1:8000';
 class HttpError extends Error {
@@ -91,7 +92,7 @@ function checkKey(req,env){
   if(!allowed.length) throw new HttpError(503,'SERVER_NOT_CONFIGURED');
   if(!allowed.includes(req.headers.get('apikey'))) throw new HttpError(401,'INVALID_API_KEY');
 }
-export function createHandler({env,fetchImpl=fetch,timeoutMs=15000}){
+export function createHandler({env,fetchImpl=fetch,timeoutMs=15000,rateLimit=createRateLimiter({env,fetchImpl})}){
   return async req=>{
     const origin=req.headers.get('origin');
     const allowed=(env('ALLOWED_ORIGINS')||DEFAULT_ORIGINS).split(',').map(value=>value.trim()).filter(Boolean);
@@ -100,6 +101,7 @@ export function createHandler({env,fetchImpl=fetch,timeoutMs=15000}){
       headers['Access-Control-Allow-Origin']=origin;
       headers['Access-Control-Allow-Headers']='apikey, content-type';
       headers['Access-Control-Allow-Methods']='POST, OPTIONS';
+      headers['Access-Control-Expose-Headers']='Retry-After';
     }
     const json=(body,status=200)=>Response.json(body,{status,headers});
     try{
@@ -122,6 +124,10 @@ export function createHandler({env,fetchImpl=fetch,timeoutMs=15000}){
       });
       try{
         const work=async()=>{
+          if(controller.signal.aborted) throw new HttpError(499,'CANCELLED');
+          let slot;
+          try{slot=await rateLimit(req,{signal:controller.signal});}catch{throw new HttpError(503,'RATE_LIMIT_UNAVAILABLE');}
+          if(!slot.allowed){headers['Retry-After']=String(slot.retryAfter);throw new HttpError(429,slot.code);}
           if(controller.signal.aborted) throw new HttpError(499,'CANCELLED');
           const response=await fetchImpl('https://api.openai.com/v1/responses',{
             method:'POST',headers:{Authorization:'Bearer '+apiKey,'Content-Type':'application/json'},
@@ -148,7 +154,8 @@ export function createHandler({env,fetchImpl=fetch,timeoutMs=15000}){
       if(req.signal.aborted) return json({error:{code:'CANCELLED'}},499);
       if(error instanceof HttpError){
         if(error.code==='MODEL_RATE_LIMITED') headers['Retry-After']='60';
-        return json({error:{code:error.code}},error.status);
+        const retry=['VISITOR_MINUTE_LIMIT','VISITOR_DAY_LIMIT','GLOBAL_DAY_LIMIT'].includes(error.code)?{retry_after:Number(headers['Retry-After'])}:{};
+        return json({error:{code:error.code,...retry}},error.status);
       }
       return json({error:{code:'MODEL_UNAVAILABLE'}},502);
     }

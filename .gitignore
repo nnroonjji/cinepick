@@ -12,6 +12,8 @@
 !/data/supabase.sql
 !/data/상영작/
 __pycache__/
+node_modules/
+/supabase/.temp/
 # 키와 주소가 든 파일은 올리지 않음 (배포 때 GitHub secret으로 만듦)
 .env*
 /movie-reco/data/config.js

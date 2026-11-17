@@ -16,7 +16,8 @@ const api=http.createServer(async(req,res)=>{
     const chunks=[];for await(const chunk of req) chunks.push(chunk);
     const mode=modelMode;
     const env={OPENAI_API_KEY:mode==='missing-key'?'':'fake-never-sent-to-network',SUPABASE_PUBLISHABLE_KEYS:JSON.stringify({default:'sb_publishable_browser_test'}),ALLOWED_ORIGINS:webBase};
-    const handler=createHandler({env:n=>env[n],fetchImpl:async(_,options)=>{
+    const limitCodes={'minute-limit':'VISITOR_MINUTE_LIMIT','visitor-day-limit':'VISITOR_DAY_LIMIT','global-day-limit':'GLOBAL_DAY_LIMIT'};
+    const handler=createHandler({env:n=>env[n],rateLimit:async()=>limitCodes[mode]?{allowed:false,code:limitCodes[mode],retryAfter:42}:{allowed:true},fetchImpl:async(_,options)=>{
       providerCalls++;
       await new Promise((resolve,reject)=>{
         const abort=()=>{clearTimeout(timer);cancelledCalls++;reject(Error('cancelled'));};
@@ -113,6 +114,19 @@ const server=http.createServer((req,res)=>{
     await page.locator('#recoRetry').click(); assert.match(await text('recoStatusTitle'),/찾고 있어요/); await visible('recoRetry');
     console.log('PASS 요청 실패·버튼 재시도');
     await open('missing-key'); await submit(); await visible('recoRetry'); assert.match(await text('recoStatusTitle'),/불러오지 못했어요/); console.log('PASS 서버 키 누락 503 안내');
+    for(const [mode,title,description,retry] of [
+      ['minute-limit',/너무 자주/,/5회/,true],
+      ['visitor-day-limit',/오늘의 AI 추천/,/20회.*자정/,false],
+      ['global-day-limit',/오늘의 추천 이용량/,/300회.*자정/,false]
+    ]){
+      await open(mode);const callsBefore=providerCalls;await submit();
+      await page.locator('#recoStatusTitle').filter({hasText:title}).waitFor({state:'visible'});
+      assert.match(await text('recoStatusText'),description);
+      assert.strictEqual(await page.locator('#recoRetry').isVisible(),retry);
+      assert.strictEqual(await page.locator('#recoTicket').isVisible(),false);
+      assert.strictEqual(providerCalls,callsBefore,'제한 요청은 모델을 호출하지 않음');
+      console.log('PASS '+mode+' 안내·카드 숨김·AI 호출 없음');
+    }
     await open('timeout'); await submit(); await visible('recoRetry'); assert.match(await text('recoStatusText'),/시간이 초과/); await shot('timeout'); console.log('PASS 서버 15초 시간 초과');
     await open(); await submit(); await page.locator('#v-reco .home-btn').click(); await visible('v-home');
     await page.locator('#q').fill('새로운 문장'); await page.locator('#searchForm [type="submit"]').click(); await visible('recoTicket');

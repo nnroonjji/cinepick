@@ -17,7 +17,7 @@ const answer=(items=rows)=>Response.json({status:'completed',output:[{type:'mess
 const request=(body=payload,headers={},method='POST')=>new Request('https://example.supabase.co/functions/v1/recommend',{
   method,headers:{origin,apikey:key,'Content-Type':'application/json',...headers},...(method==='POST'?{body:typeof body==='string'?body:JSON.stringify(body)}:{})
 });
-const handler=(extra={})=>createHandler({env:n=>env[n],fetchImpl:async()=>answer(),...extra});
+const handler=(extra={})=>createHandler({env:n=>env[n],fetchImpl:async()=>answer(),rateLimit:async()=>({allowed:true}),...extra});
 const options={skip:!createHandler};
 
 test('OpenAI strict schema로 요청하고 추천 순서·이유를 반환',options,async()=>{
@@ -133,4 +133,22 @@ test('Deno 진입점이 같은 핸들러를 등록',options,async()=>{
   globalThis.Deno={env:{get:n=>env[n]},serve:fn=>registered=fn};
   try{await import('./index.ts');assert.equal(typeof registered,'function');}
   finally{delete globalThis.Deno;}
+});
+
+test('visitor/global reservation rejection prevents OpenAI and exposes retry information',options,async()=>{
+  for(const code of ['VISITOR_MINUTE_LIMIT','VISITOR_DAY_LIMIT','GLOBAL_DAY_LIMIT']){
+    const r=await handler({rateLimit:async()=>({allowed:false,code,retryAfter:60}),fetchImpl:()=>assert.fail('limited request must never call OpenAI')})(request());
+    assert.equal(r.status,429);
+    assert.deepEqual(await r.json(),{error:{code,retry_after:60}});
+    assert.equal(r.headers.get('retry-after'),'60');
+    assert.match(r.headers.get('access-control-expose-headers'),/Retry-After/i);
+  }
+});
+test('unavailable limiter fails closed, while empty/invalid/preflight requests reserve nothing',options,async()=>{
+  const fail=handler({rateLimit:async()=>{throw Error('private limiter data');},fetchImpl:()=>assert.fail('no OpenAI on reservation failure')});
+  const r=await fail(request()); assert.equal(r.status,503);assert.deepEqual(await r.json(),{error:{code:'RATE_LIMIT_UNAVAILABLE'}});
+  const noReservation=handler({rateLimit:()=>assert.fail('no quota consumed before valid billable request'),fetchImpl:()=>assert.fail('no OpenAI')});
+  assert.equal((await noReservation(request(null,{},'OPTIONS'))).status,204);
+  assert.equal((await noReservation(request({...payload,text:''}))).status,400);
+  assert.deepEqual(await (await noReservation(request({...payload,candidates:[]}))).json(),[]);
 });

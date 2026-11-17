@@ -5,8 +5,8 @@
 ## 파일과 설정
 
 - `functions/recommend/index.ts`: Deno 진입점.
-- `functions/recommend/handler.mjs`: 입력·공개 키·CORS 검증, 공급자 호출, 응답 검증.
-- **`functions/recommend/rate-limit.mjs`: 방문자 식별값 HMAC과 공유 DB 예약. [5/20/300 제한·적용 순서](RATE_LIMITS.md).**
+- ~~`functions/recommend/handler.mjs`~~ **`functions/recommend/handler.ts`**: 입력·공개 키·CORS 검증, 공급자 호출, 응답 검증.
+- ~~`functions/recommend/rate-limit.mjs`~~ **`functions/recommend/rate-limit.ts`: 방문자 식별값 HMAC과 공유 DB 예약. [5/20/300 제한·적용 순서](RATE_LIMITS.md).**
 - `functions/recommend/handler.test.mjs`: 외부 연결 없는 Node 테스트. Node 24 이상을 사용합니다.
 - `config.toml`: `recommend`의 `verify_jwt=false`. 앱의 닉네임/PIN 계정은 Supabase Auth JWT를 발급하지 않으므로 gateway JWT 대신 핸들러에서 프로젝트의 공개 키를 확인합니다.
 
@@ -27,7 +27,7 @@
 
 1. Owner/Administrator가 [씨네픽 Secrets](https://supabase.com/dashboard/project/sbmgfvesieaeccmizdzi/functions/secrets)에 `OPENAI_API_KEY`를 등록합니다.
 2. Supabase CLI를 사용할 경우 설치된 버전에서 `supabase --help`, `supabase functions --help`, `supabase functions deploy --help`로 프로젝트 지정·배포 옵션을 확인합니다. 대상은 **`sbmgfvesieaeccmizdzi`**, 함수 이름은 **`recommend`**입니다. 로컬 디렉터리 식별자인 `project_id="cinepick"`를 원격 프로젝트 ref로 오인하지 마십시오.
-3. ~~`index.ts`와 `handler.mjs` 두 파일 배포만으로 충분하며 SQL migration은 필요하지 않습니다.~~ **[요청 제한 SQL](migrations/20261117094106_recommend_request_limits.sql)을 먼저 적용하고, [공식 배포 절차](https://supabase.com/docs/guides/functions/deploy)에 따라 `index.ts`, `handler.mjs`, `rate-limit.mjs` 세 파일과 `config.toml` 설정을 함께 배포합니다. SQL 미적용 시 새 함수는 비용 보호를 위해 503으로 차단합니다.**
+3. ~~`index.ts`와 `handler.mjs` 두 파일 배포만으로 충분하며 SQL migration은 필요하지 않습니다.~~ **[요청 제한 SQL](migrations/20261117094106_recommend_request_limits.sql)을 먼저 적용하고, [공식 배포 절차](https://supabase.com/docs/guides/functions/deploy)에 따라 `index.ts`, ~~`handler.mjs`~~ `handler.ts`, ~~`rate-limit.mjs`~~ `rate-limit.ts` 세 파일과 `config.toml` 설정을 함께 배포합니다. SQL 미적용 시 새 함수는 비용 보호를 위해 503으로 차단합니다.**
 4. 함수 배포를 확인한 뒤 프런트엔드를 배포합니다. 기존 GitHub Pages workflow는 **Edge Function을 배포하지 않습니다**. 프런트엔드만 먼저 배포하면 줄글 추천은 오류 안내를 표시합니다.
 5. 기존 `movie-reco/data/config.js`에 씨네픽 프로젝트 URL과 publishable 키가 있어야 합니다. 배포본은 GitHub Secrets `SUPABASE_URL`, `SUPABASE_KEY`로 이 파일을 생성합니다. 예제는 `movie-reco/data/config.example.js`입니다.
 6. 허용 origin에서 0/1/2/3편, 낮은 예산, 재시도, 시간 초과를 확인하고 실제 추천 품질·지연을 평가합니다.

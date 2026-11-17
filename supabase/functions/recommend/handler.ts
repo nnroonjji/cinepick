@@ -1,5 +1,5 @@
 // Web API만 사용하여 Deno 배포 코드와 Node 검증 코드가 같은 핸들러를 실행함.
-import { createRateLimiter } from './rate-limit.mjs';
+import { createRateLimiter } from './rate-limit.ts';
 const BODY_LIMIT=128*1024, OUTPUT_LIMIT=64*1024, REASON_LIMIT=300;
 const DEFAULT_ORIGINS='https://nnroonjji.github.io,http://localhost:8000,http://127.0.0.1:8000';
 class HttpError extends Error {

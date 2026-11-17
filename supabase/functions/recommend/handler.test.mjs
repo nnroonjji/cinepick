@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 let createHandler;
-try { ({ createHandler } = await import('./handler.mjs')); } catch (e) { if (e.code !== 'ERR_MODULE_NOT_FOUND') throw e; }
+try { ({ createHandler } = await import('./handler.ts')); } catch (e) { if (e.code !== 'ERR_MODULE_NOT_FOUND') throw e; }
 test('추천 HTTP 핸들러가 있어야 함', () => assert.equal(typeof createHandler, 'function'));
 
 const origin='https://nnroonjji.github.io', key='sb_publishable_test';

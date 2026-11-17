@@ -45,7 +45,7 @@ const server=http.createServer((req,res)=>{
   fs.readFile(file,(err,body)=>{if(err){res.writeHead(404); return res.end();} res.setHeader('Content-Type',file.endsWith('.js')?'text/javascript':file.endsWith('.css')?'text/css':file.endsWith('.html')?'text/html':'application/octet-stream'); res.end(body);});
 });
 (async()=>{
-  ({createHandler}=await import('../supabase/functions/recommend/handler.mjs'));
+  ({createHandler}=await import('../supabase/functions/recommend/handler.ts'));
   await new Promise(resolve=>api.listen(0,'127.0.0.1',resolve));
   apiBase='http://127.0.0.1:'+api.address().port;
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));

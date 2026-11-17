@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 let createRateLimiter;
-try { ({ createRateLimiter } = await import('./rate-limit.mjs')); } catch (error) { if (error.code !== 'ERR_MODULE_NOT_FOUND') throw error; }
+try { ({ createRateLimiter } = await import('./rate-limit.ts')); } catch (error) { if (error.code !== 'ERR_MODULE_NOT_FOUND') throw error; }
 test('durable request limiter is available', () => assert.equal(typeof createRateLimiter, 'function'));
 const options = { skip: !createRateLimiter };
 const key = 'sb_secret_fake_test_only';

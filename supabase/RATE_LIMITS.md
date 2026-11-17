@@ -31,7 +31,7 @@ DB 트랜잭션 advisory lock이 한도 확인과 INSERT를 함께 보호한다.
 1. [씨네픽 SQL 편집기](https://supabase.com/dashboard/project/sbmgfvesieaeccmizdzi/sql/new)에서 [요청 제한 migration](migrations/20261117094106_recommend_request_limits.sql)을 실행한다. 기존 계정/상영표 테이블은 변경하지 않는다. 재실행해도 기존 카운터를 지우지 않는다.
 2. RPC 실행 권한이 service_role만인지 확인한다. 일반 공개 키로 `cp_take_recommendation_slot`을 호출하면 거절되어야 한다.
 3. Edge Functions의 기본 서버 환경변수 `SUPABASE_URL`, `SUPABASE_SECRET_KEYS` 안의 `default` secret 키가 제공되는지 확인한다. 키 원문을 브라우저 설정이나 저장소로 복사하지 않는다. 별도의 Redis 가입이나 신규 OpenAI 키는 필요하지 않다.
-4. [함수 편집기](https://supabase.com/dashboard/project/sbmgfvesieaeccmizdzi/functions/recommend/code)에서 `index.ts`, `handler.mjs`, **`rate-limit.mjs`까지 세 파일**을 함께 배포한다. 기존 `verify_jwt=false`와 핸들러의 공개 키 검사를 유지한다.
+4. [함수 편집기](https://supabase.com/dashboard/project/sbmgfvesieaeccmizdzi/functions/recommend/code)에서 `index.ts`, ~~`handler.mjs`~~ **`handler.ts`**, ~~`rate-limit.mjs`~~ **`rate-limit.ts`까지 세 파일**을 함께 배포한다. 기존 `verify_jwt=false`와 핸들러의 공개 키 검사를 유지한다.
 5. 표준 주소에서 ~~정상 요청과 위조 `CF-Connecting-IP` 헤더를 보내도 같은 방문자로 집계되는지~~ **정상 요청이 집계되고, 위조 `CF-Connecting-IP`·`X-Forwarded-For` 헤더로 개인 한도를 우회할 수 없는지** 확인한다. 원문 IP를 응답으로 반환하거나 로그에 출력하지 않는다. 관찰한 공개 경로 검증은 향후 모든 프록시 구성의 신뢰를 보장하지 않는다.
 6. AI 호출을 만들지 않는 격리된 SQL 테스트로 5/20/300 경계와 자정 초기화를 확인하고, 배포된 함수에서도 429와 `Retry-After`를 확인한다. 실제 운영 카운터를 초기화하거나 전체 300회를 소진하는 테스트는 하지 않는다.
 
@@ -69,5 +69,9 @@ SQL 테스트는 PGlite의 실제 PostgreSQL 엔진으로 실행한다. 권한/R
 - **각 요청의 임의 `X-Forwarded-For`를 바꿔도 개인 한도를 우회하지 못했다. 위조 `CF-Connecting-IP`를 넣은 비유료 요청은 Cloudflare ingress에서 HTTP 403으로 거절됐다. 이는 해당 공개 경로에서 관찰한 거절 결과이며, 헤더 덮어쓰기나 향후 다른 프록시 경로까지 증명하지는 않는다.**
 - **분당 제한 구간이 지난 뒤 로컬 미리보기에서 실제 추천 HTTP 200·추천 이유·10,000원 카드 표시·JavaScript 오류 없음을 확인했다. 유료 모델 요청을 발생시키는 20회/300회 소진 검증은 하지 않았다.**
 - **서버 제한은 활성화했다. `main`은 병합하지 않았으며 공식 프런트엔드 배포도 수행하지 않았다.**
+
+**대시보드 중복 방지: 실행 파일은 `index.ts → handler.ts → rate-limit.ts` 세 개다. Supabase 편집기의 [정적 파일 분류 코드](https://github.com/supabase/supabase/blob/master/apps/studio/components/interfaces/EdgeFunctions/EdgeFunctions.utils.ts)는 `.mjs`를 정적 패턴에도 포함하며, [배포 코드](https://github.com/supabase/supabase/blob/master/apps/studio/data/edge-functions/edge-functions-deploy-mutation.ts)는 이 패턴을 자동 전송한다. 실행 모듈과 정적 복사본이 같은 이름으로 표시되는 현상을 피하도록 두 실행 파일을 `.ts`로 통일했다. 테스트 파일의 `.test.mjs`는 로컬/CI 전용이며 함수에 업로드하지 않는다.**
+
+**2026-11-17 한국시간 20:52 중복 정리 후 검증: 배포 전 ZIP의 세 파일이 저장소 원본과 일치함을 확인하고 백업했다. 실행 파일의 확장자와 두 import 경로만 변경했고, 소스 비교로 실행 로직이 동일함을 확인했다. 대시보드 배포 후 파일 목록에는 `handler.ts`, `index.ts`, `rate-limit.ts`가 각각 하나씩 표시됐다. SQL·기존 사용량·키 설정은 변경하지 않았다. 서버 23/23·SQL 10/10·전체 브라우저 회귀가 통과했고, 실제 요청 6개 중 AI 추천 5개 성공·초과 1개 429(`Retry-After: 56`)를 다시 확인했다. 이후 실제 미리보기에서도 패터슨 10,000원 카드·추천 이유·JavaScript 오류 없음을 확인했다.**
 
 근거: [Supabase rate limiting](https://supabase.com/docs/guides/functions/examples/rate-limiting), [서버 환경변수](https://supabase.com/docs/guides/functions/secrets), [Cloudflare IP 헤더](https://developers.cloudflare.com/fundamentals/reference/http-headers/).

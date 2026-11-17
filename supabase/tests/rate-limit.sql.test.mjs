@@ -80,7 +80,7 @@ test('reservation transaction retains its exclusive global lock until completion
   } finally { await db.exec('rollback;'); }
 });
 test('separate handlers share SQL reservations, so concurrent sixth request starts no model call', async () => {
-  const { createHandler } = await import('../functions/recommend/handler.mjs');
+  const { createHandler } = await import('../functions/recommend/handler.ts');
   const env = { SUPABASE_URL: 'https://example.supabase.co', SUPABASE_PUBLISHABLE_KEYS: JSON.stringify({ default: 'sb_publishable_test' }), SUPABASE_SECRET_KEYS: JSON.stringify({ default: 'sb_secret_sql_test_only' }), OPENAI_API_KEY: 'fake-model-key' };
   let modelCalls = 0;
   const fetchImpl = async (url, init) => {

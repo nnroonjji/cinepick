@@ -280,10 +280,11 @@ input[type=range]{width:100%;accent-color:var(--range)}
 .rt-head .rt-ttl{min-width:0}
 .rt-fmt{flex-shrink:0;font-style:normal;font-size:11px;font-weight:700;padding:1px 10px;border-radius:999px;border:1.5px solid color-mix(in srgb,var(--ink) 22%,transparent);white-space:nowrap} /* 상영 방식: 2D, 4DX, ScreenX, Dolby 등 */
 .rt-ttl{font-family:var(--font-display);font-weight:700;font-size:27px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-/* 긴 제목: 칸보다 길면 왼쪽으로 흘렀다가 돌아오며 끝까지 보여 줌 (app.js setTitle이 넘치는 길이 --d를 넣음). 움직임 줄이기 설정이면 말줄임표 */
+/* 긴 제목: 칸보다 길면 왼쪽 한 방향으로 계속 흘러 한 바퀴 돌듯 다시 나옴. 제목 뒤에 같은 제목을 한 번 더 붙이고(::after) 제목 길이 + 간격 48px만큼 밀기를 반복 (app.js setTitle이 거리 --d, 시간 --t를 넣음. 1초에 55px). 움직임 줄이기 설정이면 말줄임표 */
 .rt-ttl.slide{text-overflow:clip}
-.rt-ttl.slide span{display:inline-block;animation:ttl-slide 6s ease-in-out infinite alternate}
-@keyframes ttl-slide{0%,20%{transform:none}80%,100%{transform:translateX(var(--d))}}
+.rt-ttl.slide span{display:inline-block;animation:ttl-slide var(--t) linear 1s infinite}
+.rt-ttl.slide span::after{content:attr(data-t);padding-left:48px}
+@keyframes ttl-slide{to{transform:translateX(var(--d))}}
 .rt-box{display:grid;grid-template-columns:1.3fr 1fr 1.25fr;border:1.5px solid color-mix(in srgb,var(--ink) 22%,transparent);border-radius:9px}
 .rt-box>div{position:relative;padding:6px 8px 7px;display:flex;flex-direction:column;gap:3px;min-width:0}
 .rt-box>div+div{border-left:1.5px solid color-mix(in srgb,var(--ink) 14%,transparent)}
@@ -519,10 +520,10 @@ a.outline{color:inherit;text-decoration:none}
 .iconbtn{width:44px;height:44px;display:grid;place-items:center;background:none;border:0;padding:0}
 .st-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding:0 24px 18px;flex-shrink:0}
 .st-head>div{display:flex;flex-direction:column;gap:6px;min-width:0}
-.st-q{font-size:13px;font-weight:700;color:var(--mute)}
-.st-head h1{font-size:26px;line-height:1.2;word-break:keep-all;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden} /* 영화 제목. 길면 두 줄까지 */
-.st-sub{font-size:13px;color:var(--mute)}
+.st-head h1{font-size:26px;line-height:1.2;word-break:keep-all;overflow-wrap:anywhere} /* 영화 제목. 길어도 자르지 않고 줄을 늘려 다 보여 줌 */
 #stMovie{font-weight:700;color:var(--ink)}
+.st-plot{background:none;border:0;padding:0;text-align:left;font-size:12.5px;line-height:1.5;color:var(--mute);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden} /* 시놉시스: 3줄까지, 누르면 전체 */
+.st-plot[hidden]{display:none}
 .inline-link{background:none;border:0;padding:0;color:var(--ink);font-weight:700;text-decoration:underline;text-underline-offset:3px;margin-left:2px}
 .st-thumb{width:72px;height:102px;border-radius:8px;object-fit:cover;flex-shrink:0;box-shadow:0 1px 2px rgba(60,40,10,.08),0 12px 26px rgba(60,40,10,.2)}
 .dates-wrap{flex-shrink:0;border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);padding:10px 0 8px}

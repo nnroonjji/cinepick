@@ -270,7 +270,7 @@
   }
   let atEnd=false; // 추천 마지막 장(홈으로 가기)을 보고 있는지
   const METHOD_TAG={match:'맞춤 추천',text:'한 줄 취향'}; // 표 조각의 추천 종류 글자
-  const setTitle=(el,t)=>{el.innerHTML='<span></span>'; const s=el.firstChild; s.textContent=t; const d=el.clientWidth-s.offsetWidth; el.classList.toggle('slide',d<0&&!calm()); el.style.setProperty('--d',d+'px');}; // 표 제목. 칸보다 길면 흘러가게(style.css .rt-ttl.slide)
+  const setTitle=(el,t)=>{el.innerHTML='<span></span>'; const s=el.firstChild; s.textContent=s.dataset.t=t; const w=s.offsetWidth; el.classList.toggle('slide',w>el.clientWidth&&!calm()); el.style.setProperty('--d',-(w+48)+'px'); el.style.setProperty('--t',(w+48)/55+'s');}; // 표 제목. 칸보다 길면 흘러가게(style.css .rt-ttl.slide)
   const syncAnim=(from,to)=>{const a=from?.getAnimations?.()[0],b=to?.getAnimations?.()[0]; if(a&&b) b.currentTime=a.currentTime;}; // 흐르는 제목: 찢긴 조각과 예약 화면 표가 같은 위치에서 이어지게
   const whereOf=n=>{const T=THEATERS[n]||{}; return [(T.addr||'').split(' ')[0],T.area].filter(Boolean).join(' ');}; // 표 조각의 대략 위치: 구 + 동네(서대문구 이대)
   {const d=new Date(), p=x=>String(x).padStart(2,'0'); $('recoNo').textContent=$('bkNo').textContent=d.getFullYear()+'. '+p(d.getMonth()+1)+'. '+p(d.getDate());} // 표 옆 세로 글자: 오늘 날짜
@@ -593,7 +593,7 @@
   let stDate=null;
   function renderShowtimes(){
     const {mv,sh}=cur(), DAYS=calendar(mv.t); if(!stDate||!DAYS.some(x=>x.d===stDate)) stDate=sh.date;
-    $('stMovie').textContent=mv.t; $('stBudget').textContent=fmt(state.price); $('stThumb').src=posterSrc(mv.img); $('stThumb').alt=mv.t+' 포스터';
+    $('stMovie').textContent=mv.t; {const pl=SCREENINGS[mv.t]?.plot||''; $('stPlot').textContent=pl; $('stPlot').hidden=!pl;} /* 제목 아래 시놉시스 3줄. 누르면 전체(줄거리 시트) */ $('stThumb').src=posterSrc(mv.img); $('stThumb').alt=mv.t+' 포스터';
     const fits=day=>day.s.filter(x=>priceOf(x,day.w)<=state.price);
     $('dates').innerHTML='<span class="month">'+(+stDate.slice(0,2))+'월</span>'+DAYS.map(day=>{const n=fits(day).length;
       return '<button type="button" class="date'+(day.w==='토'?' sat':day.w==='일'?' sun':'')+(n?'':' none')+'" aria-pressed="'+(day.d===stDate)+'" data-date="'+day.d+'" aria-label="'+(+day.d.slice(0,2))+'월 '+(+day.d.slice(3))+'일 '+day.w+'요일, 예산 안 '+n+'회"><span class="dow">'+day.w+'</span><span class="num">'+(+day.d.slice(3))+'</span><span class="dot"></span></button>';}).join('');
@@ -605,6 +605,7 @@
     if(!fit.length) html+='<div class="empty"><svg class="mascot" width="64" height="64" aria-hidden="true"><use href="#popcorn"/></svg>'+(day.s.length?'<b>이 날은 예산 안에 맞는 회차가 없어요</b><span>다른 날짜를 고르거나 <button type="button" class="inline-link" data-sheet="budget">예산을 바꿔</button> 보세요</span>':'<b>이 날은 상영표가 없어요</b><span>다른 날짜를 골라 보세요</span>')+'</div>';
     $('shows').innerHTML=html;
   }
+  $('stPlot').addEventListener('click',()=>openSheet('plot',cur().mv.t));
   $('dates').addEventListener('click',e=>{const b=e.target.closest('.date'); if(b){stDate=b.dataset.date; renderShowtimes();}});
   $('shows').addEventListener('click',e=>{const b=e.target.closest('.show'); if(!b) return; const t=cur().mv.t, day=daysOf(t).find(x=>x.d===stDate), s=mk(day,day.s.find(x=>x[0]===b.dataset.time&&x[1]===b.dataset.th&&x[2]===b.dataset.hall),t); if(state.pick) state.pick.sh=s; else state.shows[state.method]=s; renderShowtimes(); openSheet('show');}); // 회차를 누르면 예약하기 팝업
 

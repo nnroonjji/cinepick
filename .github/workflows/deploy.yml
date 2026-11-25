@@ -93,6 +93,9 @@ jobs:
           sed -i 's/<html lang="ko">/<html lang="ko" data-theme-lock="prev">/' _site/index.html  # 테마 고르는 줄 없이 테마 고정
       - if: steps.refresh.outcome != 'failure'
         uses: actions/upload-pages-artifact@v3
+      # 올린 직후에는 GitHub 목록에 아직 안 보여서 배포가 못 찾고 실패한 날이 있었음(11/22, 11/24). 잠깐 기다림
+      - if: steps.refresh.outcome != 'failure'
+        run: sleep 20
       - if: steps.refresh.outcome != 'failure'
         id: deploy
         uses: actions/deploy-pages@v4

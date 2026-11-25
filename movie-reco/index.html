@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>씨네픽 영화 추천</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Nunito:wght@800&family=Noto+Sans+KR:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -130,17 +130,17 @@
     <div class="body center">
       <svg class="mascot" width="128" height="128" aria-hidden="true"><use href="#popcorn"/></svg>
       <h1 class="hero">맞춤 영화 추천을 위해<br>설문을 진행합니다</h1>
+      <p class="sub">1분이면 끝나요</p>
       <div class="intro-arrow" aria-hidden="true"></div>
-      <div class="end"></div>
+      <button class="cta" data-go="mbti"><span>설문 시작하기</span><span class="arr">→</span></button>
     </div>
-    <button class="cta" data-go="mbti"><span>설문 시작하기</span><span class="arr">→</span></button>
   </section>
 
   <!-- 4. MBTI -->
   <section class="view survey" id="v-mbti">
     <div class="top"><button class="back" data-back aria-label="뒤로">←</button><span class="step">1 / 3</span></div>
     <div class="body">
-      <svg class="mascot self-c" width="88" height="88" aria-hidden="true"><use href="#popcorn"/></svg>
+      <svg class="mascot self-c" width="150" height="150" aria-hidden="true"><use href="#popcorn"/></svg>
       <h2 class="hero center">MBTI를 선택하세요</h2>
       <div class="axes" id="mbti">
         <div class="axis" data-axis="0"><button type="button" data-v="I" aria-pressed="false">I</button><button type="button" data-v="E" aria-pressed="false">E</button><div class="knob" aria-hidden="true"></div></div>
@@ -158,7 +158,6 @@
   <section class="view survey" id="v-pref">
     <div class="top"><button class="back" data-back aria-label="뒤로">←</button><span class="step">2 / 3</span></div>
     <div class="body">
-      <svg class="mascot self-c" width="88" height="88" aria-hidden="true"><use href="#popcorn"/></svg>
       <h2 class="center">재미있게 봤던 영화를 골라주세요</h2>
       <p class="sub center">2편 이상 골라 주세요 · <span id="prefCount">0</span>편 선택됨</p>
       <div class="pref-scroll">
@@ -208,13 +207,12 @@
           </div>
           <a class="rt-stub" href="#booking" data-go="booking" id="recoSheet" aria-label="누르면 지도와 예약 화면">
             <div class="rt-main">
-              <div class="rt-adm"><i aria-hidden="true">★</i>ADMIT ONE<i aria-hidden="true">★</i><em id="recoTag">MBTI 추천</em></div>
-              <div class="rt-ttl" id="recoTitle">룩백</div>
+              <div class="rt-adm"><i aria-hidden="true">★</i><span id="recoTag">맞춤 추천</span><i aria-hidden="true">★</i></div>
+              <div class="rt-head"><div class="rt-ttl" id="recoTitle">룩백</div><em class="rt-fmt" id="recoFmt">2D</em></div>
               <div class="rt-box"><div><span>DATE</span><b id="recoDate">10.30 <small>(금)</small></b></div><div class="t"><span>TIME</span><b id="recoTime">11:40</b><em class="rt-early" id="recoEarly" hidden>조조</em></div><div><span>PRICE</span><b id="recoPrice">10,000원</b></div></div>
-              <div class="rt-plc"><b id="recoTheater">상상마당 시네마</b><span id="recoWhen">01관 · 2D</span></div>
-              <div class="rt-bar" aria-hidden="true"></div>
+              <div class="rt-plc"><b id="recoTheater">상상마당 시네마</b><span id="recoWhen">마포구 홍대</span></div>
             </div>
-            <div class="rt-side" aria-hidden="true"><span id="recoNo">No.1030-1140</span></div>
+            <div class="rt-side" aria-hidden="true"><span id="recoNo"></span></div>
           </a>
           <div class="rt-end" id="recoEndCard" hidden>
             <div class="rt-end-top"><svg class="mascot" aria-hidden="true"><use href="#popcorn"/></svg><h3>즐거운 관람 되세요!</h3><p>마음에 든 표는 왼쪽으로 넘기면<br>다시 볼 수 있어요</p></div>
@@ -234,7 +232,7 @@
   <!-- 8. Home -->
   <section class="view home" id="v-home">
     <div class="home-top">
-      <button class="me" data-sheet="mypage" aria-label="마이페이지"><span class="me-av"><svg width="32" height="32" aria-hidden="true"><use href="#popcorn"/></svg></span><span class="me-n" id="homeUser">김치찌 님</span></button>
+      <button class="me" data-sheet="mypage" aria-label="마이페이지"><span class="me-av"><svg width="46" height="46" aria-hidden="true"><use href="#popcorn"/></svg></span><span class="me-n" id="homeUser">김치찌 님</span></button>
       <button class="iconbtn" data-drawer aria-label="메뉴"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
     </div>
     <div class="scroll">
@@ -282,8 +280,6 @@
               <g data-cat="culture"><use href="#pin-mark" transform="translate(247.1,166.6) scale(.72)" style="color:var(--culture)"/></g>
               <g data-cat="culture"><use href="#pin-mark" transform="translate(159.4,150) scale(.72)" style="color:var(--culture)"/></g>
               <g data-cat="culture"><use href="#pin-mark" transform="translate(113.8,142.6) scale(.72)" style="color:var(--culture)"/></g>
-              <g data-cat="culture"><use href="#pin-mark" transform="translate(143.6,151.4) scale(.72)" style="color:var(--culture)"/></g>
-              <g data-cat="culture"><use href="#pin-mark" transform="translate(148.3,146.8) scale(.72)" style="color:var(--culture)"/></g>
               <g data-cat="multi"><use href="#pin-mark" transform="translate(173.2,102.1) scale(.72)" style="color:var(--cat-multi)"/></g>
               <g data-cat="indie"><use href="#pin-mark" transform="translate(166.5,105.6) scale(.72)" style="color:var(--hot)"/></g>
               <g data-cat="multi"><use href="#pin-mark" transform="translate(169.7,104.6) scale(.72)" style="color:var(--cat-multi)"/></g>
@@ -341,8 +337,6 @@
         <g data-cat="culture" data-n="포로토커피" data-x="1313" data-y="754" role="button" tabindex="0" aria-label="포로토커피"><rect class="lb" x="1324.9" y="724.9" width="75" height="22" rx="11"/><text x="1362.4" y="740" text-anchor="middle">포로토커피</text><use href="#pin-mark" transform="translate(1312.9,753.9)" style="color:var(--culture)"/></g>
         <g data-cat="culture" data-n="만월다방 시네마" data-x="914" data-y="678" role="button" tabindex="0" aria-label="만월다방 시네마"><rect class="lb" x="926.2" y="649.3" width="100" height="22" rx="11"/><text x="976.2" y="664.4" text-anchor="middle">만월다방 시네마</text><use href="#pin-mark" transform="translate(914.2,678.3)" style="color:var(--culture)"/></g>
         <g data-cat="culture" data-n="마이페이보릿" data-x="707" data-y="645" role="button" tabindex="0" aria-label="마이페이보릿"><path class="ld" d="M706.7 627.7 L696.7 627.7" stroke="#8a7f70" stroke-width="1.2" fill="none"/><rect class="lb" x="610.7" y="615.7" width="86" height="22" rx="11"/><text x="653.7" y="630.8" text-anchor="middle">마이페이보릿</text><use href="#pin-mark" transform="translate(706.7,644.7)" style="color:var(--culture)"/></g>
-        <g data-cat="culture" data-n="킬링타임 OTT카페" data-x="843" data-y="685" role="button" tabindex="0" aria-label="킬링타임 OTT카페"><path class="ld" d="M842.5 667.6 L830.5 688.6" stroke="#8a7f70" stroke-width="1.2" fill="none"/><rect class="lb" x="718.5" y="688.6" width="112" height="22" rx="11"/><text x="774.5" y="703.7" text-anchor="middle">킬링타임 OTT카페</text><use href="#pin-mark" transform="translate(842.5,684.6)" style="color:var(--culture)"/></g>
-        <g data-cat="culture" data-n="캣툰 홍대점" data-x="864" data-y="664" role="button" tabindex="0" aria-label="캣툰 홍대점"><path class="ld" d="M863.7 647 L845.7 628" stroke="#8a7f70" stroke-width="1.2" fill="none"/><rect class="lb" x="767.7" y="606" width="78" height="22" rx="11"/><text x="806.7" y="621.1" text-anchor="middle">캣툰 홍대점</text><use href="#pin-mark" transform="translate(863.7,664)" style="color:var(--culture)"/></g>
         <g data-cat="multi" data-n="CGV 연남" data-x="977" data-y="461" role="button" tabindex="0" aria-label="CGV 연남"><rect class="lb" x="988.7" y="431.5" width="68" height="22" rx="11"/><text x="1022.7" y="446.6" text-anchor="middle">CGV 연남</text><use href="#pin-mark" transform="translate(976.7,460.5)" style="color:var(--cat-multi)"/></g>
         <g data-cat="indie" data-n="인디스페이스" data-x="947" data-y="477" role="button" tabindex="0" aria-label="인디스페이스"><path class="ld" d="M946.5 459.5 L927.5 438.5" stroke="#8a7f70" stroke-width="1.2" fill="none"/><rect class="lb" x="841.5" y="416.5" width="86" height="22" rx="11"/><text x="884.5" y="431.6" text-anchor="middle">인디스페이스</text><use href="#pin-mark" transform="translate(946.5,476.5)" style="color:var(--hot)"/></g>
         <g data-cat="multi" data-n="롯데시네마 홍대입구" data-x="961" data-y="472" role="button" tabindex="0" aria-label="롯데시네마 홍대입구"><path class="ld" d="M961.1 454.9 L997.1 465.9" stroke="#8a7f70" stroke-width="1.2" fill="none"/><rect class="lb" x="997.1" y="465.9" width="122" height="22" rx="11"/><text x="1058.1" y="480.9" text-anchor="middle">롯데시네마 홍대입구</text><use href="#pin-mark" transform="translate(961.1,471.9)" style="color:var(--cat-multi)"/></g>
@@ -402,13 +396,12 @@
       <div class="bk-stub-wrap">
         <div class="bk-stub" id="bkStub">
           <div class="rt-main">
-            <div class="rt-adm"><i aria-hidden="true">★</i>ADMIT ONE<i aria-hidden="true">★</i><em id="bkTag">MBTI 추천</em></div>
-            <div class="rt-ttl" id="bkTitle">룩백</div>
+            <div class="rt-adm"><i aria-hidden="true">★</i><span id="bkTag">맞춤 추천</span><i aria-hidden="true">★</i></div>
+            <div class="rt-head"><div class="rt-ttl" id="bkTitle">룩백</div><em class="rt-fmt" id="bkFmt">2D</em></div>
             <div class="rt-box"><div><span>DATE</span><b id="bkDate">10.30 <small>(금)</small></b></div><div class="t"><span>TIME</span><b id="bkTime">11:40</b><em class="rt-early" id="bkEarly" hidden>조조</em></div><div><span>PRICE</span><b id="bkPrice">10,000원</b></div></div>
-            <div class="rt-plc"><b id="bkTh2">상상마당 시네마</b><span id="bkWhen">01관 · 2D</span></div>
-            <div class="rt-bar" aria-hidden="true"></div>
+            <div class="rt-plc"><b id="bkTh2">상상마당 시네마</b><span id="bkWhen">마포구 홍대</span></div>
           </div>
-          <div class="rt-side" aria-hidden="true"><span id="bkNo">No.1030-1140</span></div>
+          <div class="rt-side" aria-hidden="true"><span id="bkNo"></span></div>
         </div>
       </div>
       <a class="cta static" id="bkGo" href="https://www.sangsangmadang.com" target="_blank" rel="noopener"><span>예약 바로가기</span><span class="arr">→</span></a>
@@ -425,10 +418,6 @@
     </div>
     <div class="dates-wrap"><div class="rail dates" id="dates"></div></div>
     <div class="st-list" id="shows"></div>
-    <div class="st-bar">
-      <div class="st-sel"><b id="selLine1">회차를 골라 주세요</b><span id="selLine2">시간을 누르면 여기에 표시돼요</span></div>
-      <button type="button" class="pill-cta" data-go="booking">보러가기</button>
-    </div>
   </section>
 
   <div id="overlay"></div>

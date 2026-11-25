@@ -270,6 +270,10 @@
   }
   let atEnd=false; // 추천 마지막 장(홈으로 가기)을 보고 있는지
   const METHOD_TAG={match:'맞춤 추천',text:'한 줄 취향'}; // 표 조각의 추천 종류 글자
+  const setTitle=(el,t)=>{el.innerHTML='<span></span>'; const s=el.firstChild; s.textContent=t; const d=el.clientWidth-s.offsetWidth; el.classList.toggle('slide',d<0&&!calm()); el.style.setProperty('--d',d+'px');}; // 표 제목. 칸보다 길면 흘러가게(style.css .rt-ttl.slide)
+  const syncAnim=(from,to)=>{const a=from?.getAnimations?.()[0],b=to?.getAnimations?.()[0]; if(a&&b) b.currentTime=a.currentTime;}; // 흐르는 제목: 찢긴 조각과 예약 화면 표가 같은 위치에서 이어지게
+  const whereOf=n=>{const T=THEATERS[n]||{}; return [(T.addr||'').split(' ')[0],T.area].filter(Boolean).join(' ');}; // 표 조각의 대략 위치: 구 + 동네(서대문구 이대)
+  {const d=new Date(), p=x=>String(x).padStart(2,'0'); $('recoNo').textContent=$('bkNo').textContent=d.getFullYear()+'. '+p(d.getMonth()+1)+'. '+p(d.getDate());} // 표 옆 세로 글자: 오늘 날짜
   function renderReco(){
     tearReset(); // 찢긴 표는 다시 들어오면 붙여 둠
     const k=state.method, len=recoLen(); // 추천 화면은 들어온 길의 추천(맞춤 추천 또는 홈 줄글 추천) 1~3위 + 마지막 장
@@ -301,10 +305,9 @@
     $('recoWhy').textContent=why;
     $('recoImg').src=posterSrc(mv.img); $('recoImg').alt=mv.t+' 포스터'; warmPosters(mv.img); // 지금 것은 img가 받고, 다른 추천 것만 미리
     $('recoTag').textContent=METHOD_TAG[k];
-    $('recoTitle').textContent=mv.t; $('recoDate').innerHTML=sh.date+' <small>('+sh.dow+')</small>'; $('recoTime').textContent=sh.time;
+    setTitle($('recoTitle'),mv.t); $('recoDate').innerHTML=sh.date+' <small>('+sh.dow+')</small>'; $('recoTime').textContent=sh.time;
     $('recoEarly').hidden=!(sh.note||'').startsWith('조조'); // 조조 회차면 시간 칸에 도장
-    $('recoTheater').textContent=sh.theater; $('recoWhen').textContent=sh.hall+' · '+(sh.fmt||'2D'); $('recoPrice').textContent=fmt(sh.price);
-    $('recoNo').textContent='No.'+sh.date.replace(/\D/g,'')+'-'+sh.time.replace(':',''); // 표 번호: 날짜 + 시간
+    $('recoTheater').textContent=sh.theater; $('recoWhen').textContent=whereOf(sh.theater); $('recoFmt').textContent=sh.fmt||'2D'; $('recoPrice').textContent=fmt(sh.price);
     $('recoSheet').setAttribute('aria-label',sh.theater+' '+sh.time+' '+fmt(sh.price)+'. 누르면 지도와 예약 화면');
     if(state.user!=='게스트'&&state.mbti.every(Boolean)) saveUser(state.user,{mbti:state.mbti.slice(),picked:state.picked,price:state.price,disc:state.disc});
   }
@@ -322,9 +325,9 @@
     $('bkTheater').textContent=sh.theater; bkFocus(sh.theater);
     $('bkKind').textContent=T.kind||''; $('bkKind').hidden=!T.kind; if(T.type) $('bkKind').dataset.type=T.type; else delete $('bkKind').dataset.type; $('bkArea').textContent=T.area||''; $('bkArea').hidden=!T.area;
     // 표 조각: 추천 화면 아래 조각과 같은 내용 + 작은 포스터
-    $('bkTag').textContent=state.pick?'예산 맞춤':METHOD_TAG[state.method]; $('bkTitle').textContent=mv.t; $('bkDate').innerHTML=sh.date+' <small>('+sh.dow+')</small>';
+    $('bkTag').textContent=state.pick?'예산 맞춤':METHOD_TAG[state.method]; setTitle($('bkTitle'),mv.t); $('bkDate').innerHTML=sh.date+' <small>('+sh.dow+')</small>';
     $('bkTime').textContent=sh.time; $('bkEarly').hidden=!(sh.note||'').startsWith('조조'); $('bkPrice').textContent=fmt(sh.price);
-    $('bkTh2').textContent=sh.theater; $('bkWhen').textContent=sh.hall+' · '+(sh.fmt||'2D'); $('bkNo').textContent='No.'+sh.date.replace(/\D/g,'')+'-'+sh.time.replace(':','');
+    $('bkTh2').textContent=sh.theater; $('bkWhen').textContent=whereOf(sh.theater); $('bkFmt').textContent=sh.fmt||'2D';
     $('bkCaption').textContent=sh.theater+' 페이지로 이동해요'; stubZig();
     const u=THEATERS[sh.theater]?.url; if(u) $('bkGo').href=u; else $('bkGo').removeAttribute('href'); // 예약 바로가기: 그 극장 홈페이지를 새 탭으로 (data/schedule.js THEATERS url)
   }
@@ -384,16 +387,17 @@
     const torn=document.createElement('div'); torn.className='rt-torn'; torn.setAttribute('aria-hidden','true');
     torn.style.cssText='left:'+(L+view.offsetLeft)+'px;top:'+(T+view.offsetTop+Y-4)+'px;width:'+W+'px;height:'+(S+4)+'px';
     const inner=st.cloneNode(true); inner.removeAttribute('id'); inner.removeAttribute('href'); inner.querySelectorAll('[id]').forEach(n=>n.removeAttribute('id'));
-    torn.appendChild(inner); torn.style.clipPath='polygon('+zig(4,1).join(',')+','+W+'px '+(S+4)+'px,0 '+(S+4)+'px)';
-    $('app').appendChild(torn); st.style.visibility='hidden'; // 화면 밖(#app)에 붙여서 예약 화면으로 넘어간 뒤에도 끝까지 떨어지는 게 보이게
+    const body=document.createElement('div'); body.className='rt-torn-in'; body.appendChild(inner); torn.appendChild(body); body.style.clipPath='polygon('+zig(5,1).join(',')+','+W+'px '+(S+4)+'px,0 '+(S+4)+'px)';
+    $('app').appendChild(torn); syncAnim($('recoTitle').firstChild,torn.querySelector('.rt-ttl span')); st.style.visibility='hidden'; // 화면 밖(#app)에 붙여서 예약 화면으로 넘어간 뒤에도 끝까지 떨어지는 게 보이게
     const tug=torn.animate([{transform:'none'},{offset:.5,transform:'translateY(5px) rotate(1.5deg)'},{transform:'translate(3px,14px) rotate(4deg)'}],{duration:150,easing:'ease-out',fill:'forwards'});
     // 찢긴 뒤 예약 화면으로 넘어가면서 조각이 예약 화면 표 자리로 날아가 앉음(예약 화면 표 조각은 같은 크기, 같은 톱니)
     setTimeout(()=>{
       show('booking',true,'fade'); // 화면은 제자리에서 바뀌고 표 조각만 움직이게
       const bv=$('v-booking'),bs=$('bkStub'); let tx=bv.offsetLeft,ty=bv.offsetTop; for(let el=bs;el&&el!==bv;el=el.offsetParent){tx+=el.offsetLeft;ty+=el.offsetTop;}
       const x0=L+view.offsetLeft,y0=T+view.offsetTop+Y-4,sc=bs.offsetWidth/W,dx=tx-x0,dy=ty-y0-4*sc;
-      bs.style.visibility='hidden'; tug.cancel();
-      torn.animate([{transform:'translate(3px,14px) rotate(4deg)'},{offset:.55,transform:'translate('+(dx*.55)+'px,'+(dy*.55-36)+'px) rotate(-5deg) scale('+(1+(sc-1)*.55)+')'},{transform:'translate('+dx+'px,'+dy+'px) rotate(0deg) scale('+sc+')'}],{duration:520,easing:'cubic-bezier(.3,.6,.25,1)',fill:'forwards'});
+      bs.style.visibility='hidden'; tug.cancel(); syncAnim(torn.querySelector('.rt-ttl span'),$('bkTitle').firstChild);
+      body.animate([{backgroundColor:getComputedStyle(body).backgroundColor},{backgroundColor:getComputedStyle(bs).backgroundColor}],{duration:520,fill:'forwards'}); // 바탕색도 예약 화면 표 색으로 서서히
+      torn.animate([{transform:'translate(3px,14px) rotate(4deg)',filter:'drop-shadow(0 1px 1px rgba(60,40,10,.10)) drop-shadow(0 12px 20px rgba(60,40,10,.20))'},{offset:.55,transform:'translate('+(dx*.55)+'px,'+(dy*.55-36)+'px) rotate(-5deg) scale('+(1+(sc-1)*.55)+')'},{transform:'translate('+dx+'px,'+dy+'px) rotate(0deg) scale('+sc+')',filter:'drop-shadow(0 1px 1px rgba(60,40,10,.10)) drop-shadow(0 8px 14px rgba(60,40,10,.14))'}],{duration:520,easing:'cubic-bezier(.3,.6,.25,1)',fill:'forwards'});
       setTimeout(()=>{bs.style.visibility=''; tearReset();},520); // 예약 화면 조각은 같은 내용, 같은 모양이라 내려앉으면 그대로 바꿔 끼움
     },150); // 찢기는 순간(0.15초)만 보여 주고 바로 넘김
   });
@@ -459,13 +463,12 @@
   $('bdGrid').addEventListener('click',e=>{const b=e.target.closest('.bm'); if(!b) return; const t=b.dataset.t; state.pick={mv:{t,img:SCREENINGS[t].poster},sh:null}; show('showtimes',true);});
 
   // ── 나들이: 마포구 영화 문화공간(data/data.js OUTINGS). 홈 카드 줄, 시트(목록 → 상세), 지도 크게 핀과 연결 ──
-  const OG_CATS=[['all','전체'],['cafe','영화 카페'],['shop','영화 굿즈'],['space','문화공간'],['ott','OTT 카페']];
+  const OG_CATS=[['all','전체'],['cafe','영화 카페'],['shop','영화 굿즈'],['space','문화공간']];
   const OG_NAME=Object.fromEntries(OG_CATS);
   const OG_IC={ // 종류별 아이콘, 바탕색
     cafe:['#f8e6b4','<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8a6414" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M9 3v3M12 3v3"/></svg>'],
     shop:['#e3e7f0','<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4b5a7d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.2"/><path d="M12 5.8a6.2 6.2 0 0 1 5.4 3.2"/></svg>'],
-    space:['#eee3d9','<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6e4f4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v4a2 2 0 0 0 0 4v4H4v-4a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></svg>'],
-    ott:['#fbe1e4','<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#a83a50" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M10.5 8.5l4 2.5-4 2.5z"/></svg>']};
+    space:['#eee3d9','<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6e4f4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v4a2 2 0 0 0 0 4v4H4v-4a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></svg>']};
   const ogIc=o=>'<span class="ic" style="background:'+OG_IC[o.c][0]+'">'+OG_IC[o.c][1]+'</span>';
   // 홈: 장소 카드 줄. 누르면 나들이 시트의 그 장소 상세
   $('homeOuts').innerHTML=OUTINGS.map((o,i)=>'<button type="button" class="out" data-outing="'+i+'">'+ogIc(o)+'<b>'+o.n+'</b><small>'+OG_NAME[o.c]+' · '+o.area+'</small></button>').join('');
@@ -601,10 +604,9 @@
       return '<button type="button" class="show" aria-pressed="'+on+'" data-time="'+s[0]+'" data-th="'+s[1]+'" data-hall="'+s[2]+'"><span class="tm">'+s[0]+'</span><span class="inf"><span class="hall">'+s[2]+' · '+(s[5]||'2D')+((s[6]||'').startsWith('조조')?'<span class="early">조조</span>':'')+(dc.by?'<span class="early">'+DISC_LABEL[dc.by]+'</span>':'')+'</span><span class="seats">'+(s[4]!=null?'잔여 '+s[4]+'석':(s[6]||'').replace(/^조조(, )?/,'').replace(/(, )?요금 미확인/,''))+'</span></span><span class="pr">'+(dc.by?'<s>'+fmt(s[3])+'</s>':'')+fmt(dc.price)+'</span></button>';}).join('')).join('');
     if(!fit.length) html+='<div class="empty"><svg class="mascot" width="64" height="64" aria-hidden="true"><use href="#popcorn"/></svg>'+(day.s.length?'<b>이 날은 예산 안에 맞는 회차가 없어요</b><span>다른 날짜를 고르거나 <button type="button" class="inline-link" data-sheet="budget">예산을 바꿔</button> 보세요</span>':'<b>이 날은 상영표가 없어요</b><span>다른 날짜를 골라 보세요</span>')+'</div>';
     $('shows').innerHTML=html;
-    $('selLine1').textContent=sh.date+' ('+sh.dow+') '+sh.time; $('selLine2').textContent=sh.theater+' '+sh.hall+' · '+fmt(sh.price);
   }
   $('dates').addEventListener('click',e=>{const b=e.target.closest('.date'); if(b){stDate=b.dataset.date; renderShowtimes();}});
-  $('shows').addEventListener('click',e=>{const b=e.target.closest('.show'); if(!b) return; const t=cur().mv.t, day=daysOf(t).find(x=>x.d===stDate), s=mk(day,day.s.find(x=>x[0]===b.dataset.time&&x[1]===b.dataset.th&&x[2]===b.dataset.hall),t); if(state.pick) state.pick.sh=s; else state.shows[state.method]=s; renderShowtimes();});
+  $('shows').addEventListener('click',e=>{const b=e.target.closest('.show'); if(!b) return; const t=cur().mv.t, day=daysOf(t).find(x=>x.d===stDate), s=mk(day,day.s.find(x=>x[0]===b.dataset.time&&x[1]===b.dataset.th&&x[2]===b.dataset.hall),t); if(state.pick) state.pick.sh=s; else state.shows[state.method]=s; renderShowtimes(); openSheet('show');}); // 회차를 누르면 예약하기 팝업
 
   // ── Home: 검색·제안 칩·지도 카테고리 ──
   $('searchForm').addEventListener('submit',e=>{e.preventDefault(); const q=$('q').value.trim(); if(!q){toast('찾고 싶은 영화를 적어줘'); return;} state.text=q; state.method='text'; state.idx.text=0; state.shows.text=null; textClient.run(state); show('reco',true);});
@@ -626,8 +628,9 @@
     if(kind==='outing') html='<h2>나들이 <small style="font-size:11px;color:var(--mute)">마포구 영화 문화공간</small></h2><div class="rail og-cats">'+OG_CATS.map(([k,t],i)=>'<button type="button" class="cat" data-og="'+k+'" aria-pressed="'+!i+'">'+t+'</button>').join('')+'</div><div class="og-grid"></div>';
     if(kind==='plot'){logClick('synopsis'); const i=SCREENINGS[arg]||{}, esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); // 추천 화면에서 포스터를 누르면 시놉시스 (KOBIS, 없으면 KMDb 줄거리. data/build_schedule.py가 넣음)
       html='<h2>'+esc(arg)+'</h2><p class="hint">'+esc([i.genre,i.min&&i.min+'분',i.rating].filter(Boolean).join(' · '))+'</p><p class="plot">'+(i.plot?esc(i.plot):'시놉시스가 아직 없어요')+'</p>';}
+    if(kind==='show'){const {sh}=cur(); html='<h2>'+sh.date+' ('+sh.dow+') '+sh.time+'</h2><p class="hint">'+sh.theater+' '+sh.hall+' · '+fmt(sh.price)+'</p><button class="cta static" data-go="booking"><span>예약하기</span><span class="arr">→</span></button>';} // 회차 화면에서 고른 회차
     if(kind==='budget') html='<h2>예산 바꾸기</h2><div class="price-card"><div class="row"><span>최대</span><b id="sheetBudgetOut">'+fmt(state.price)+'</b></div><input type="range" id="sheetBudget" min="5000" max="50000" step="1000" value="'+state.price+'" aria-label="최대 예산"><div class="row"><span>5,000원</span><span>50,000원</span></div></div><button class="cta static" data-close>적용</button>';
-    overlay.innerHTML='<div class="sheet"><div class="panel">'+X+html+'</div></div>';
+    overlay.innerHTML='<div class="sheet'+(kind==='show'?' pop':'')+'"><div class="panel">'+X+html+'</div></div>';
     overlay.querySelectorAll('.disc').forEach(b=>b.addEventListener('click',()=>{const d=b.dataset.d; if(state.disc[d]) delete state.disc[d]; else state.disc[d]=1; useDisc(state.disc); b.setAttribute('aria-pressed',!!state.disc[d]); if(current==='home') renderHome(); if(state.user!=='게스트') saveUser(state.user,{disc:state.disc});}));
     const og=overlay.querySelector('.og-grid'); // 나들이 시트: 칩으로 종류 고르기, 카드 누르면 상세, ← 목록으로 돌아감
     if(og){let k='all';

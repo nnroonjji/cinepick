@@ -397,8 +397,7 @@ input[type=range]{width:100%;accent-color:var(--range)}
 /* 홈 지도 카드: 지도는 눌러서 지도 크게로, 아래는 범례 한 줄(색 점, 이름, 개수). 누르면 그 종류를 켜고 끔, 꺼지면 흐리게(2026-11-01) */
 .mapcard:has(#cats){gap:4px;padding:8px 8px 4px}
 .map[data-go]{position:relative;cursor:pointer}
-.map-open{position:absolute;right:8px;bottom:8px;display:flex;align-items:center;gap:4px;min-height:32px;padding:0 10px 0 12px;border:0;border-radius:999px;background:color-mix(in srgb,var(--surface) 92%,transparent);box-shadow:0 2px 8px rgba(60,40,10,.18);font-size:11.5px;font-weight:700;color:var(--ink)}
-#cats{gap:0;justify-content:space-between;margin:0 -6px} /* 첫 점과 마지막 숫자를 지도 양끝 선에 맞춤(버튼 안쪽 여백 6px만큼 바깥으로) */
+#cats{gap:28px;justify-content:center} /* 가운데로 모으고 사이는 조금 띄움 */
 #cats .cat{flex:0 1 auto;min-height:40px;border:0;background:none;padding:0 6px;font-size:12px;font-weight:700;color:var(--ink);transition:opacity .15s}
 #cats .cat i{width:8px;height:8px;border:0;background:var(--c)}
 #cats .cat em{font-style:normal;font-weight:400;color:var(--mute);margin-left:2px}

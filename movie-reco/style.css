@@ -25,8 +25,11 @@
 }
 :root[data-theme="prev"]{
   --bg:#f6ebb8; --line:#efd98a;
-  --cta:#f8a9ab; --cta-shadow:rgba(150,60,70,.2); /* 포인트색은 마스코트 팝콘 통의 분홍(mascot.png에서 뽑음). 전에는 주황 #e3b23c */
-  --accent:#f8a9ab; --accent-fg:#2b2622; --tag:#f8a9ab; --spark:#f8a9ab; --chip-in:#f8efc9;
+  --cta:#e3b23c; --cta-shadow:rgba(120,90,10,.18);
+  --accent:#e3b23c; --accent-fg:#2b2622; --tag:#e3b23c; --spark:#e3b23c; --chip-in:#f8efc9;
+}
+:root[data-theme="prev"] :is(#v-home,#v-reco){ /* 홈과 추천 화면만 포인트색이 마스코트 팝콘 통의 분홍(mascot.png에서 뽑음). 다른 화면과 시트는 주황 그대로 */
+  --cta:#f8a9ab; --cta-shadow:rgba(150,60,70,.2); --accent:#f8a9ab; --tag:#f8a9ab; --spark:#f8a9ab;
 }
 :root[data-theme="coral"]{
   --bg:#fbf1e6; --line:#efd98a;

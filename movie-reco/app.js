@@ -463,11 +463,10 @@
   $('bdGrid').addEventListener('click',e=>{const b=e.target.closest('.bm'); if(!b) return; const t=b.dataset.t; state.pick={mv:{t,img:SCREENINGS[t].poster},sh:null}; show('showtimes',true);});
 
   // ── 나들이: 마포구 영화 문화공간(data/data.js OUTINGS). 홈 카드 줄, 시트(목록 → 상세), 지도 크게 핀과 연결 ──
-  const OG_CATS=[['all','전체'],['cafe','영화 카페'],['shop','영화 굿즈'],['space','문화공간']];
+  const OG_CATS=[['all','전체'],['cafe','영화 카페'],['space','문화공간']];
   const OG_NAME=Object.fromEntries(OG_CATS);
   const OG_IC={ // 종류별 아이콘, 바탕색
     cafe:['#f8e6b4','<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8a6414" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M9 3v3M12 3v3"/></svg>'],
-    shop:['#e3e7f0','<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4b5a7d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.2"/><path d="M12 5.8a6.2 6.2 0 0 1 5.4 3.2"/></svg>'],
     space:['#eee3d9','<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6e4f4f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v4a2 2 0 0 0 0 4v4H4v-4a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></svg>']};
   const ogIc=o=>'<span class="ic" style="background:'+OG_IC[o.c][0]+'">'+OG_IC[o.c][1]+'</span>';
   // 홈: 장소 카드 줄. 누르면 나들이 시트의 그 장소 상세
